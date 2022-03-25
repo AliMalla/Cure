@@ -1,0 +1,26 @@
+-What do I want to learn or understand better? 
+
+I want to learn the principles of Agile and work with scrum so that I can work flexibly
+with a project. 
+
+ 
+
+-How can I help someone else, or the entire team, to learn something new? 
+
+I can first explain in words. If the person who needs help does not understand
+what I am talking about, I can explain how it works in practice. 
+
+ 
+
+-What is my contribution towards the team’s use of Scrum? 
+
+- I do not know yet because I do not know much about scrum. But after attending
+a few more lectures, I can contribute. 
+
+ 
+
+-What is my contribution towards the team’s deliveries? 
+
+I have created a server in discord so we can communicate with each other there. Then 
+I created a repo in github to add all the materials and added the group members to the
+repo. As we wrote the social contract together. 
