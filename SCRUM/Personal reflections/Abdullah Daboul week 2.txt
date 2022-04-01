@@ -1,0 +1,15 @@
+- What do I want to learn or understand better?
+
+I want to learn more about android application development, and improve my knowledge in Git.  
+
+- How can I help someone else, or the entire team, to learn something new?
+
+By recommending courses or tutorials to my group members and by helping them with the technical problem as long as I can.
+
+- What is my contribution towards the team’s application of scrum?
+
+By scheduling some group meetings to discuss some details.
+
+- What is my contribution towards the team’s deliveries?
+
+I wrote the project scope and improved it after discussing it with my group members.
