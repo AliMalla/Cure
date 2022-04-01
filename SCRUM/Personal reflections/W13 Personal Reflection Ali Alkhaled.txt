@@ -1,0 +1,25 @@
+What do I want to learn or understand better?
+
+-Firstly, I want to learn more about understading different API and using external libraries for Andriod development (since the project is an Andriod application). In addition, I feel I need to improve my orgnazition and communication skills a little bit with respect to agile development management.
+
+
+
+
+How can I help someone else, or the entire team, to learn something new?
+
+-Since we are soon going to start with developing the application and start coding, I can help with the backend. Also, I can help some of my team colleagues with some points in Android since I previously did a project in Android and learned from it.
+
+
+
+
+What is my contribution towards the team’s use of Scrum?
+
+-I am a developer, and I feel it is the best fit for me. I am looking forward to continually be active in the technical development of the application.
+
+
+
+What is my contribution towards the team’s deliveries?
+
+-As mentioned before, I belong to the "development team". I created, together with someone else in the team, some prototypes and determined the design of the application after discussions with the team and with respect to the client requirements.
+
+
