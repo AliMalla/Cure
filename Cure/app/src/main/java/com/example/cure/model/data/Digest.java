@@ -1,4 +1,4 @@
-package com.example.cure.model;
+package com.example.cure.model.data;
 
 public class Digest {
 

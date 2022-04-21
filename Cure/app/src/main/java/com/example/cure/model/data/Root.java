@@ -1,8 +1,6 @@
-package com.example.cure.model;
+package com.example.cure.model.data;
 
-import java.util.List;
-
-public class Root {
+public class Root{
 
     private final int from;
     private final int to;
