@@ -1,6 +1,4 @@
-package com.example.cure.model;
-
-import java.util.List;
+package com.example.cure.model.data;
 
 public class RecipeSortingTypes {
 

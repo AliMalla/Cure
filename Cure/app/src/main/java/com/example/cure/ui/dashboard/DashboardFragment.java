@@ -1,6 +1,7 @@
 package com.example.cure.ui.dashboard;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.cure.R;
 import com.example.cure.databinding.FragmentDashboardBinding;
+import com.example.cure.model.data.Hit;
+import com.example.cure.model.server.APIConnection;
+import com.example.cure.model.data.Root;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class DashboardFragment extends Fragment {
 
@@ -33,6 +40,42 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
+            }
+        });
+
+        binding.testButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*PlaceHolderAPI placeHolderAPI = APIConnection.getRetrofit().create(PlaceHolderAPI.class);
+
+                Call<Root> call = placeHolderAPI.getPosts(APIConnection.TYPE, "e", APIConnection.APP_ID, APIConnection.APP_KEY);
+
+
+                 */
+                APIConnection.getRootModel("pancake or chicken").enqueue(new Callback<Root>() {
+                    @Override
+                    public void onResponse(Call<Root> call, Response<Root> response) {
+
+                        if (response.isSuccessful() && response != null) {
+                            Log.e("DashboardFragment", "onResponse: code :" + response.code());
+                            Hit[] hits = response.body().getHits();
+
+                            for (Hit hit : hits) {
+
+                                String label = hit.getRecipe().getLabel();
+
+                                Log.e("DashboardFragment", "onResponse: recipe name :" + label);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Root> call, Throwable t) {
+
+                        Log.e("DashboardFragment", "onFailure:" + t.getMessage());
+
+                    }
+                });
             }
         });
         return root;
