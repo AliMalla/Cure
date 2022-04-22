@@ -7,14 +7,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class APIConnection {
+
+    private final static String BASE_URL = "https://api.edamam.com";
+    private final static String APP_ID = "124b0fd4";
+    private final static String APP_KEY = "3b9f97bbd888e5a892f65166028e9842";
+    private final static String TYPE = "public";
     private static Retrofit retrofit;
-    private static String BASE_URL = "https://api.edamam.com";
-    public static String APP_ID = "124b0fd4";
-    public static String APP_KEY = "3b9f97bbd888e5a892f65166028e9842";
-    public static String TYPE = "public";
 
 
-    public static Retrofit getRetrofit(){
+    private static Retrofit getRetrofit(){
         if(retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)

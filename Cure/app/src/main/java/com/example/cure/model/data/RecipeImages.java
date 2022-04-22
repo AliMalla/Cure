@@ -2,6 +2,7 @@ package com.example.cure.model.data;
 
 public class RecipeImages {
 
+
     private Image mainImage;
     private Image ingredientsPageImage;
 

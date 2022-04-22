@@ -5,23 +5,15 @@ public class Root{
     private final int from;
     private final int to;
     private final int count;
+    private Links links;
     private Hit[] hits;
-    private Link self;
-    private Link next;
 
 
-    /* public Root(){
-
-    }
-
-     */
-
-    public Root(int from, int to, int count, Link self, Link next, Hit[] hits) {
+    public Root(int from, int to, int count, Links links, Hit[] hits) {
         this.from = from;
         this.to = to;
         this.count = count;
-        this.self = self;
-        this.next = next;
+        this.links = links;
         this.hits = hits;
     }
 
@@ -37,13 +29,7 @@ public class Root{
         return count;
     }
 
-    public Link getSelf() {
-        return self;
-    }
-
-    public Link getNext() {
-        return next;
-    }
+    public Links getLinks() { return links; }
 
     public Hit[] getHits() {
         return hits;
