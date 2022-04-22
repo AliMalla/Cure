@@ -3,22 +3,22 @@ package com.example.cure.model.data;
 public class Hit {
 
     private Recipe recipe;
-    private Link self;
-    private Link next;
+    private Links self;
+    private Links next;
 
     public Recipe getRecipe() {
         return recipe;
     }
 
-    public Link getSelf() {
+    public Links getSelf() {
         return self;
     }
 
-    public Link getNext() {
+    public Links getNext() {
         return next;
     }
 
-    public Hit(Recipe recipe, Link self, Link next) {
+    public Hit(Recipe recipe, Links self, Links next) {
         this.recipe = recipe;
         this.self = self;
         this.next = next;

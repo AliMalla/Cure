@@ -18,6 +18,8 @@ import com.example.cure.model.data.Hit;
 import com.example.cure.model.server.APIConnection;
 import com.example.cure.model.data.Root;
 
+import java.util.Arrays;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,16 +45,12 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+        //For testing
         binding.testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*PlaceHolderAPI placeHolderAPI = APIConnection.getRetrofit().create(PlaceHolderAPI.class);
 
-                Call<Root> call = placeHolderAPI.getPosts(APIConnection.TYPE, "e", APIConnection.APP_ID, APIConnection.APP_KEY);
-
-
-                 */
-                APIConnection.getRootModel("pancake or chicken").enqueue(new Callback<Root>() {
+                APIConnection.getRootModel("Fish").enqueue(new Callback<Root>() {
                     @Override
                     public void onResponse(Call<Root> call, Response<Root> response) {
 
@@ -60,12 +58,20 @@ public class DashboardFragment extends Fragment {
                             Log.e("DashboardFragment", "onResponse: code :" + response.code());
                             Hit[] hits = response.body().getHits();
 
+
                             for (Hit hit : hits) {
 
-                                String label = hit.getRecipe().getLabel();
+                                final String label = hit.getRecipe().getLabel();
+                                final String weight = ""+hit.getRecipe().getTotalWeight();
+                                final String image = hit.getRecipe().getImage();
+                                final String yield = ""+hit.getRecipe().getYield();
 
-                                Log.e("DashboardFragment", "onResponse: recipe name :" + label);
+                                Log.e("DashboardFragment", "onResponse: recipe name :" + label +
+                                        "\n" + "recipe weight: " + weight + "\n" + "recipe image: "
+                                        + image + "\n" + "recipe yield: " + yield + "\n\n");
                             }
+
+
                         }
                     }
 

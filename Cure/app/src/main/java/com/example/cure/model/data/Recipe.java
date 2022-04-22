@@ -8,26 +8,33 @@ public class Recipe {
     private final String image;
     private final float totalWeight;
     private final float yield;
+    private final String[] mealType;
+    private final String[] dishType;
+    private final String[] cuisineType;
+    private final String[] dietLabels;
+    private final String[] healthLabels;
+    private Ingredient[] ingredients;
+    private Digest[] digests;
     private RecipeImages images;
-    private RecipeSortingTypes sortingTypes;
     private TotalNutrients totalNutrients;
-    private List<Ingredient> ingredients;
-    private List<String> healthLabels;
-    private List<Digest> digests;
 
-
-    public Recipe(String label, String image, RecipeImages images, List<Ingredient> ingredients, float yield, float totalWeight,
-                  RecipeSortingTypes sortingTypes, TotalNutrients totalNutrients, List<String> healthLabels, List<Digest> digests) {
+    public Recipe(String label, String image, float totalWeight, float yield, String[] mealType,
+                  String[] dishType, String[] cuisineType, String[] dietLabels, String[] healthLabels,
+                  Digest[] digests, Ingredient[] ingredients, RecipeImages images,
+                  TotalNutrients totalNutrients) {
         this.label = label;
         this.image = image;
-        this.images = images;
-        this.ingredients = ingredients;
         this.totalWeight = totalWeight;
         this.yield = yield;
-        this.sortingTypes = sortingTypes;
-        this.totalNutrients = totalNutrients;
+        this.mealType = mealType;
+        this.dishType = dishType;
+        this.cuisineType = cuisineType;
+        this.dietLabels = dietLabels;
         this.healthLabels = healthLabels;
         this.digests = digests;
+        this.ingredients = ingredients;
+        this.images = images;
+        this.totalNutrients = totalNutrients;
     }
 
     public String getLabel() {
@@ -46,27 +53,39 @@ public class Recipe {
         return yield;
     }
 
+    public String[] getMealType() {
+        return mealType;
+    }
+
+    public String[] getDishType() {
+        return dishType;
+    }
+
+    public String[] getCuisineType() {
+        return cuisineType;
+    }
+
+    public String[] getDietLabels() {
+        return dietLabels;
+    }
+
+    public String[] getHealthLabels() {
+        return healthLabels;
+    }
+
+    public Digest[] getDigests() {
+        return digests;
+    }
+
+    public Ingredient[] getIngredients() {
+        return ingredients;
+    }
+
     public RecipeImages getImages() {
         return images;
     }
 
-    public RecipeSortingTypes getSortingTypes() {
-        return sortingTypes;
-    }
-
     public TotalNutrients getTotalNutrients() {
         return totalNutrients;
-    }
-
-    public List<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
-    public List<String> getHealthLabels() {
-        return healthLabels;
-    }
-
-    public List<Digest> getDigests() {
-        return digests;
     }
 }
