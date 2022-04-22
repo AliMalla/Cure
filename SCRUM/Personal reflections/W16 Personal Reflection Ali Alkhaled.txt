@@ -1,0 +1,18 @@
+What do I want to learn or understand better?
+
+
+-Since the team, including me, worked alot with the API and the connection to it, now I feel I want to learn more about the Scrum and agile development principles and values.This 
+
+
+
+How can I help someone else, or the entire team, to learn something new?
+
+The software development process is getting more complex and it would be good if I can help them focusing on agile values because I feel I am getting better at project manegment when agile rules are fullfilled. When it comes to the actual code development, I can even help the team by understanding the API and how to start with design part in Andriod.
+
+
+What is my contribution towards the team’s use of Scrum?
+Im a developer in the team. I still try to get some knowledge about other roles.
+
+
+What is my contribution towards the team’s deliveries?
+I fixed the connection to the API and tested it.
