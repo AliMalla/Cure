@@ -15,8 +15,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.databinding.FragmentDashboardBinding;
 import com.example.cure.model.data.Hit;
+import com.example.cure.model.data.Image;
+import com.example.cure.model.data.Links;
+import com.example.cure.model.data.Recipe;
 import com.example.cure.model.server.APIConnection;
 import com.example.cure.model.data.Root;
+import com.squareup.picasso.Picasso;
 
 import java.util.Arrays;
 
@@ -49,7 +53,6 @@ public class DashboardFragment extends Fragment {
         binding.testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 APIConnection.getRootModel("Fish").enqueue(new Callback<Root>() {
                     @Override
                     public void onResponse(Call<Root> call, Response<Root> response) {
@@ -59,16 +62,31 @@ public class DashboardFragment extends Fragment {
                             Hit[] hits = response.body().getHits();
 
 
+                            final String recipeName = hits[0].getRecipe().getLabel();
+                            final int weight1 = (int)hits[0].getRecipe().getTotalWeight();
+                            final int calories = (int)hits[0].getRecipe().getCalories();
+
+
+                            binding.recipeName.setText(recipeName);
+                            binding.recipeWeight.setText(""+weight1);
+                            binding.recipeCallories.setText(""+calories);
+                            String url = hits[0].getRecipe().getImage();
+                            Picasso.get().load(url).into(binding.testImage);
+
                             for (Hit hit : hits) {
 
                                 final String label = hit.getRecipe().getLabel();
                                 final String weight = ""+hit.getRecipe().getTotalWeight();
                                 final String image = hit.getRecipe().getImage();
                                 final String yield = ""+hit.getRecipe().getYield();
+                                final String calo = ""+hit.getRecipe().getCalories();
+
+
+
 
                                 Log.e("DashboardFragment", "onResponse: recipe name :" + label +
                                         "\n" + "recipe weight: " + weight + "\n" + "recipe image: "
-                                        + image + "\n" + "recipe yield: " + yield + "\n\n");
+                                        + image + "\n" + "recipe yield: " + yield + "\n" + "recipe calories: "+ calo + "\n\n");
                             }
 
 
@@ -82,6 +100,28 @@ public class DashboardFragment extends Fragment {
 
                     }
                 });
+
+
+                  /*APIConnection.getRecipeById("672c9e7e3fbc6240477d99152ba8f6b3").enqueue(new Callback<Recipe>() {
+                    @Override
+                    public void onResponse(Call<Recipe> call, Response<Recipe> response) {
+                        if (response.isSuccessful()) {
+
+                            Recipe recipe = response.body();
+
+                            String name = recipe.getLabel();
+                            int cal = (int)recipe.getCalories();
+                            Log.e("DashboardFragment", "onResponse: code : " + response.code() + "\nName: " + name + "\nCalories: " + cal);
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Recipe> call, Throwable t) {
+
+                    }
+                });
+                */
             }
         });
         return root;
