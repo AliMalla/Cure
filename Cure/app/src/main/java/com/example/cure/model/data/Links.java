@@ -8,6 +8,7 @@ public class Links {
     public Links(Link self, Link next) {
         this.self = self;
         this.next = next;
+
     }
 
     public Link getSelf() {
@@ -18,7 +19,23 @@ public class Links {
         return next;
     }
 
-    class Link {
+    public String getSelfHref() {
+        return self.href;
+    }
+
+    public String getNextHref() { return next.href; }
+
+    public String getSelfTitle() {
+        return self.title;
+    }
+
+    public String getNextTitle() {
+        return next.title;
+    }
+
+
+
+    private class Link {
         private final String href;
         private final String title;
 
@@ -26,13 +43,6 @@ public class Links {
             this.href = href;
             this.title = title;
         }
-
-        public String getHref() {
-            return href;
-        }
-
-        public String getTitle() {
-            return title;
-        }
     }
+
 }

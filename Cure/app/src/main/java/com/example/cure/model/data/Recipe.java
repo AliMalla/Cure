@@ -1,12 +1,11 @@
 package com.example.cure.model.data;
 
-import java.util.List;
-
 public class Recipe {
 
     private final String label;
     private final String image;
     private final float totalWeight;
+    private final float calories;
     private final float yield;
     private final String[] mealType;
     private final String[] dishType;
@@ -18,13 +17,14 @@ public class Recipe {
     private RecipeImages images;
     private TotalNutrients totalNutrients;
 
-    public Recipe(String label, String image, float totalWeight, float yield, String[] mealType,
+    public Recipe(String label, String image, float totalWeight, float calories, float yield, String[] mealType,
                   String[] dishType, String[] cuisineType, String[] dietLabels, String[] healthLabels,
                   Digest[] digests, Ingredient[] ingredients, RecipeImages images,
                   TotalNutrients totalNutrients) {
         this.label = label;
         this.image = image;
         this.totalWeight = totalWeight;
+        this.calories = calories;
         this.yield = yield;
         this.mealType = mealType;
         this.dishType = dishType;
@@ -47,6 +47,10 @@ public class Recipe {
 
     public float getTotalWeight() {
         return totalWeight;
+    }
+
+    public float getCalories() {
+        return calories;
     }
 
     public float getYield() {
