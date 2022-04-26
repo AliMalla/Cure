@@ -1,7 +1,7 @@
 package com.example.cure.model.server;
 
-import com.example.cure.model.data.Recipe;
 import com.example.cure.model.data.Root;
+import com.example.cure.model.data.SpecificRecipeRoot;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -39,13 +39,13 @@ public class APIConnection {
     }
 
 
-    /*public static Call<Recipe> getRecipeById(String id) {
+    public static Call<SpecificRecipeRoot> getRecipeById(String id) {
         PlaceHolderAPI placeHolderAPI = APIConnection.getRetrofit().create(PlaceHolderAPI.class);
 
-        Call<Recipe> call = placeHolderAPI.getRecipe(id, APIConnection.TYPE, APIConnection.APP_ID, APIConnection.APP_KEY);
+        Call<SpecificRecipeRoot> call = placeHolderAPI.getRecipe(id, APIConnection.TYPE, APIConnection.APP_ID, APIConnection.APP_KEY);
 
         return call;
-    }*/
+    }
 
 
 
