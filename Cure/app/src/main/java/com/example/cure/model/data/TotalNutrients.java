@@ -136,7 +136,7 @@ public class TotalNutrients { /////CHANGE////////////
         return vitaminE;
     }
 
-    class Nutrient {
+    public class Nutrient {
         private final String label;
         private final float quantity;
         private final String unit;
