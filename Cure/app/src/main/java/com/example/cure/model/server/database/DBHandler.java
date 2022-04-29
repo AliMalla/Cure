@@ -11,12 +11,17 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class for creating the database where the user's recipes id:s are stored
+ *
+ * @author Ali Alkhaled
+ * @author Ali Malla
+ */
 public class DBHandler extends SQLiteOpenHelper {
 
     private final static int DATABASE_VERSION = 1;
     private final static String DATABASE_NAME = "cure.db";
     private final static String TABLE_PREVIOUS_RECIPES = "previousrecipes";
-
 
 
     public DBHandler(@Nullable Context context, @Nullable String name, @Nullable android.database.sqlite.SQLiteDatabase.CursorFactory factory, int version) {
@@ -37,7 +42,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    public void addRecipe(String id, String date) {
+    protected final void addRecipe(String id, String date) {
         ContentValues values = new ContentValues();
         values.put("_id", id);
         values.put("date", date);
@@ -49,7 +54,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    public void deleteRecipe(String id, String date) {
+    protected final void deleteRecipe(String id, String date) {
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_PREVIOUS_RECIPES, "_id=? AND date=?", new String[]{id,date});
         db.close();
@@ -57,10 +62,10 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-    public List<String> getRecipes(String date) {
+    protected final List<String> getRecipes(String date) {
         List<String> recipes = new ArrayList<>();
 
-        final String query = "SELECT _id FROM " + TABLE_PREVIOUS_RECIPES + " WHERE date=" + date + ";";
+        final String query = "SELECT _id FROM " + TABLE_PREVIOUS_RECIPES + " WHERE date = " + date + ";";
 
         SQLiteDatabase db = getReadableDatabase();
 
