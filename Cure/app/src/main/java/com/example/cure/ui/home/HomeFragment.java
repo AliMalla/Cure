@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,6 +16,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.R;
 import com.example.cure.databinding.FragmentHomeBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -28,13 +33,26 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        List<Item> items = new ArrayList<>();
+        Item itm1 = new Item("493uh4nr9r3jr", "Chicken", "fsdfa", 500, Item.Type.LUNCH);
+        Item itm2 = new Item("493uh4nr9r3jr", "Meet", "fsdfa", 700, Item.Type.DINNER);
+        Item itm3 = new Item("493uh4nr9r3jr", "Fish and rice", "fsdfa", 1020, Item.Type.LUNCH);
+        Item itm4 = new Item("493uh4nr9r3jr","Meet", "fsdfa", 700, Item.Type.DINNER);
+        Item itm5 = new Item("493uh4nr9r3jr","Fish and rice", "fsdfa", 1020, Item.Type.LUNCH);
+
+        items.add(itm1);
+        items.add(itm2);
+        items.add(itm3);
+        items.add(itm4);
+        items.add(itm5);
+
+
+
+        String[] test = {"java", "python", "javascript", "PHP", "C#", "C++"};
+        //ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.listview_item, R.id.recipeItemName, test);
+        ListViewAdapter adapter = new ListViewAdapter(items, getContext()
+        );
+        binding.previousRecipesList.setAdapter(adapter);
         return root;
     }
 
