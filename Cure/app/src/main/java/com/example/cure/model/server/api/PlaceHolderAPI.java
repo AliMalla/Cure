@@ -1,4 +1,4 @@
-package com.example.cure.model.server;
+package com.example.cure.model.server.api;
 
 import com.example.cure.model.data.Root;
 import com.example.cure.model.data.SpecificRecipeRoot;
