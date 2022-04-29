@@ -1,9 +1,10 @@
 package com.example.cure.model.server.database;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.cure.model.data.Recipe;
-import com.example.cure.model.data.SearchRoot;
+import com.example.cure.model.data.SpecificRecipeRoot;
 import com.example.cure.model.other.DataConverter;
 import com.example.cure.model.server.api.APIConnection;
 
@@ -80,18 +81,17 @@ public class Repository {
 
         for (String id : ids) {
 
-            APIConnection.getRecipeById(id).enqueue(new Callback<SearchRoot>() {
+            APIConnection.getRecipeById(id).enqueue(new Callback<SpecificRecipeRoot>() {
                 @Override
-                public void onResponse(Call<SearchRoot> call, Response<SearchRoot> response) {
+                public void onResponse(Call<SpecificRecipeRoot> call, Response<SpecificRecipeRoot> response) {
                     if(response.isSuccessful()) {
                         Recipe r = response.body().getRecipe();
                         recipes.add(r);
-
                     }
                 }
 
                 @Override
-                public void onFailure(Call<SearchRoot> call, Throwable t) {
+                public void onFailure(Call<SpecificRecipeRoot> call, Throwable t) {
 
                 }
             });
