@@ -40,15 +40,6 @@ public class HomeFragment extends Fragment {
         });
 
 
-        binding.deleteRecipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //homeViewModel.deleteRecipe(,new GregorianCalendar(2022,04,29));
-                Toast.makeText(getContext(),"The recipe is deleted",Toast.LENGTH_LONG).show();
-            }
-        });
-
-
         return root;
     }
 
