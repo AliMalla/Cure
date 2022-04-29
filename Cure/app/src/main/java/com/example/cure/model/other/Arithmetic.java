@@ -1,4 +1,6 @@
-package com.example.cure.model.data;
+package com.example.cure.model.other;
+
+import com.example.cure.model.data.Recipe;
 
 import java.util.List;
 
