@@ -19,7 +19,7 @@ import com.example.cure.model.data.Hit;
 import com.example.cure.model.data.Recipe;
 import com.example.cure.model.data.Root;
 import com.example.cure.model.data.SpecificRecipeRoot;
-import com.example.cure.model.server.APIConnection;
+import com.example.cure.model.server.api.APIConnection;
 import com.squareup.picasso.Picasso;
 
 
