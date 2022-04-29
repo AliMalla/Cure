@@ -1,0 +1,27 @@
+what do I want to learn or understand better? 
+
+-I want to update my information and strengthen my skills in Android. Also I want to 
+learn how we can use an API so that we can use it in our project instead of building 
+a data from scratch. 
+
+ 
+
+how can I help someone else, or the entire team, to learn something new? 
+
+-I can first explain in words. If the person who needs help does not understand what 
+I am talking about, I can explain how it works in practice. Also I can send some youtube 
+videos that explain better than me. 
+
+ 
+
+what is my contribution towards the team’s use of Scrum? 
+
+-I am a member of the development team. 
+
+ 
+
+what is my contribution towards the team’s deliveries? 
+
+-I have created a simple interface to be able to test whether the connection to the API 
+that we use works and to make it easier for the customer to see the value provided to 
+him. I've also read the API-documentation so that i understand how to implement it. 
