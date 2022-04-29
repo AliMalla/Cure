@@ -12,7 +12,9 @@ import java.util.GregorianCalendar;
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * A test class for DataConverter.java
+ *
+ * @author Ali Alkhaled
  */
 public class DataConverterTest {
 
