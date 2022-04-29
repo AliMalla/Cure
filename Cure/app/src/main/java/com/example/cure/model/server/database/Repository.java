@@ -63,6 +63,17 @@ public class Repository {
     }
 
     /**
+     * A method to delete an existing recipe from the database by id
+     * @param id the id of the recipe
+     * @param date the date when the recipe was eaten (added to the database)
+     */
+    public void deleteRecipe(String id, Calendar date) {
+        final String dateStr = DataConverter.dateToString(date);
+        db.deleteRecipe(id, dateStr);
+    }
+
+
+    /**
      * A method to return all recipes in the database on a certain date
      * @param date the date where the recipes were eaten
      * @return list of recipes
