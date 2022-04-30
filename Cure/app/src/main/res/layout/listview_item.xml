@@ -37,7 +37,7 @@
         app:layout_constraintTop_toBottomOf="@+id/recipeItemName" />
 
     <TextView
-        android:id="@+id/recipeCalories"
+        android:id="@+id/recipeItemCalories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="170dp"
@@ -47,4 +47,15 @@
         app:layout_constraintBottom_toTopOf="@+id/mealType"
         app:layout_constraintStart_toEndOf="@+id/recipeImage"
         app:layout_constraintTop_toBottomOf="@+id/recipeItemName" />
+
+    <ImageView
+        android:id="@+id/deleteRecipe"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="16dp"
+        android:src="@android:drawable/ic_menu_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

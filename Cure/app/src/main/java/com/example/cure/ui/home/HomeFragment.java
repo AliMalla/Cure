@@ -15,6 +15,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.databinding.FragmentHomeBinding;
 
+import java.util.GregorianCalendar;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
@@ -34,15 +36,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
-            }
-        });
-
-
-        binding.deleteRecipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getContext(),"The recipe is deleted",Toast.LENGTH_LONG).show();
-                //homeViewModel.deleteRecipe("");
             }
         });
 
