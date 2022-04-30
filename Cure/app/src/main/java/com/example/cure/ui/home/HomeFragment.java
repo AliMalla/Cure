@@ -1,6 +1,7 @@
 package com.example.cure.ui.home;
 
 import android.os.Bundle;
+import com.example.cure.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,16 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.cure.R;
 import com.example.cure.databinding.FragmentHomeBinding;
 
+import java.util.Calendar;
+import java.util.List;
+
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
-import java.util.List;
+
+import devs.mulham.horizontalcalendar.HorizontalCalendar;
+import devs.mulham.horizontalcalendar.HorizontalCalendarView;
+import devs.mulham.horizontalcalendar.model.CalendarEvent;
+import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 public class HomeFragment extends Fragment {
 
@@ -28,11 +36,55 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        Calendar startDate = Calendar.getInstance();
+        startDate.add(Calendar.MONTH, -1);
+
+        /* ends after 1 month from now */
+        Calendar endDate = Calendar.getInstance();
+        endDate.add(Calendar.MONTH, 1);
+        HorizontalCalendar horizontalCalendar = new HorizontalCalendar.Builder(rootView, R.id.calendarView)
+                .range(startDate, endDate)
+                .datesNumberOnScreen(5)
+                .build();
+        horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
+
+
+
+
+            @Override
+            public void onDateSelected(Calendar date, int position) {
+                //do something
+            }
+            @Override
+            public void onCalendarScroll(HorizontalCalendarView calendarView,
+                                         int dx, int dy) {
+
+            }
+
+            @Override
+            public boolean onDateLongClicked(Calendar date, int position) {
+                return true;
+            }
+        });
+
+
+
+
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        final TextView textView = binding.textHome;
+        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                textView.setText(s);
+            }
+        });
 
         setDailyTotalCalories();
         setDailyTotalCarbs();
@@ -60,6 +112,7 @@ public class HomeFragment extends Fragment {
         );
         binding.previousRecipesList.setAdapter(adapter);
         return root;
+
     }
 
     @Override
