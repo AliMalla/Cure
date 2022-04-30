@@ -18,6 +18,7 @@ import com.example.cure.R;
 import com.example.cure.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -32,6 +33,11 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        setDailyTotalCalories();
+        setDailyTotalCarbs();
+        setDailyTotalFat();
+        setDailyTotalProtein();
 
         List<Item> items = new ArrayList<>();
         Item itm1 = new Item("493uh4nr9r3jr", "Chicken", "fsdfa", 500, Item.Type.LUNCH);
@@ -60,5 +66,25 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void setDailyTotalProtein(){
+       // String text = ""+ (int)homeViewModel.getDailyProtein(new GregorianCalendar());
+       // binding.totalDailyProtein.setText(text);
+    }
+
+    private void setDailyTotalFat(){
+       // String text = ""+(int)homeViewModel.getDailyFat(new GregorianCalendar());
+       // binding.totalDailyFat.setText(text);
+    }
+
+    private void setDailyTotalCarbs(){
+       // String text = ""+(int)homeViewModel.getDailyCarbs(new GregorianCalendar());
+       // binding.totalDailyCarbs.setText(text);
+    }
+
+    private void setDailyTotalCalories(){
+       // String text = ""+(int)homeViewModel.getDailyCalories(new GregorianCalendar());
+       // binding.totalDailyCalories.setText(text);
     }
 }
