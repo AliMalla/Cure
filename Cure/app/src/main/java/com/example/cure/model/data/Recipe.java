@@ -1,5 +1,9 @@
 package com.example.cure.model.data;
 
+/**
+ *
+ * @author Ali Alkhaled
+ */
 public class Recipe {
 
     private final String label;
@@ -18,7 +22,9 @@ public class Recipe {
     private RecipeImages images;
     private TotalNutrients totalNutrients;
 
-    public Recipe(String label, String image, String uri, float totalWeight, float calories, float yield, String[] mealType, String[] dishType, String[] cuisineType, String[] dietLabels, String[] healthLabels) {
+    public Recipe(String label, String image, String uri, float totalWeight, float calories,
+                  float yield, String[] mealType, String[] dishType, String[] cuisineType,
+                  String[] dietLabels, String[] healthLabels) {
         this.label = label;
         this.image = image;
         this.uri = uri;
@@ -59,6 +65,10 @@ public class Recipe {
 
     public String getImage() {
         return image;
+    }
+
+    public String getUri() {
+        return uri;
     }
 
     public float getTotalWeight() {
@@ -109,7 +119,5 @@ public class Recipe {
         return totalNutrients;
     }
 
-    public String getUri() {
-        return uri;
-    }
+
 }
