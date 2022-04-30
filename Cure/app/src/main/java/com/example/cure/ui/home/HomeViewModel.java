@@ -7,13 +7,19 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.cure.model.data.Recipe;
+import com.example.cure.model.data.SearchRoot;
 import com.example.cure.model.other.Arithmetic;
 import com.example.cure.model.other.DataConverter;
+import com.example.cure.model.server.api.APIConnection;
 import com.example.cure.model.server.database.Repository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeViewModel extends ViewModel {
 
@@ -78,5 +84,6 @@ public class HomeViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
+
 
 }
