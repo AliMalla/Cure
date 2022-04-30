@@ -118,4 +118,6 @@ public class Recipe {
     public TotalNutrients getTotalNutrients() {
         return totalNutrients;
     }
+
+
 }

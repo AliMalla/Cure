@@ -14,12 +14,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.databinding.FragmentDashboardBinding;
+
 import com.example.cure.model.data.Hit;
 import com.example.cure.model.data.Recipe;
-import com.example.cure.model.data.SearchRoot;
-import com.example.cure.model.server.api.APIConnection;
 import com.example.cure.model.data.Root;
+import com.example.cure.model.data.SpecificRecipeRoot;
+import com.example.cure.model.server.api.APIConnection;
 import com.squareup.picasso.Picasso;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,47 +37,21 @@ public class DashboardFragment extends Fragment {
         dashboardViewModel =
                 new ViewModelProvider(this).get(DashboardViewModel.class);
 
-
-
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-
-            final TextView textView = binding.textDashboard;
+        final TextView textView = binding.textDashboard;
         dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
             }
-
-
         });
-
 
         //For testing
         binding.testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                APIConnection.getRecipeById("452e9fce1999537b9e5698fda667c75f").enqueue(new Callback<SearchRoot>() {
-                    @Override
-                    public void onResponse(Call<SearchRoot> call, Response<SearchRoot> response) {
-                        if(response.isSuccessful()) {
-                            Recipe recipe = response.body().getRecipe();
-
-                            Log.e("DashboardFragment", "Recipe name: " + recipe.getLabel()
-                                    + "\nRecipe weight: " + recipe.getTotalWeight() + "\nRecipe calories: " + recipe.getCalories());
-
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<SearchRoot> call, Throwable t) {
-
-                    }
-                });
-
                 APIConnection.getRootModel("Fish").enqueue(new Callback<Root>() {
                     @Override
                     public void onResponse(Call<Root> call, Response<Root> response) {
@@ -104,17 +80,14 @@ public class DashboardFragment extends Fragment {
                                 final String image = hit.getRecipe().getImage();
                                 final String yield = ""+hit.getRecipe().getYield();
                                 final String calo = ""+hit.getRecipe().getCalories();
-                                String protein = ""+hit.getRecipe().getTotalNutrients().getProtein().getQuantity();
 
 
 
 
-                                Log.e("DashboardFragment", "onResponse: recipe name :" + label +
+                               Log.e("DashboardFragment", "onResponse: recipe name :" + label +
                                         "\n" + "recipe weight: " + weight + "\n" + "recipe image: "
-                                        + image + "\n" + "recipe yield: " + yield + "\n" + "recipe calories: "
-                                        + calo + "Protein: " + protein + "\n\n");
+                                        + image + "\n" + "recipe yield: " + yield + "\n" + "recipe calories: "+ calo + "\n\n");
                             }
-
 
 
                         }
@@ -129,12 +102,13 @@ public class DashboardFragment extends Fragment {
                 });
 
 
-                  /*APIConnection.getRecipeById("672c9e7e3fbc6240477d99152ba8f6b3").enqueue(new Callback<Recipe>() {
+/*
+                  APIConnection.getRecipeById("672c9e7e3fbc6240477d99152ba8f6b3").enqueue(new Callback<SpecificRecipeRoot>() {
                     @Override
-                    public void onResponse(Call<Recipe> call, Response<Recipe> response) {
-                        if (response.isSuccessful()) {
+                    public void onResponse(Call<SpecificRecipeRoot> call, Response<SpecificRecipeRoot> response) {
+                        if (response.isSuccessful() && response != null) {
 
-                            Recipe recipe = response.body();
+                            Recipe recipe = response.body().getRecipe();
 
                             String name = recipe.getLabel();
                             int cal = (int)recipe.getCalories();
@@ -144,11 +118,12 @@ public class DashboardFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(Call<Recipe> call, Throwable t) {
+                    public void onFailure(Call<SpecificRecipeRoot> call, Throwable t) {
+                        Log.e("DashboardFragment", "onFailure:" + t.getMessage());
 
                     }
                 });
-                */
+*/
             }
         });
         return root;

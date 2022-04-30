@@ -1,0 +1,23 @@
+What do I want to learn or understand better?
+
+I have learned new things about the API that is going to be used in application, but I think I need to improve myself in this point a little bit.
+
+
+
+
+How can I help someone else, or the entire team, to learn something new?
+
+-By discussing and explaining the server model that I have developed until now based on the model schema from API.
+
+
+
+
+What is my contribution towards the team’s use of Scrum?
+
+-I am a developer, and I feel it is the best fit for me. I am looking forward to continually be active in the technical development of the application.
+
+
+
+What is my contribution towards the team’s deliveries?
+
+-I have been coding some backend/server side. Not done yet.

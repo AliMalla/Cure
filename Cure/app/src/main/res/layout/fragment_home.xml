@@ -101,32 +101,5 @@
         app:layout_constraintBottom_toTopOf="@+id/totalDailyProtein"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <devs.mulham.horizontalcalendar.HorizontalCalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:selectorColor="#3F51B5"
-        app:textColorNormal="#FFC107"
-        app:textColorSelected="#3F51B5" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginBottom="3dp"
-        android:autoText="false"
-        android:text="Daily eaten recipes"
-        android:textColor="#FF5722"
-        android:textSize="18dp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/totalDailyCarbs" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
