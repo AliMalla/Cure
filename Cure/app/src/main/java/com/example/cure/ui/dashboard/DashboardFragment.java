@@ -5,20 +5,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.cure.R;
 import com.example.cure.databinding.FragmentDashboardBinding;
 
 import com.example.cure.model.data.Hit;
-import com.example.cure.model.data.Recipe;
 import com.example.cure.model.data.Root;
-import com.example.cure.model.data.SpecificRecipeRoot;
 import com.example.cure.model.server.api.APIConnection;
 import com.squareup.picasso.Picasso;
 
@@ -40,16 +37,25 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        SearchView searchView = (SearchView) root.findViewById(R.id.searchView);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public boolean onQueryTextSubmit(String s) {
+                getRecipeBySearchFunction(s);
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
             }
         });
 
+
         //For testing
-        binding.testButton.setOnClickListener(new View.OnClickListener() {
+       /* binding.testButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 APIConnection.getRootModel("Fish").enqueue(new Callback<Root>() {
@@ -102,7 +108,7 @@ public class DashboardFragment extends Fragment {
                 });
 
 
-/*
+
                   APIConnection.getRecipeById("672c9e7e3fbc6240477d99152ba8f6b3").enqueue(new Callback<SpecificRecipeRoot>() {
                     @Override
                     public void onResponse(Call<SpecificRecipeRoot> call, Response<SpecificRecipeRoot> response) {
@@ -123,10 +129,43 @@ public class DashboardFragment extends Fragment {
 
                     }
                 });
-*/
+
             }
         });
+        */
+
         return root;
+    }
+
+
+
+    private void getRecipeBySearchFunction(String s){
+        APIConnection.getRootModel(s).enqueue(new Callback<Root>() {
+            @Override
+            public void onResponse(Call<Root> call, Response<Root> response) {
+                if(response.isSuccessful() && response != null){
+                    Log.e("DashboardFragment", "onResponse: code :" + response.code());
+                    Hit[] hits = response.body().getHits();
+                    for (Hit hit : hits) {
+                        final String label = hit.getRecipe().getLabel();
+                        final String image = hit.getRecipe().getImage();
+                        final String protein = ""+hit.getRecipe().getTotalNutrients().getProtein();
+                        final String calo = ""+hit.getRecipe().getCalories();
+                        final String fat = ""+hit.getRecipe().getTotalNutrients().getFat();
+                        final String carb = ""+hit.getRecipe().getTotalNutrients().getCarbs();
+
+                        Log.e("DashboardFragment", "onResponse: recipe name :" + label +
+                                "\n" + "recipe image: "
+                                + image + "\n" + "recipe protein: " + protein + "\n" + "recipe calories: "+ calo + "\n\n");
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Root> call, Throwable t) {
+                Log.e("DashboardFragment", "onFailure:" + t.getMessage());
+            }
+        });
     }
 
     @Override
