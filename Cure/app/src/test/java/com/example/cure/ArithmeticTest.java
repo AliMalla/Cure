@@ -43,10 +43,10 @@ public class ArithmeticTest {
 
 
         List<Recipe> recipes = new ArrayList<>();
-        recipes.add(new Recipe("fish","image","uri",250,12,19,null,null,null,null,null,null,null,null,totalNutrients));
-        recipes.add(new Recipe("chicken","image","uri",300,30,15,null,null,null,null,null, null,null,null,totalNutrients1));
-        recipes.add(new Recipe("ris","image","uri",350,50,35,null,null,null,null,null,null,null,null,totalNutrients2));
-        recipes.add(new Recipe("fish & ris","image","uri",500,75,40,null,null,null,null,null,null,null,null,totalNutrients3));
+        recipes.add(new Recipe("fish","image","uri",250,12,19, 0, null,null,null,null,null,null,null,null,totalNutrients));
+        recipes.add(new Recipe("chicken","image","uri",300,30,15, 0, null,null,null,null,null, null,null,null,totalNutrients1));
+        recipes.add(new Recipe("ris","image","uri",350,50,35, 0, null,null,null,null,null,null,null,null,totalNutrients2));
+        recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 0, null,null,null,null,null,null,null,null,totalNutrients3));
 
         double totalCarbs = Arithmetic.calculateTotalCarbs(recipes);
 
@@ -66,10 +66,10 @@ public class ArithmeticTest {
 
 
         List<Recipe> recipes = new ArrayList<>();
-        recipes.add(new Recipe("fish","image","uri",250,12,19,null,null,null,null,null,null,null,null,totalNutrients));
-        recipes.add(new Recipe("chicken","image","uri",300,30,15,null,null,null,null,null, null,null,null,totalNutrients1));
-        recipes.add(new Recipe("ris","image","uri",350,50,35,null,null,null,null,null,null,null,null,totalNutrients2));
-        recipes.add(new Recipe("fish & ris","image","uri",500,75,40,null,null,null,null,null,null,null,null,totalNutrients3));
+        recipes.add(new Recipe("fish","image","uri",250,12,19, 0, null,null,null,null,null,null,null,null,totalNutrients));
+        recipes.add(new Recipe("chicken","image","uri",300,30,15, 0, null,null,null,null,null, null,null,null,totalNutrients1));
+        recipes.add(new Recipe("ris","image","uri",350,50,35, 0, null,null,null,null,null,null,null,null,totalNutrients2));
+        recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 0, null,null,null,null,null,null,null,null,totalNutrients3));
 
         double totalFat = Arithmetic.calculateTotalFat(recipes);
 
@@ -89,10 +89,10 @@ public class ArithmeticTest {
 
 
         List<Recipe> recipes = new ArrayList<>();
-        recipes.add(new Recipe("fish","image","uri",250,12,19,null,null,null,null,null,null,null,null,totalNutrients));
-        recipes.add(new Recipe("chicken","image","uri",300,30,15,null,null,null,null,null, null,null,null,totalNutrients1));
-        recipes.add(new Recipe("ris","image","uri",350,50,35,null,null,null,null,null,null,null,null,totalNutrients2));
-        recipes.add(new Recipe("fish & ris","image","uri",500,75,40,null,null,null,null,null,null,null,null,totalNutrients3));
+        recipes.add(new Recipe("fish","image","uri",250,12,19, 0, null,null,null,null,null,null,null,null,totalNutrients));
+        recipes.add(new Recipe("chicken","image","uri",300,30,15, 0, null,null,null,null,null, null,null,null,totalNutrients1));
+        recipes.add(new Recipe("ris","image","uri",350,50,35, 0, null,null,null,null,null,null,null,null,totalNutrients2));
+        recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 0, null,null,null,null,null,null,null,null,totalNutrients3));
 
         double totalProtein = Arithmetic.calculateTotalProtein(recipes);
 
