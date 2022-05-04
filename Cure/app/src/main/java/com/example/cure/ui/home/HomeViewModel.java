@@ -1,18 +1,21 @@
 package com.example.cure.ui.home;
 
 import android.content.Context;
+import android.content.SearchRecentSuggestionsProvider;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.cure.model.data.Recipe;
-import com.example.cure.model.data.SearchRoot;
+import com.example.cure.model.data.SpecificRecipeRoot;
 import com.example.cure.model.other.Arithmetic;
 import com.example.cure.model.other.DataConverter;
 import com.example.cure.model.server.api.APIConnection;
 import com.example.cure.model.server.database.Repository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -27,6 +30,7 @@ public class HomeViewModel extends ViewModel {
     private Repository rep;
     private List<Item> items;
     private final Arithmetic arithmetic;
+
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
@@ -66,17 +70,17 @@ public class HomeViewModel extends ViewModel {
         return arithmetic.calculateTotalCalories(recipes);
     }
 
-    public double getDailyProtein(Calendar date){
+    public double getDailyProtein(Calendar date) {
         List<Recipe> recipes = rep.getRecipes(date);
         return arithmetic.calculateTotalProtein(recipes);
     }
 
-    public double getDailyCarbs(Calendar date){
+    public double getDailyCarbs(Calendar date) {
         List<Recipe> recipes = rep.getRecipes(date);
         return arithmetic.calculateTotalCarbs(recipes);
     }
 
-    public double getDailyFat(Calendar date){
+    public double getDailyFat(Calendar date) {
         List<Recipe> recipes = rep.getRecipes(date);
         return arithmetic.calculateTotalFat(recipes);
     }
@@ -84,5 +88,6 @@ public class HomeViewModel extends ViewModel {
     public LiveData<String> getText() {
         return mText;
     }
+
 
 }

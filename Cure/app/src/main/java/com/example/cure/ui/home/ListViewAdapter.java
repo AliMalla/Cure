@@ -59,16 +59,6 @@ public class ListViewAdapter extends BaseAdapter {
         recipeCalories.setText(""+items.get(i).getCalories() + " kcal");
         recipeType.setText(items.get(i).getType().toString());
 
-        ImageView imageView = (ImageView) v.findViewById(R.id.deleteRecipe);
-
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //homeViewModel.deleteRecipe(,new GregorianCalendar(2022,04,29));
-                Toast.makeText(context,"The recipe is deleted",Toast.LENGTH_LONG).show();
-            }
-        });
         return v;
     }
 }
