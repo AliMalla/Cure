@@ -152,10 +152,10 @@ public class DashboardFragment extends Fragment {
                         final String calo = ""+hit.getRecipe().getCalories();
                         final String fat = ""+hit.getRecipe().getTotalNutrients().getFat();
                         final String carb = ""+hit.getRecipe().getTotalNutrients().getCarbs();
-
+                        final String time = ""+hit.getRecipe().getTotalTime();
                         Log.e("DashboardFragment", "onResponse: recipe name :" + label +
                                 "\n" + "recipe image: "
-                                + image + "\n" + "recipe protein: " + protein + "\n" + "recipe calories: "+ calo + "\n\n");
+                                + image + "\n" + "recipe protein: " + protein + "\n" + "\n"+ "recipe time: "+ time+ "\n"+ "recipe calories: "+ calo + "\n\n");
                     }
                 }
             }
