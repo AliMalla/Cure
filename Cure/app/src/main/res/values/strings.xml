@@ -4,4 +4,17 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="recipecalc">RecipeCalc</string>
+
+    <string-array name="sorting">
+        <item>Sort</item>
+        <item>Time+</item>
+        <item>Time-</item>
+        <item>Calories+</item>
+        <item>Calories-</item>
+        <item>Fat+</item>
+        <item>Fat-</item>
+        <item>Protein-</item>
+        <item>Protein-</item>
+    </string-array>
+
 </resources>
