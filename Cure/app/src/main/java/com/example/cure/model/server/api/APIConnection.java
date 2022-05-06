@@ -2,12 +2,19 @@ package com.example.cure.model.server.api;
 
 import com.example.cure.model.data.Root;
 import com.example.cure.model.data.SpecificRecipeRoot;
-import com.example.cure.model.server.api.PlaceHolderAPI;
+
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * This class is responsible for request and get response from API
+ *
+ * @author Ali Alkhaled
+ */
 public class APIConnection {
 
     private final static String BASE_URL = "https://api.edamam.com";
@@ -30,7 +37,7 @@ public class APIConnection {
     }
 
 
-    public static Call<Root> getRootModel(String query) {
+    private static Call<Root> makeRootConnection(String query) {
         PlaceHolderAPI placeHolderAPI = APIConnection.getRetrofit().create(PlaceHolderAPI.class);
 
         Call<Root> call = placeHolderAPI.getPosts(APIConnection.TYPE, query, APIConnection.APP_ID, APIConnection.APP_KEY);
@@ -40,7 +47,7 @@ public class APIConnection {
     }
 
 
-    public static Call<SpecificRecipeRoot> getRecipeById(String id) {
+    private static Call<SpecificRecipeRoot> makeRecipeByIdConnection(String id) {
         PlaceHolderAPI placeHolderAPI = APIConnection.getRetrofit().create(PlaceHolderAPI.class);
 
         Call<SpecificRecipeRoot> call = placeHolderAPI.getRecipe(id, APIConnection.TYPE, APIConnection.APP_ID, APIConnection.APP_KEY);
@@ -49,7 +56,42 @@ public class APIConnection {
     }
 
 
+    public static void getRootModel(String query, OnResponseListener listener){
+        Call<Root> call = APIConnection.makeRootConnection(query);
+        call.enqueue(new Callback<Root>() {
+            @Override
+            public void onResponse(Call<Root> call, Response<Root> response) {
+                if (response.isSuccessful()) {
+                    Root r = response.body();
+                    listener.recipesByQueryFetched(r);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<Root> call, Throwable t) {
 
+            }
+        });
+    }
+
+    public static void getRecipeById(String id, final OnResponseListener listener) {
+        Call<SpecificRecipeRoot> call = APIConnection.makeRecipeByIdConnection(id);
+
+        call.enqueue(new Callback<SpecificRecipeRoot>() {
+            @Override
+            public void onResponse(Call<SpecificRecipeRoot> call, Response<SpecificRecipeRoot> response) {
+                if (response.isSuccessful()) {
+                    SpecificRecipeRoot s = response.body();
+                    listener.recipeByIdFetched(s);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SpecificRecipeRoot> call, Throwable t) {
+
+            }
+        });
+
+    }
 
 }
