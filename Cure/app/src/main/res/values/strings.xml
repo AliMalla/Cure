@@ -4,4 +4,8 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="recipecalc">RecipeCalc</string>
+    <string name="p2">YOUR ALL IN ONE NUTRITION AND RECEIPES TRACKING APP</string>
+    <string name="headline">RecipeCalc</string>
+    <string name="todo">TODO</string>
+    <string name="get_started">GET STARTED</string>
 </resources>
