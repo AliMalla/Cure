@@ -37,7 +37,7 @@ public class APIConnection {
     }
 
 
-    private static Call<Root> makeRootConnection(String query) {
+    public static Call<Root> makeRootConnection(String query) {
         PlaceHolderAPI placeHolderAPI = APIConnection.getRetrofit().create(PlaceHolderAPI.class);
 
         Call<Root> call = placeHolderAPI.getPosts(APIConnection.TYPE, query, APIConnection.APP_ID, APIConnection.APP_KEY);
