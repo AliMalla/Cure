@@ -8,31 +8,31 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.cure.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ListViewAdapter extends BaseAdapter {
+public class DailyRecipeAdapter extends BaseAdapter {
 
-    private List<Item> items;
+    private List<DailyRecipeItem> dailyRecipeItems;
     private Context context;
 
-    public ListViewAdapter(List<Item> items, Context context) {
-        //super(context, R.layout.listview_item, items);
-        this.items = items;
+    public DailyRecipeAdapter(List<DailyRecipeItem> dailyRecipeItems, Context context) {
+        //super(context, R.layout.listview_item, dailyRecipeItems);
+        this.dailyRecipeItems = dailyRecipeItems;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return items.size();
+        return dailyRecipeItems.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return items.get(i);
+        return dailyRecipeItems.get(i);
     }
 
     @Override
@@ -55,9 +55,10 @@ public class ListViewAdapter extends BaseAdapter {
         TextView recipeType = (TextView)v.findViewById(R.id.mealType);
         ImageView image = (ImageView) v.findViewById(R.id.recipeImage);
 
-        recipeName.setText(items.get(i).getName());
-        recipeCalories.setText(""+items.get(i).getCalories() + " kcal");
-        recipeType.setText(items.get(i).getType().toString());
+        recipeName.setText(dailyRecipeItems.get(i).getName());
+        recipeCalories.setText(""+ dailyRecipeItems.get(i).getCalories() + " kcal");
+        recipeType.setText(dailyRecipeItems.get(i).getType().toString());
+        Picasso.get().load(dailyRecipeItems.get(i).getImage()).into(image);
 
         return v;
     }
