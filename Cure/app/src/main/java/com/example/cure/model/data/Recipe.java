@@ -12,6 +12,7 @@ public class Recipe {
     private final float totalWeight;
     private final float calories;
     private final float yield;
+    private final float totalTime;
     private final String[] mealType;
     private final String[] dishType;
     private final String[] cuisineType;
@@ -23,7 +24,7 @@ public class Recipe {
     private TotalNutrients totalNutrients;
 
     public Recipe(String label, String image, String uri, float totalWeight, float calories,
-                  float yield, String[] mealType, String[] dishType, String[] cuisineType,
+                  float yield, float totalTime, String[] mealType, String[] dishType, String[] cuisineType,
                   String[] dietLabels, String[] healthLabels) {
         this.label = label;
         this.image = image;
@@ -31,6 +32,7 @@ public class Recipe {
         this.totalWeight = totalWeight;
         this.calories = calories;
         this.yield = yield;
+        this.totalTime = totalTime;
         this.mealType = mealType;
         this.dishType = dishType;
         this.cuisineType = cuisineType;
@@ -38,7 +40,7 @@ public class Recipe {
         this.healthLabels = healthLabels;
     }
 
-    public Recipe(String label, String image, String uri, float totalWeight, float calories, float yield, String[] mealType,
+    public Recipe(String label, String image, String uri, float totalWeight, float calories, float yield, float totalTime, String[] mealType,
                   String[] dishType, String[] cuisineType, String[] dietLabels, String[] healthLabels,
                   Digest[] digests, Ingredient[] ingredients, RecipeImages images,
                   TotalNutrients totalNutrients) {
@@ -48,6 +50,7 @@ public class Recipe {
         this.totalWeight = totalWeight;
         this.calories = calories;
         this.yield = yield;
+        this.totalTime = totalTime;
         this.mealType = mealType;
         this.dishType = dishType;
         this.cuisineType = cuisineType;
@@ -73,6 +76,10 @@ public class Recipe {
 
     public float getTotalWeight() {
         return totalWeight;
+    }
+
+    public float getTotalTime() {
+        return totalTime;
     }
 
     public float getCalories() {
