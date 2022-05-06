@@ -1,5 +1,9 @@
 package com.example.cure.model.data;
 
+/**
+ *
+ * @author Ali Alkhaled
+ */
 public class Digest {
 
     private final String label;
