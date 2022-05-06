@@ -1,0 +1,15 @@
+- What do I want to learn or understand better?
+
+I want to learn more about the features that android studio has.  
+
+- How can I help someone else, or the entire team, to learn something new?
+
+By sharing my knowledge, online tutorials, recommending books, giving advice to my team members or doing pair programming if needed. 
+
+- What is my contribution towards the team’s application of scrum?
+
+By following the social contract, including meetings. Furthermore, communicate constantly with my group members and dissucsseing/negotiate ideas with Producet owner.
+
+- What is my contribution towards the team’s deliveries?
+
+Doing my part of the tasks and helping my other group members if needed.

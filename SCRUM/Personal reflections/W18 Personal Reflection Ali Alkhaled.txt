@@ -1,0 +1,16 @@
+What do I want to learn or understand better?
+
+
+-I want to learn more about how to get better communcation within the group and being more agile.
+
+How can I help someone else, or the entire team, to learn something new?
+
+By sharing some some recourses such as articles and youtube-videos.
+
+
+What is my contribution towards the team’s use of Scrum?
+Im a developer in the team. I was active during the team meetings and supervision as well.
+
+
+What is my contribution towards the team’s deliveries?
+I worked mest with fixing the API problems and making sure that the response that we get from the API is stored in our object containers. Also, I created the view where the recipes are presented. In other words, I worked with both frontend and backend.
