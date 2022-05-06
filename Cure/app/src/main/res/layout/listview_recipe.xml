@@ -8,7 +8,7 @@
     <ImageView
         android:id="@+id/recipeImageMain"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_marginTop="5dp"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="142dp"
@@ -16,11 +16,15 @@
 
     <TextView
         android:id="@+id/recipeNameMain"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_width="285dp"
+        android:layout_height="53dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="12dp"
         android:text="Naomi Duguid's Fish Cakes and Fish Balls"
+        android:textColor="#151414"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeImageMain" />
 
@@ -28,49 +32,83 @@
         android:id="@+id/recipeCaloriesMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
         android:text="TextView"
+        android:textColor="#AE342B"
+        android:textColorHighlight="#B55436"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/recipeTimeMain"
-        app:layout_constraintTop_toBottomOf="@+id/recipeImageMain" />
+        app:layout_constraintTop_toBottomOf="@+id/recipeNameMain" />
 
     <TextView
         android:id="@+id/recipeTimeMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="23dp"
         android:text="TextView"
+        android:textColor="#8A6C6C"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeImageMain" />
+        app:layout_constraintTop_toBottomOf="@+id/recipeNameMain" />
 
     <TextView
         android:id="@+id/recipeProteinMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/recipeCaloriesMain"
+        android:textColor="#191616"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeImageMain" />
 
     <TextView
         android:id="@+id/recipeFatMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="20dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/recipeCaloriesMain"
+        android:textColor="#191616"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeProteinMain" />
 
     <TextView
         android:id="@+id/recipeCarbsMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="20dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/recipeCaloriesMain"
+        android:textColor="#191616"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeFatMain" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="129dp"
+        app:layout_constraintEnd_toStartOf="@+id/recipeCarbsMain"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCaloriesMain" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/recipeTimeMain"
+        app:layout_constraintTop_toBottomOf="@+id/recipeNameMain"
+        app:srcCompat="@mipmap/time_icon" />
 </androidx.constraintlayout.widget.ConstraintLayout>
