@@ -1,31 +1,19 @@
 package com.example.cure.ui.dashboard;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.databinding.FragmentDashboardBinding;
 
-import com.example.cure.model.data.Hit;
-import com.example.cure.model.data.Recipe;
-import com.example.cure.model.data.Root;
-import com.example.cure.model.data.SpecificRecipeRoot;
-import com.example.cure.model.server.api.APIConnection;
-import com.squareup.picasso.Picasso;
-
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class DashboardFragment extends Fragment {
 
@@ -40,13 +28,40 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        MainRecipeAdapter mra = new MainRecipeAdapter(dashboardViewModel.getItems(), getContext());
+
+        binding.mainRecipeListView.setAdapter(mra);
+
+        return root;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*
 
         //For testing
         binding.testButton.setOnClickListener(new View.OnClickListener() {
@@ -123,15 +138,7 @@ public class DashboardFragment extends Fragment {
 
                     }
                 });
-*/
+
             }
         });
-        return root;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-}
+*/
