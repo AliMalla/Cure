@@ -1,17 +1,20 @@
 package com.example.cure.ui.home;
 
 import android.os.Bundle;
-
 import android.util.Log;
+import com.example.cure.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.databinding.FragmentHomeBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.cure.model.data.SpecificRecipeRoot;
 import com.example.cure.model.server.api.OnResponseListener;
 
@@ -38,6 +41,14 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        FloatingActionButton fab = binding.floatingActionButton;
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeViewModel.addMeal();
+            }
+        });
 
         //View view = inflater.inflate(R.layout.fragment_home, container, false);
         Calendar startDate = Calendar.getInstance();
@@ -71,33 +82,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-
-
-
-
-
-
         setDailyTotalCalories();
         setDailyTotalCarbs();
         setDailyTotalFat();
         setDailyTotalProtein();
-        /*
-        DailyRecipeItem itm1 = new DailyRecipeItem("493uh4nr9r3jr", "Chicken", "fsdfa", 500, DailyRecipeItem.Type.LUNCH);
-        DailyRecipeItem itm2 = new DailyRecipeItem("493uh4nr9r3jr", "Meet", "fsdfa", 700, DailyRecipeItem.Type.DINNER);
-        DailyRecipeItem itm3 = new DailyRecipeItem("493uh4nr9r3jr", "Fish and rice", "fsdfa", 1020, DailyRecipeItem.Type.LUNCH);
-        DailyRecipeItem itm4 = new DailyRecipeItem("493uh4nr9r3jr","Meet", "fsdfa", 700, DailyRecipeItem.Type.DINNER);
-        DailyRecipeItem itm5 = new DailyRecipeItem("493uh4nr9r3jr","Fish and rice", "fsdfa", 1020, DailyRecipeItem.Type.LUNCH);
 
-        dailyRecipeItems.add(itm1);
-        dailyRecipeItems.add(itm2);
-        dailyRecipeItems.add(itm3);
-        dailyRecipeItems.add(itm4);
-        dailyRecipeItems.add(itm5);
-
-         */
-
-        //getValue();
 
 
         DailyRecipeAdapter adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar()), getContext());
@@ -106,7 +95,11 @@ public class HomeFragment extends Fragment {
         return root;
     }
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 
     private void setDailyTotalProtein() {
        String text = ""+ (int)homeViewModel.getDailyProtein(new GregorianCalendar());

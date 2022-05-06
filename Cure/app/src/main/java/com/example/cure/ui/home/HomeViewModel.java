@@ -1,6 +1,8 @@
 package com.example.cure.ui.home;
 
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,8 +13,9 @@ import com.example.cure.model.data.Recipe;
 import com.example.cure.model.data.Root;
 import com.example.cure.model.data.SpecificRecipeRoot;
 import com.example.cure.model.other.Arithmetic;
-import com.example.cure.model.server.api.APIConnection;
-import com.example.cure.model.server.api.OnResponseListener;
+import com.example.cure.model.other.DataConverter;
+import com.example.cure.model.server.database.Repository;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.cure.model.server.database.Repository;
 
 import java.util.ArrayList;
@@ -27,6 +30,7 @@ public class HomeViewModel extends ViewModel {
     private final Arithmetic arithmetic;
     private List<SpecificRecipeRoot> list = new ArrayList<>();
     private List<Recipe> recipes = new ArrayList<>(); //test
+    private Context context;
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
@@ -39,12 +43,18 @@ public class HomeViewModel extends ViewModel {
     public HomeViewModel(Context context) {
         this.rep = new Repository(context);
         this.arithmetic = new Arithmetic();
+        this.context = context;
+
     }
 
     public List<SpecificRecipeRoot> getList() {
         return list;
     }
 
+
+    public void addMeal() {
+        Log.e("Button", "Knapp funkar");
+    }
 
     public void deleteItem(String id, Calendar date) {
         rep.deleteRecipe(id, date);

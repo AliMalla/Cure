@@ -1,0 +1,16 @@
+What do I want to learn or understand better?
+
+
+-I want to learn more about how get better communcation within the team, as well as how to unite all the code/thought parts of the team into a complete thing in a proper way. Also, I want to write completely independent user stories so the group members can work in parallel in an efficient manner 
+
+How can I help someone else, or the entire team, to learn something new?
+
+I can help them with connecting different parts of the project on a good way since I have been working with different parts (frontend and backend), especially on this sprint.
+
+
+What is my contribution towards the team’s use of Scrum?
+Im a developer in the team. I still try to get some knowledge about other roles.
+
+
+What is my contribution towards the team’s deliveries?
+I created, with another group member, a database and fixed large parts of the backend. Also, I did some parts of the frontend.

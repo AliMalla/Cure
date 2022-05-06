@@ -36,6 +36,8 @@ public class DashboardViewModel extends ViewModel {
     public DashboardViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("JUST TEST THE API");
+
+
     }
 
     public LiveData<String> getText() {
