@@ -1,6 +1,8 @@
 package com.example.cure.ui.home;
 
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -17,6 +19,7 @@ import com.example.cure.model.data.Recipe;
 import com.example.cure.model.other.Arithmetic;
 import com.example.cure.model.other.DataConverter;
 import com.example.cure.model.server.database.Repository;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,6 +31,7 @@ public class HomeViewModel extends ViewModel {
     private Repository rep;
     private List<Item> items;
     private final Arithmetic arithmetic;
+    private Context context;
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
@@ -40,6 +44,8 @@ public class HomeViewModel extends ViewModel {
     public HomeViewModel(Context context) {
         this.rep = new Repository(context);
         this.arithmetic = new Arithmetic();
+        this.context = context;
+
     }
     /*
     private List<Item> getItems(List<Recipe> recipes){
@@ -57,6 +63,10 @@ public class HomeViewModel extends ViewModel {
     }
 
  */
+
+    public void addMeal() {
+        Log.e("Button", "Knapp funkar");
+    }
 
     public void deleteItem(String id, Calendar date) {
         rep.deleteRecipe(id, date);

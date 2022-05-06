@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.databinding.FragmentHomeBinding;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -31,8 +32,14 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        FloatingActionButton fab = binding.floatingActionButton;
 
-
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeViewModel.addMeal();
+            }
+        });
 
         setDailyTotalCalories();
         setDailyTotalCarbs();
@@ -56,9 +63,9 @@ public class HomeFragment extends Fragment {
 
         String[] test = {"java", "python", "javascript", "PHP", "C#", "C++"};
         //ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.listview_item, R.id.recipeItemName, test);
-        ListViewAdapter adapter = new ListViewAdapter(items, getContext()
-        );
+        ListViewAdapter adapter = new ListViewAdapter(items, getContext());
         binding.previousRecipesList.setAdapter(adapter);
+
         return root;
 
     }
