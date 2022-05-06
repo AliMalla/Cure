@@ -14,6 +14,7 @@ import java.util.List;
 
 public class ArithmeticTest {
 
+    private Arithmetic arithmetic = new Arithmetic();
 
     @Test
     public void calculateTotalCaloriesTest(){
@@ -23,7 +24,7 @@ public class ArithmeticTest {
         recipes.add(new Recipe("ris","image","uri",350,50,35,null,null,null,null,null));
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40,null,null,null,null,null));
 
-        double totalCalories = Arithmetic.calculateTotalCalories(recipes);
+        double totalCalories = arithmetic.calculateTotalCalories(recipes);
 
         assertEquals(167, totalCalories,0.000000001);
 
@@ -48,7 +49,7 @@ public class ArithmeticTest {
         recipes.add(new Recipe("ris","image","uri",350,50,35, 0, null,null,null,null,null,null,null,null,totalNutrients2));
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 0, null,null,null,null,null,null,null,null,totalNutrients3));
 
-        double totalCarbs = Arithmetic.calculateTotalCarbs(recipes);
+        double totalCarbs = arithmetic.calculateTotalCarbs(recipes);
 
         assertEquals(280, totalCarbs,0.000000001);
     }
@@ -71,7 +72,7 @@ public class ArithmeticTest {
         recipes.add(new Recipe("ris","image","uri",350,50,35, 0, null,null,null,null,null,null,null,null,totalNutrients2));
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 0, null,null,null,null,null,null,null,null,totalNutrients3));
 
-        double totalFat = Arithmetic.calculateTotalFat(recipes);
+        double totalFat = arithmetic.calculateTotalFat(recipes);
 
         assertEquals(245, totalFat,0.000000001);
     }
@@ -94,7 +95,7 @@ public class ArithmeticTest {
         recipes.add(new Recipe("ris","image","uri",350,50,35, 0, null,null,null,null,null,null,null,null,totalNutrients2));
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 0, null,null,null,null,null,null,null,null,totalNutrients3));
 
-        double totalProtein = Arithmetic.calculateTotalProtein(recipes);
+        double totalProtein = arithmetic.calculateTotalProtein(recipes);
 
         assertEquals(145, totalProtein,0.000000001);
     }
