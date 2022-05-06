@@ -1,14 +1,11 @@
 package com.example.cure.ui.home;
 
 import android.os.Bundle;
-import com.example.cure.R;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -16,8 +13,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.databinding.FragmentHomeBinding;
 import com.example.cure.model.data.SpecificRecipeRoot;
+import com.example.cure.model.server.api.OnResponseListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -26,14 +23,12 @@ import java.util.List;
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.HorizontalCalendarView;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -87,55 +82,52 @@ public class HomeFragment extends Fragment {
         setDailyTotalCarbs();
         setDailyTotalFat();
         setDailyTotalProtein();
+        /*
+        DailyRecipeItem itm1 = new DailyRecipeItem("493uh4nr9r3jr", "Chicken", "fsdfa", 500, DailyRecipeItem.Type.LUNCH);
+        DailyRecipeItem itm2 = new DailyRecipeItem("493uh4nr9r3jr", "Meet", "fsdfa", 700, DailyRecipeItem.Type.DINNER);
+        DailyRecipeItem itm3 = new DailyRecipeItem("493uh4nr9r3jr", "Fish and rice", "fsdfa", 1020, DailyRecipeItem.Type.LUNCH);
+        DailyRecipeItem itm4 = new DailyRecipeItem("493uh4nr9r3jr","Meet", "fsdfa", 700, DailyRecipeItem.Type.DINNER);
+        DailyRecipeItem itm5 = new DailyRecipeItem("493uh4nr9r3jr","Fish and rice", "fsdfa", 1020, DailyRecipeItem.Type.LUNCH);
 
-        List<Item> items = new ArrayList<>();
-        Item itm1 = new Item("493uh4nr9r3jr", "Chicken", "fsdfa", 500, Item.Type.LUNCH);
-        Item itm2 = new Item("493uh4nr9r3jr", "Meet", "fsdfa", 700, Item.Type.DINNER);
-        Item itm3 = new Item("493uh4nr9r3jr", "Fish and rice", "fsdfa", 1020, Item.Type.LUNCH);
-        Item itm4 = new Item("493uh4nr9r3jr","Meet", "fsdfa", 700, Item.Type.DINNER);
-        Item itm5 = new Item("493uh4nr9r3jr","Fish and rice", "fsdfa", 1020, Item.Type.LUNCH);
+        dailyRecipeItems.add(itm1);
+        dailyRecipeItems.add(itm2);
+        dailyRecipeItems.add(itm3);
+        dailyRecipeItems.add(itm4);
+        dailyRecipeItems.add(itm5);
 
-        items.add(itm1);
-        items.add(itm2);
-        items.add(itm3);
-        items.add(itm4);
-        items.add(itm5);
+         */
+
+        //getValue();
 
 
-
-        String[] test = {"java", "python", "javascript", "PHP", "C#", "C++"};
-        //ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.listview_item, R.id.recipeItemName, test);
-        ListViewAdapter adapter = new ListViewAdapter(items, getContext()
-        );
+        DailyRecipeAdapter adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar()), getContext());
         binding.previousRecipesList.setAdapter(adapter);
+
         return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 
-    private void setDailyTotalProtein(){
-       // String text = ""+ (int)homeViewModel.getDailyProtein(new GregorianCalendar());
-       // binding.totalDailyProtein.setText(text);
-        //binding.totalDailyProtein.setText(homeViewModel.roots.size());
 
+    private void setDailyTotalProtein() {
+       String text = ""+ (int)homeViewModel.getDailyProtein(new GregorianCalendar());
+        binding.totalDailyProtein.setText(text);
     }
 
     private void setDailyTotalFat(){
-       // String text = ""+(int)homeViewModel.getDailyFat(new GregorianCalendar());
-       // binding.totalDailyFat.setText(text);
+       String text = ""+(int)homeViewModel.getDailyFat(new GregorianCalendar());
+       binding.totalDailyFat.setText(text);
     }
 
     private void setDailyTotalCarbs(){
-       // String text = ""+(int)homeViewModel.getDailyCarbs(new GregorianCalendar());
-       // binding.totalDailyCarbs.setText(text);
+       String text = ""+(int)homeViewModel.getDailyCarbs(new GregorianCalendar());
+       binding.totalDailyCarbs.setText(text);
     }
 
     private void setDailyTotalCalories(){
-       // String text = ""+(int)homeViewModel.getDailyCalories(new GregorianCalendar());
-       // binding.totalDailyCalories.setText(text);
+       String text = ""+(int)homeViewModel.getDailyCalories(new GregorianCalendar());
+       binding.totalDailyCalories.setText(text + " kcal");
     }
+
+
+
 }
