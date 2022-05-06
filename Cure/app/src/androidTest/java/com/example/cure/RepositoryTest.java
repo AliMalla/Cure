@@ -76,7 +76,7 @@ public class RepositoryTest {
     private Recipe getRecipe(String label, String image, String uri){
 
         String[]test = new String[1];
-        Recipe recipe = new Recipe(label, image, uri, 0, 0, 0, 30, test, test, test, test, test);
+        Recipe recipe = new Recipe(label, image, uri, 0, 0, 0, test, test, test, test, test);
 
         return recipe;
     }
