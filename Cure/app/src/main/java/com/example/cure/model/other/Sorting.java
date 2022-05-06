@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Sorting {
 
-    public static List<Recipe> sortRecipesByTimeAscendingOrder(List<Recipe> recipes){
+    public List<Recipe> sortRecipesByTimeAscendingOrder(List<Recipe> recipes){
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe recipe, Recipe t1) {
@@ -18,7 +18,7 @@ public class Sorting {
         return recipes;
     }
 
-    public static List<Recipe> sortRecipesByTimeDescendingOrder(List<Recipe> recipes){
+    public List<Recipe> sortRecipesByTimeDescendingOrder(List<Recipe> recipes){
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe recipe, Recipe t1) {
@@ -28,7 +28,7 @@ public class Sorting {
         return recipes;
     }
 
-    public static List<Recipe> sortRecipesByCaloriesAscendingOrder(List<Recipe> recipes){
+    public List<Recipe> sortRecipesByCaloriesAscendingOrder(List<Recipe> recipes){
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe recipe, Recipe t1) {
@@ -38,7 +38,7 @@ public class Sorting {
         return recipes;
     }
 
-    public static List<Recipe> sortRecipesByCaloriesDescendingOrder(List<Recipe> recipes){
+    public List<Recipe> sortRecipesByCaloriesDescendingOrder(List<Recipe> recipes){
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe recipe, Recipe t1) {
@@ -49,7 +49,7 @@ public class Sorting {
     }
 
 
-    public static List<Recipe> sortRecipesByFatAscendingOrder(List<Recipe> recipes){
+    public List<Recipe> sortRecipesByFatAscendingOrder(List<Recipe> recipes){
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe recipe, Recipe t1) {
@@ -60,7 +60,7 @@ public class Sorting {
     }
 
 
-    public static List<Recipe> sortRecipesByFatDescendingOrder(List<Recipe> recipes){
+    public List<Recipe> sortRecipesByFatDescendingOrder(List<Recipe> recipes){
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe recipe, Recipe t1) {
@@ -72,7 +72,7 @@ public class Sorting {
 
 
 
-    public static List<Recipe> sortRecipesByCarbsAscendingOrder(List<Recipe> recipes){
+    public List<Recipe> sortRecipesByCarbsAscendingOrder(List<Recipe> recipes){
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe recipe, Recipe t1) {
@@ -83,7 +83,7 @@ public class Sorting {
     }
 
 
-    public static List<Recipe> sortRecipesByCarbsDescendingOrder(List<Recipe> recipes){
+    public List<Recipe> sortRecipesByCarbsDescendingOrder(List<Recipe> recipes){
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe recipe, Recipe t1) {
@@ -95,7 +95,7 @@ public class Sorting {
 
 
 
-    public static List<Recipe> sortRecipesByProteinAscendingOrder(List<Recipe> recipes){
+    public List<Recipe> sortRecipesByProteinAscendingOrder(List<Recipe> recipes){
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe recipe, Recipe t1) {
@@ -106,7 +106,7 @@ public class Sorting {
     }
 
 
-    public static List<Recipe> sortRecipesByProteinDescendingOrder(List<Recipe> recipes){
+    public List<Recipe> sortRecipesByProteinDescendingOrder(List<Recipe> recipes){
         Collections.sort(recipes, new Comparator<Recipe>() {
             @Override
             public int compare(Recipe recipe, Recipe t1) {
