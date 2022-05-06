@@ -22,7 +22,7 @@ public class Arithmetic {
         return totalFat;
     }
 
-    public static double calculateTotalCarbs(List<Recipe> recipes){
+    public double calculateTotalCarbs(List<Recipe> recipes){
         double totalCarbs = 0;
         for (Recipe rec : recipes){
             totalCarbs += rec.getTotalNutrients().getCarbs().getQuantity();

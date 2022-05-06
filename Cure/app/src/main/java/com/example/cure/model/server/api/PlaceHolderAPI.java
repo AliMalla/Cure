@@ -21,4 +21,5 @@ public interface PlaceHolderAPI {
                                        @Query("type") String type,
                                        @Query("app_id") String appId,
                                        @Query("app_key") String appKey);
+
 }

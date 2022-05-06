@@ -1,20 +1,12 @@
 package com.example.cure.model.server.database;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.cure.model.data.Recipe;
-import com.example.cure.model.data.SpecificRecipeRoot;
 import com.example.cure.model.other.DataConverter;
-import com.example.cure.model.server.api.APIConnection;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 /**
  * A class to communicate with and access the database
@@ -84,33 +76,9 @@ public class Repository {
         db.addRecipe("b66666d5c882ca199f43def8f1b8a03f", "20220313");
         db.addRecipe("e7e22b5f9afdae010472f2084a76fd6c", "20220313");
 
-
-        List<Recipe> recipes = new ArrayList<>();
-        final String dateToString = DataConverter.dateToString(date);
-
-        List<String> ids = getRecipeIds(dateToString);
-
-        for (String id : ids) {
-
-            APIConnection.getRecipeById(id).enqueue(new Callback<SpecificRecipeRoot>() {
-                @Override
-                public void onResponse(Call<SpecificRecipeRoot> call, Response<SpecificRecipeRoot> response) {
-                    if(response.isSuccessful()) {
-                        Recipe r = response.body().getRecipe();
-                        recipes.add(r);
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<SpecificRecipeRoot> call, Throwable t) {
-
-                }
-            });
-        }
-
         db.deleteRecipe("b66666d5c882ca199f43def8f1b8a03f", "20220313");
         db.deleteRecipe("e7e22b5f9afdae010472f2084a76fd6c", "20220313");
-        return recipes;
+        return null;
     }
 
     /**
