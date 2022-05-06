@@ -1,7 +1,8 @@
-package com.example.cure.model.server;
+package com.example.cure.model.server.api;
 
 import com.example.cure.model.data.Root;
 import com.example.cure.model.data.SpecificRecipeRoot;
+import com.example.cure.model.server.api.PlaceHolderAPI;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
