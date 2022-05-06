@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Arithmetic {
 
-    public static double calculateTotalCalories(List<Recipe> recipes){
+    public double calculateTotalCalories(List<Recipe> recipes){
         double totalCalories = 0;
         for (Recipe rec : recipes){
             totalCalories += rec.getCalories();
@@ -14,7 +14,7 @@ public class Arithmetic {
         return totalCalories;
     }
 
-    public static double calculateTotalFat(List<Recipe> recipes){
+    public double calculateTotalFat(List<Recipe> recipes){
         double totalFat = 0;
         for (Recipe rec : recipes){
             totalFat += rec.getTotalNutrients().getFat().getQuantity();
@@ -22,7 +22,7 @@ public class Arithmetic {
         return totalFat;
     }
 
-    public static double calculateTotalCarbs(List<Recipe> recipes){
+    public double calculateTotalCarbs(List<Recipe> recipes){
         double totalCarbs = 0;
         for (Recipe rec : recipes){
             totalCarbs += rec.getTotalNutrients().getCarbs().getQuantity();
@@ -31,7 +31,7 @@ public class Arithmetic {
     }
 
 
-    public static double calculateTotalProtein(List<Recipe> recipes){
+    public double calculateTotalProtein(List<Recipe> recipes){
         double totalProtein = 0;
         for (Recipe rec : recipes){
             totalProtein += rec.getTotalNutrients().getProtein().getQuantity();

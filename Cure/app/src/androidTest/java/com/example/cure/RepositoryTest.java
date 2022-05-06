@@ -12,12 +12,9 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 import com.example.cure.model.data.Recipe;
-import com.example.cure.model.other.DataConverter;
-import com.example.cure.model.server.database.DBHandler;
 import com.example.cure.model.server.database.Repository;
 
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 

@@ -4,11 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/activity_main.xml" value="0.136" />
-        <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/fragment_dashboard.xml" value="1.0" />
-        <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/fragment_home.xml" value="0.152" />
+        <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/fragment_dashboard.xml" value="0.176" />
+        <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/fragment_home.xml" value="0.2" />
         <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/fragment_homefragment.xml" value="0.1933876811594203" />
         <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/fragment_notifications.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/listview_item.xml" value="0.536" />
+        <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/listview_recipe.xml" value="0.264" />
         <entry key="..\:/Users/AndreasJohansson/StudioProjects/Cure/Cure/app/src/main/res/layout/activity_main.xml" value="0.1265625" />
         <entry key="..\:/Users/AndreasJohansson/StudioProjects/Cure/Cure/app/src/main/res/layout/fragment_dashboard.xml" value="0.1265625" />
         <entry key="..\:/Users/AndreasJohansson/StudioProjects/Cure/Cure/app/src/main/res/layout/fragment_home.xml" value="0.1265625" />

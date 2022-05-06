@@ -1,11 +1,12 @@
 package com.example.cure.ui.dashboard;
 
-
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
@@ -45,6 +46,10 @@ public class DashboardFragment extends Fragment {
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+
+        MainRecipeAdapter mra = new MainRecipeAdapter(dashboardViewModel.getItems(), getContext());
+
+        binding.mainRecipeListView.setAdapter(mra);
 
         ///////// search recipe stuff
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -111,7 +116,7 @@ public class DashboardFragment extends Fragment {
 
 
     private void getRecipeBySearchFunction(String s){
-        APIConnection.getRootModel(s).enqueue(new Callback<Root>() {
+        APIConnection.makeRootConnection(s).enqueue(new Callback<Root>() {
             @Override
             public void onResponse(Call<Root> call, Response<Root> response) {
                 if(response.isSuccessful() && response != null){

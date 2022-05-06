@@ -14,6 +14,8 @@ import java.util.List;
 
 public class SortingTest {
 
+    private Sorting sorting = new Sorting();
+
     @Test
     public void sortRecipesByTimeAscendingOrderTest(){
         List <Recipe> recipes = new ArrayList<>();
@@ -23,7 +25,7 @@ public class SortingTest {
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 40, null,null,null,null,null,null,null,null,null));
         recipes.add(new Recipe("ris","image","uri",350,50,35, 25, null,null,null,null,null,null,null,null,null));
 
-        Sorting.sortRecipesByTimeAscendingOrder(recipes);
+        sorting.sortRecipesByTimeAscendingOrder(recipes);
 
         assertEquals("fish", recipes.get(0).getLabel());
     }
@@ -38,7 +40,7 @@ public class SortingTest {
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 40, null,null,null,null,null,null,null,null,null));
         recipes.add(new Recipe("ris","image","uri",350,50,35, 25, null,null,null,null,null,null,null,null,null));
 
-        Sorting.sortRecipesByTimeDescendingOrder(recipes);
+        sorting.sortRecipesByTimeDescendingOrder(recipes);
 
         assertEquals("fish & ris", recipes.get(0).getLabel());
     }
@@ -53,7 +55,7 @@ public class SortingTest {
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 40, null,null,null,null,null,null,null,null,null));
         recipes.add(new Recipe("ris","image","uri",350,50,35, 25, null,null,null,null,null,null,null,null,null));
 
-        Sorting.sortRecipesByCaloriesAscendingOrder(recipes);
+        sorting.sortRecipesByCaloriesAscendingOrder(recipes);
 
         assertEquals("fish", recipes.get(0).getLabel());
     }
@@ -68,7 +70,7 @@ public class SortingTest {
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 40, null,null,null,null,null,null,null,null,null));
         recipes.add(new Recipe("ris","image","uri",350,50,35, 25, null,null,null,null,null,null,null,null,null));
 
-        Sorting.sortRecipesByCaloriesDescendingOrder(recipes);
+        sorting.sortRecipesByCaloriesDescendingOrder(recipes);
 
         assertEquals("fish & ris", recipes.get(0).getLabel());
     }
@@ -94,7 +96,7 @@ public class SortingTest {
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 40, null,null,null,null,null,null,null,null,totalNutrients2));
         recipes.add(new Recipe("ris","image","uri",350,50,35, 25, null,null,null,null,null,null,null,null,totalNutrients3));
 
-        Sorting.sortRecipesByFatAscendingOrder(recipes);
+        sorting.sortRecipesByFatAscendingOrder(recipes);
 
         assertEquals("chicken", recipes.get(0).getLabel());
     }
@@ -119,7 +121,7 @@ public class SortingTest {
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 40, null,null,null,null,null,null,null,null,totalNutrients2));
         recipes.add(new Recipe("ris","image","uri",350,50,35, 25, null,null,null,null,null,null,null,null,totalNutrients3));
 
-        Sorting.sortRecipesByFatDescendingOrder(recipes);
+        sorting.sortRecipesByFatDescendingOrder(recipes);
 
         assertEquals("ris", recipes.get(0).getLabel());
     }
@@ -143,7 +145,7 @@ public class SortingTest {
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 40, null,null,null,null,null,null,null,null,totalNutrients2));
         recipes.add(new Recipe("ris","image","uri",350,50,35, 25, null,null,null,null,null,null,null,null,totalNutrients3));
 
-        Sorting.sortRecipesByCarbsAscendingOrder(recipes);
+        sorting.sortRecipesByCarbsAscendingOrder(recipes);
 
         assertEquals("chicken", recipes.get(0).getLabel());
     }
@@ -168,7 +170,7 @@ public class SortingTest {
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 40, null,null,null,null,null,null,null,null,totalNutrients2));
         recipes.add(new Recipe("ris","image","uri",350,50,35, 25, null,null,null,null,null,null,null,null,totalNutrients3));
 
-        Sorting.sortRecipesByCarbsDescendingOrder(recipes);
+        sorting.sortRecipesByCarbsDescendingOrder(recipes);
 
         assertEquals("ris", recipes.get(0).getLabel());
     }
@@ -192,7 +194,7 @@ public class SortingTest {
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 40, null,null,null,null,null,null,null,null,totalNutrients2));
         recipes.add(new Recipe("ris","image","uri",350,50,35, 25, null,null,null,null,null,null,null,null,totalNutrients3));
 
-        Sorting.sortRecipesByProteinAscendingOrder(recipes);
+        sorting.sortRecipesByProteinAscendingOrder(recipes);
 
         assertEquals("fish & ris", recipes.get(0).getLabel());
     }
@@ -217,7 +219,7 @@ public class SortingTest {
         recipes.add(new Recipe("fish & ris","image","uri",500,75,40, 40, null,null,null,null,null,null,null,null,totalNutrients2));
         recipes.add(new Recipe("ris","image","uri",350,50,35, 25, null,null,null,null,null,null,null,null,totalNutrients3));
 
-        Sorting.sortRecipesByFatDescendingOrder(recipes);
+        sorting.sortRecipesByFatDescendingOrder(recipes);
 
         assertEquals("ris", recipes.get(0).getLabel());
     }
