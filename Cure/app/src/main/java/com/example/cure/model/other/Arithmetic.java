@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Arithmetic {
 
-    public double calculateTotalCalories(List<Recipe> recipes){
+    public double calculateTotalCalories( List<Recipe> recipes){
         double totalCalories = 0;
         for (Recipe rec : recipes){
             totalCalories += rec.getCalories();
