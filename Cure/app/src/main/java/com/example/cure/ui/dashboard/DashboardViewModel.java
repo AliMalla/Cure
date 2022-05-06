@@ -30,6 +30,7 @@ import java.util.List;
 public class DashboardViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
+    private Sorting sorting = new Sorting();
 
     private List<MainRecipeItem> items = new ArrayList<>();
 
@@ -46,35 +47,35 @@ public class DashboardViewModel extends ViewModel {
 
 
     public List<Recipe> getSortedRecipesByTimeAscOrd(List<Recipe> recipes){
-        return Sorting.sortRecipesByTimeAscendingOrder(recipes);
+        return sorting.sortRecipesByTimeAscendingOrder(recipes);
     }
 
     public List<Recipe> getSortedRecipesByTimeDesOrd(List<Recipe> recipes){
-        return Sorting.sortRecipesByTimeDescendingOrder(recipes);
+        return sorting.sortRecipesByTimeDescendingOrder(recipes);
     }
 
     public List<Recipe> getSortedRecipesByCaloriesAscOrd(List<Recipe> recipes){
-        return Sorting.sortRecipesByCaloriesAscendingOrder(recipes);
+        return sorting.sortRecipesByCaloriesAscendingOrder(recipes);
     }
 
     public List<Recipe> getSortedRecipesByCaloriesDesOrd(List<Recipe> recipes){
-        return Sorting.sortRecipesByCaloriesDescendingOrder(recipes);
+        return sorting.sortRecipesByCaloriesDescendingOrder(recipes);
     }
 
     public List<Recipe> getSortedRecipesByFatAscOrd(List<Recipe> recipes){
-        return Sorting.sortRecipesByFatAscendingOrder(recipes);
+        return sorting.sortRecipesByFatAscendingOrder(recipes);
     }
 
     public List<Recipe> getSortedRecipesByFatDesOrd(List<Recipe> recipes){
-        return Sorting.sortRecipesByFatDescendingOrder(recipes);
+        return sorting.sortRecipesByFatDescendingOrder(recipes);
     }
 
     public List<Recipe> getSortedRecipesByProteinAscOrd(List<Recipe> recipes){
-        return Sorting.sortRecipesByProteinAscendingOrder(recipes);
+        return sorting.sortRecipesByProteinAscendingOrder(recipes);
     }
 
     public List<Recipe> getSortedRecipesByProteinDesOrd(List<Recipe> recipes){
-        return Sorting.sortRecipesByProteinDescendingOrder(recipes);
+        return sorting.sortRecipesByProteinDescendingOrder(recipes);
     }
 
 
