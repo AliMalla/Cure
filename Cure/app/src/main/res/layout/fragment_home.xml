@@ -28,6 +28,7 @@
         android:layout_marginStart="45dp"
         android:layout_marginBottom="50dp"
         android:text="TextView"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -36,9 +37,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="75dp"
         android:layout_marginBottom="50dp"
         android:text="TextView"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@+id/totalDailyProtein"
         app:layout_constraintStart_toEndOf="@+id/totalDailyCarbs" />
@@ -50,6 +52,7 @@
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="50dp"
         android:text="TextView"
+        android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -57,13 +60,16 @@
         android:id="@+id/totalDailyCalories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="175dp"
+        android:layout_marginStart="159dp"
+        android:layout_marginEnd="159dp"
         android:layout_marginBottom="50dp"
         android:text="400 kcal"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/totalDailyFat"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
