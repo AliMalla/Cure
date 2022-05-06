@@ -116,7 +116,7 @@ public class DashboardFragment extends Fragment {
 
 
     private void getRecipeBySearchFunction(String s){
-        APIConnection.getRootModel(s).enqueue(new Callback<Root>() {
+        APIConnection.makeRootConnection(s).enqueue(new Callback<Root>() {
             @Override
             public void onResponse(Call<Root> call, Response<Root> response) {
                 if(response.isSuccessful() && response != null){
