@@ -14,6 +14,8 @@ import com.example.cure.model.data.Root;
 import com.example.cure.model.data.SpecificRecipeRoot;
 import com.example.cure.model.other.Arithmetic;
 import com.example.cure.model.other.DataConverter;
+import com.example.cure.model.server.api.APIConnection;
+import com.example.cure.model.server.api.OnResponseListener;
 import com.example.cure.model.server.database.Repository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.cure.model.server.database.Repository;
