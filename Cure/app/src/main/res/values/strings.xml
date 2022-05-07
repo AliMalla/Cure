@@ -17,4 +17,9 @@
         <item>Protein-</item>
     </string-array>
 
+    <string name="p2">YOUR ALL IN ONE NUTRITION AND RECEIPES TRACKING APP</string>
+    <string name="headline">RecipeCalc</string>
+    <string name="todo">TODO</string>
+    <string name="get_started">GET STARTED</string>
+
 </resources>
