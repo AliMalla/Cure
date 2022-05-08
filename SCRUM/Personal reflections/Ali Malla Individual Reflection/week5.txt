@@ -1,0 +1,27 @@
+Week5 
+
+what do I want to learn or understand better? 
+
+- I want to update my information and strengthen my skills in Android. 
+
+ 
+
+how can I help someone else, or the entire team, to learn something new? 
+
+- I can first explain in words. If the person who needs help does not understand what 
+I am talking about, I can explain how it works in practice. Also I can send some youtube 
+videos that explain better than me. 
+
+ 
+
+what is my contribution towards the team’s use of Scrum? 
+
+- my main contribution is writing code. 
+
+ 
+
+what is my contribution towards the team’s deliveries? 
+
+- I have created the database and worked with two more user stories. One so that the user 
+can delete a recipe and the other to see the total nutrients that he has eaten in a certain
+day. 
