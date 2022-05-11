@@ -1,5 +1,6 @@
 package com.example.cure.ui.dashboard;
 
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -14,18 +15,7 @@ import com.example.cure.model.server.api.OnResponseListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import com.example.cure.model.data.Recipe;
 import com.example.cure.model.other.Sorting;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 
 public class DashboardViewModel extends ViewModel {
 
@@ -34,10 +24,16 @@ public class DashboardViewModel extends ViewModel {
 
     private List<MainRecipeItem> items = new ArrayList<>();
 
+    private MutableLiveData<List<MainRecipeItem>> recipes = new MutableLiveData<>();
+
+    private String recipeName;
+    private String defaultRecipeName = "chicken";
+
+
     public DashboardViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("JUST TEST THE API");
-
+        recipeName = defaultRecipeName;
 
     }
 
@@ -99,7 +95,7 @@ public class DashboardViewModel extends ViewModel {
 
 
     private void fetchData(){
-        APIConnection.getRootModel("Chicken", new OnResponseListener() {
+        APIConnection.getRootModel(recipeName, new OnResponseListener() {
             @Override
             public void recipeByIdFetched(SpecificRecipeRoot sr) {
 
@@ -107,6 +103,7 @@ public class DashboardViewModel extends ViewModel {
 
             @Override
             public void recipesByQueryFetched(Root r) {
+                List<MainRecipeItem> items = new ArrayList<>();
 
                 for (Hit hit : r.getHits()) {
                     Recipe rec = hit.getRecipe();
@@ -114,14 +111,29 @@ public class DashboardViewModel extends ViewModel {
                             "Fat    "+(int)rec.getTotalNutrients().getFat().getQuantity() + " " + rec.getTotalNutrients().getFat().getUnit(), "Protein    "+(int)rec.getTotalNutrients().getProtein().getQuantity() +" "+ rec.getTotalNutrients().getProtein().getUnit(),
                             "Carbs    "+(int)rec.getTotalNutrients().getCarbs().getQuantity() + " " +rec.getTotalNutrients().getCarbs().getUnit(), (int)rec.getTotalTime() + " minuter"));
                 }
+                recipes.postValue(items);
             }
         });
     }
 
-    public List<MainRecipeItem> getItems() {
+    public void updateItemsBySearch(String recipe_name) {
+        if(!recipe_name.equals(recipeName)){
+            recipeName = recipe_name;
+        }
         fetchData();
-        return items;
     }
 
+    public void updateItems(){
+        recipeName = defaultRecipeName;
+        fetchData();
+    }
 
+    public LiveData<List<MainRecipeItem>> getItems(){
+        return recipes;
+    }
+
+    public String getDefaultRecipeName() {
+        return defaultRecipeName;
+    }
+    public void setDefaultRecipeName(String defaultRecipeName){this.defaultRecipeName = defaultRecipeName;}
 }
