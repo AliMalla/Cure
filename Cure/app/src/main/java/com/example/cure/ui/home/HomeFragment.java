@@ -41,15 +41,6 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        FloatingActionButton fab = binding.floatingActionButton;
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                homeViewModel.addMeal();
-            }
-        });
-
         //View view = inflater.inflate(R.layout.fragment_home, container, false);
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
@@ -62,17 +53,12 @@ public class HomeFragment extends Fragment {
                 .datesNumberOnScreen(5)
                 .build();
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
-
-
-
-
             @Override
             public void onDateSelected(Calendar date, int position) {
-                //do something
+                homeViewModel.updateDailyRecipes(date);
             }
             @Override
-            public void onCalendarScroll(HorizontalCalendarView calendarView,
-                                         int dx, int dy) {
+            public void onCalendarScroll(HorizontalCalendarView calendarView, int dx, int dy) {
 
             }
 
@@ -81,6 +67,15 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
+
+        FloatingActionButton fab = binding.floatingActionButton;
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeViewModel.addMeal(horizontalCalendar.getSelectedDate().getTime());
+            }
+        });
+
 
         setDailyTotalCalories();
         setDailyTotalCarbs();

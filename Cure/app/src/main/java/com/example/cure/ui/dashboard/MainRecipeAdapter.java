@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,12 +15,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class MainRecipeAdapter extends BaseAdapter {
+public class MainRecipeAdapter extends ArrayAdapter {
 
     private List<MainRecipeItem> items;
     private Context context;
 
     public MainRecipeAdapter(List<MainRecipeItem> items, Context context) {
+        super(context,R.layout.listview_recipe,items);
         this.items = items;
         this.context = context;
     }
@@ -66,7 +68,7 @@ public class MainRecipeAdapter extends BaseAdapter {
         Picasso.get().load(items.get(i).getImage()).resize(300, 90).into(recipeImage);
 
 
-
         return v;
     }
+
 }

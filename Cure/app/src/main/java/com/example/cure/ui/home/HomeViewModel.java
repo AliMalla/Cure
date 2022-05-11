@@ -22,6 +22,7 @@ import com.example.cure.model.server.database.Repository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class HomeViewModel extends ViewModel {
@@ -33,6 +34,7 @@ public class HomeViewModel extends ViewModel {
     private List<SpecificRecipeRoot> list = new ArrayList<>();
     private List<Recipe> recipes = new ArrayList<>(); //test
     private Context context;
+    private Date date;
 
     public HomeViewModel() {
         mText = new MutableLiveData<>();
@@ -54,8 +56,8 @@ public class HomeViewModel extends ViewModel {
     }
 
 
-    public void addMeal() {
-        Log.e("Button", "Knapp funkar");
+    public void addMeal(Date i) {
+        Log.e("Datum", i.toString());
     }
 
     public void deleteItem(String id, Calendar date) {
@@ -82,8 +84,6 @@ public class HomeViewModel extends ViewModel {
         return mText;
     }
 
-
-
     public List<String> recipeIdList(Calendar date){
         List<String> list = new ArrayList<>();
         list.add("e7e22b5f9afdae010472f2084a76fd6c");
@@ -91,7 +91,6 @@ public class HomeViewModel extends ViewModel {
 
         return list;
     }
-
 
     private void fetchDailyRecipes(Calendar date) {
         List<String> recipeIdList = recipeIdList(date);
@@ -115,12 +114,13 @@ public class HomeViewModel extends ViewModel {
 
     }
 
-
     public List<DailyRecipeItem> getDailyRecipeItems(Calendar date) {
         fetchDailyRecipes(date);
         return dailyRecipeItems;
     }
 
-
+    public void updateDailyRecipes(Calendar date) {
+        fetchDailyRecipes(date);
+    }
 
 }
