@@ -22,9 +22,9 @@ public class DashboardViewModel extends ViewModel {
     private MutableLiveData<String> mText;
     private Sorting sorting = new Sorting();
 
-    private List<MainRecipeItem> items = new ArrayList<>();
+    private MutableLiveData<List<Recipe>> liveRecipes = new MutableLiveData<>();
 
-    private MutableLiveData<List<MainRecipeItem>> recipes = new MutableLiveData<>();
+    private MutableLiveData<List<MainRecipeItem>> mainItems = new MutableLiveData<>();
 
     private String recipeName;
     private String defaultRecipeName = "chicken";
@@ -104,14 +104,17 @@ public class DashboardViewModel extends ViewModel {
             @Override
             public void recipesByQueryFetched(Root r) {
                 List<MainRecipeItem> items = new ArrayList<>();
+                List<Recipe> recipes = new ArrayList<>();
 
                 for (Hit hit : r.getHits()) {
                     Recipe rec = hit.getRecipe();
-                    items.add(new MainRecipeItem(rec.getLabel(), rec.getImage(), (int)rec.getCalories()+" kcal",
+                    items.add(new MainRecipeItem(getRecipeId(rec), rec.getLabel(), rec.getImage(), (int)rec.getCalories()+" kcal",
                             "Fat    "+(int)rec.getTotalNutrients().getFat().getQuantity() + " " + rec.getTotalNutrients().getFat().getUnit(), "Protein    "+(int)rec.getTotalNutrients().getProtein().getQuantity() +" "+ rec.getTotalNutrients().getProtein().getUnit(),
                             "Carbs    "+(int)rec.getTotalNutrients().getCarbs().getQuantity() + " " +rec.getTotalNutrients().getCarbs().getUnit(), (int)rec.getTotalTime() + " minuter"));
+                    recipes.add(rec);
                 }
-                recipes.postValue(items);
+                mainItems.postValue(items);
+                liveRecipes.postValue(recipes);
             }
         });
     }
@@ -129,7 +132,18 @@ public class DashboardViewModel extends ViewModel {
     }
 
     public LiveData<List<MainRecipeItem>> getItems(){
-        return recipes;
+        return mainItems;
+    }
+
+    private String getRecipeId(Recipe recipe) {
+        final String temp = recipe.getUri();
+        final String id = temp.substring(temp.length() - 32);
+
+        return id;
+    }
+
+    public MutableLiveData<List<Recipe>> getLiveRecipes() {
+        return liveRecipes;
     }
 
     public String getDefaultRecipeName() {
