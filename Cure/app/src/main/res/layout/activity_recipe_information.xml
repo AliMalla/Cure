@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#F7FFFE"
-    >
+    android:layout_height="match_parent">
 
     <ImageButton
         android:id="@+id/backButton"
@@ -36,21 +34,19 @@
         android:id="@+id/recipeImageInfoPage"
         android:layout_width="220sp"
         android:layout_height="130sp"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="121dp"
-        android:background="#3EA4F6"
+        android:background="#37B8F3"
         android:padding="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
         android:id="@+id/recpieNameInfoPage"
-        android:layout_width="191sp"
+        android:layout_width="201sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="105dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
         android:textColor="#000000"
         android:textSize="18sp"
@@ -58,171 +54,6 @@
         android:typeface="monospace"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeImageInfoPage" />
-
-    <ScrollView
-        android:layout_width="409dp"
-        android:layout_height="220dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView33">
-
-        <LinearLayout
-            android:id="@+id/inforLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/proteinInfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-
-            <TextView
-                android:id="@+id/textView13"
-                android:layout_width="match_parent"
-                android:layout_height="6sp" />
-
-            <TextView
-                android:id="@+id/fatInfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="6sp" />
-
-            <TextView
-                android:id="@+id/carbsInfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-
-            <TextView
-                android:id="@+id/textView21"
-                android:layout_width="match_parent"
-                android:layout_height="6sp" />
-
-            <TextView
-                android:id="@+id/sugarInfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="match_parent"
-                android:layout_height="6sp" />
-
-            <TextView
-                android:id="@+id/ironInfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="match_parent"
-                android:layout_height="6sp" />
-
-            <TextView
-                android:id="@+id/zincInfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-
-            <TextView
-                android:id="@+id/textView31"
-                android:layout_width="match_parent"
-                android:layout_height="6sp" />
-
-            <TextView
-                android:id="@+id/vitaminAInfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-
-            <TextView
-                android:id="@+id/textView29"
-                android:layout_width="match_parent"
-                android:layout_height="6sp" />
-
-            <TextView
-                android:id="@+id/vitaminB16InfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-
-            <TextView
-                android:id="@+id/textView27"
-                android:layout_width="match_parent"
-                android:layout_height="6sp" />
-
-            <TextView
-                android:id="@+id/vitaminCInfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-
-            <TextView
-                android:id="@+id/textView25"
-                android:layout_width="match_parent"
-                android:layout_height="6sp" />
-
-            <TextView
-                android:id="@+id/vitaminDInfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-
-            <TextView
-                android:id="@+id/textView23"
-                android:layout_width="match_parent"
-                android:layout_height="6sp" />
-
-            <TextView
-                android:id="@+id/vitaminEInfoPage"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textColor="#191616"
-                android:textSize="17sp"
-                android:textStyle="normal|italic" />
-        </LinearLayout>
-    </ScrollView>
 
     <TextView
         android:id="@+id/textView33"
@@ -236,5 +67,73 @@
         android:textStyle="normal|bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recpieNameInfoPage" />
+
+    <ListView
+        android:id="@+id/nutrientsListViewInfoPage"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView33" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="#FAE5E5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:srcCompat="@mipmap/time_icon" />
+
+    <TextView
+        android:id="@+id/recipeTimeInfoPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="18dp"
+        android:text="TextView"
+        android:textColor="#8A6C6C"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <TextView
+        android:id="@+id/caloriesInfoPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        android:textColor="#7E2626"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/recipeImageInfoPage"
+        app:layout_constraintTop_toBottomOf="@+id/recipeTimeInfoPage" />
+
+    <TextView
+        android:id="@+id/recipeWeightInfoPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="20dp"
+        android:text="TextView"
+        android:textColor="#8A6C6C"
+        android:textSize="21sp"
+        app:layout_constraintStart_toEndOf="@+id/recipeImageInfoPage"
+        app:layout_constraintTop_toBottomOf="@+id/caloriesInfoPage" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/nutrientsListViewInfoPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
