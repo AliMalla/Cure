@@ -1,5 +1,6 @@
 package com.example.cure.ui.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,8 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.R;
 import com.example.cure.databinding.FragmentDashboardBinding;
-
-
+import com.example.cure.ui.dashboard.recipeInformation.RecipeInformationActivity;
 
 
 import java.util.ArrayList;
@@ -30,6 +30,7 @@ public class DashboardFragment extends Fragment {
     private DashboardViewModel dashboardViewModel;
     private FragmentDashboardBinding binding;
     private MainRecipeAdapter mra;
+    private Intent intent;
 
 
 
@@ -111,6 +112,16 @@ public class DashboardFragment extends Fragment {
         });
         ////////////////////////////////////////
 
+
+
+
+        intent = new Intent(root.getContext(), RecipeInformationActivity.class);
+        binding.mainRecipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                startActivity(intent);
+            }
+        });
 
         return root;
     }
