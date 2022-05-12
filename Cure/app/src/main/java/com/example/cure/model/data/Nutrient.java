@@ -22,4 +22,8 @@ public class Nutrient {
     public String getUnit() {
         return unit;
     }
+
+    public String getValue(){
+        return (int)quantity + " " + unit;
+    }
 }
