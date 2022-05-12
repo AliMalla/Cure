@@ -26,30 +26,19 @@ import java.util.Date;
 import java.util.List;
 
 public class HomeViewModel extends ViewModel {
-
-    private MutableLiveData<String> mText;
     private Repository rep;
     private List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
-    private final Arithmetic arithmetic;
+    private Arithmetic arithmetic;
     private List<SpecificRecipeRoot> list = new ArrayList<>();
-    private List<Recipe> recipes = new ArrayList<>(); //test
+    private List<Recipe> recipes = new ArrayList<>();
     private Context context;
-    private Date date;
 
-    public HomeViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
-        //rep = new Repository(context);
-        //this.dailyRecipeItems = getItems(recipes);
+
+    public void init(Context context){
         this.arithmetic = new Arithmetic();
+        rep = new Repository(context);
     }
 
-    public HomeViewModel(Context context) {
-        this.rep = new Repository(context);
-        this.arithmetic = new Arithmetic();
-        this.context = context;
-
-    }
 
     public List<SpecificRecipeRoot> getList() {
         return list;
@@ -80,15 +69,9 @@ public class HomeViewModel extends ViewModel {
         return arithmetic.calculateTotalFat(recipes);
     }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
 
     public List<String> recipeIdList(Calendar date){
-        List<String> list = new ArrayList<>();
-        list.add("e7e22b5f9afdae010472f2084a76fd6c");
-        list.add("b66666d5c882ca199f43def8f1b8a03f");
-
+        List<String> list = rep.getRecipes(date);
         return list;
     }
 
@@ -122,5 +105,6 @@ public class HomeViewModel extends ViewModel {
     public void updateDailyRecipes(Calendar date) {
         fetchDailyRecipes(date);
     }
+
 
 }
