@@ -5,18 +5,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 
-import com.example.cure.ui.dashboard.DashboardFragment;
-import com.example.cure.ui.dashboard.DashboardViewModel;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.example.cure.databinding.ActivityMainBinding;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
 public class IntroActivity extends AppCompatActivity {
@@ -27,7 +16,7 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
 
-        startBtn=findViewById(R.id.startBtn);
+        startBtn=findViewById(R.id.homePgBtn);
         startBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,6 +24,6 @@ public class IntroActivity extends AppCompatActivity {
             }
         });
 
-        startBtn=findViewById(R.id.startBtn);
+
     }
 }

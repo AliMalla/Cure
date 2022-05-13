@@ -7,7 +7,11 @@ import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cure.MainActivity;
+
 import com.example.cure.databinding.ActivityRecipeInformationBinding;
+
+import com.example.cure.ui.home.HomeFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -67,6 +71,14 @@ public class RecipeInformationActivity extends AppCompatActivity {
         binding.caloriesInfoPage.setText(calories);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.preference_category, nutrients);
         binding.nutrientsListViewInfoPage.setAdapter(adapter);
+
+
+        binding.bannerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RecipeInformationActivity.this, MainActivity.class));
+            }
+        });
 
         binding.backButton.setOnClickListener(new View.OnClickListener() {
             @Override
