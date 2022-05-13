@@ -20,7 +20,8 @@ import android.os.Bundle;
 import android.view.View;
 
 public class IntroActivity extends AppCompatActivity {
-private ConstraintLayout startBtn;
+
+    private ConstraintLayout startBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

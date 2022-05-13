@@ -69,17 +69,16 @@ public class Repository {
     /**
      * A method to return all recipes in the database on a certain date
      * @param date the date where the recipes were eaten
-     * @return list of recipes
+     * @return list of recipe ids
      */
-    public List<Recipe> getRecipes(Calendar date) {
+    public List<String> getRecipes(Calendar date) {
 
-        db.addRecipe("b66666d5c882ca199f43def8f1b8a03f", "20220313");
-        db.addRecipe("e7e22b5f9afdae010472f2084a76fd6c", "20220313");
+        String dateStr = DataConverter.dateToString(date);
+        List<String> ids = db.getRecipes(dateStr);
 
-        db.deleteRecipe("b66666d5c882ca199f43def8f1b8a03f", "20220313");
-        db.deleteRecipe("e7e22b5f9afdae010472f2084a76fd6c", "20220313");
-        return null;
+        return ids;
     }
+
 
     /**
      * A method just for testing purpose
@@ -87,6 +86,8 @@ public class Repository {
      * @return list of ids
      */
     public List<String> getRecipeIds(String date) {
+        db.addRecipe("b66666d5c882ca199f43def8f1b8a03f", "20220313");
+        db.addRecipe("e7e22b5f9afdae010472f2084a76fd6c", "20220313");
         return db.getRecipes(date);
     }
 

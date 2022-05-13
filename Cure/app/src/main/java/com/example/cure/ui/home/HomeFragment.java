@@ -38,8 +38,10 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
+
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        homeViewModel.init(getContext());
 
         //View view = inflater.inflate(R.layout.fragment_home, container, false);
         Calendar startDate = Calendar.getInstance();
@@ -84,7 +86,7 @@ public class HomeFragment extends Fragment {
 
 
 
-        DailyRecipeAdapter adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar()), getContext());
+        DailyRecipeAdapter adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar(2022, 03, 13)), getContext());
         binding.previousRecipesList.setAdapter(adapter);
 
         return root;

@@ -2,6 +2,7 @@ package com.example.cure.ui.dashboard;
 
 public class MainRecipeItem {
 
+    private String id;
     private String name;
     private String image;
     private String calories;
@@ -18,6 +19,21 @@ public class MainRecipeItem {
         this.protein = protein;
         this.carbs = carbs;
         this.time = time;
+    }
+
+    public MainRecipeItem(String id, String name, String image, String calories, String fat, String protein, String carbs, String time) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+        this.calories = calories;
+        this.fat = fat;
+        this.protein = protein;
+        this.carbs = carbs;
+        this.time = time;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
