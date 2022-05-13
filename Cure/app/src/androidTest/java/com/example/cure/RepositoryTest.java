@@ -32,7 +32,7 @@ public class RepositoryTest {
 
     private Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-    private Repository rep = new Repository(appContext);
+    private Repository rep = Repository.getInstance(appContext);
 
     private Recipe testRecipe1;
 

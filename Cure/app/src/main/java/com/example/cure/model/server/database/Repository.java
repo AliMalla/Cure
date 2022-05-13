@@ -14,10 +14,26 @@ import java.util.List;
  */
 public class Repository {
 
+    private static Repository repository;
     private DBHandler db;
 
+    /*
     public Repository(Context context) {
         db = new DBHandler(context, null, null, 1);
+    }
+
+     */
+    private Repository(Context context) {
+        db = new DBHandler(context, null, null, 1);
+    }
+
+
+
+    public static Repository getInstance(Context context) {
+        if(repository == null)
+            repository = new Repository(context);
+
+        return repository;
     }
 
 
@@ -30,12 +46,24 @@ public class Repository {
 
 
     /**
-     * A method to add a new recipe into the database
+     * A method to insert a new recipe into the database
      * @param recipe the recipe to be added
-     * @param date the date when the recipe has been eaten/cooked of the user
+     * @param date the date when the recipe has been eaten/cooked by the user
      */
     public void addRecipe(Recipe recipe, Calendar date) {
         final String id = getRecipeId(recipe);
+        final String dateStr = DataConverter.dateToString(date);
+
+        db.addRecipe(id, dateStr);
+
+    }
+
+    /**
+     * A method to insert a new recipe into  the database by id
+     * @param id the id of the recipe to be inserted
+     * @param date the date when the recipe hes been eaten/cooked by the user
+     */
+    public void addRecipe(String id, Calendar date) {
         final String dateStr = DataConverter.dateToString(date);
 
         db.addRecipe(id, dateStr);
