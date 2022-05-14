@@ -1,0 +1,31 @@
+Week7 
+
+what do I want to learn or understand better? 
+
+- this week I haved learned to marge almost every day after the implementation of small user
+stories. That worked well for me and better than merging all implemented user stories at 
+the end of the sprint. Not sure if there are things I want to learn right now. This may 
+become apparent during the upcoming sprint planning meeting on Monday. 
+
+ 
+
+how can I help someone else, or the entire team, to learn something new? 
+
+- I can first explain in words. If the person who needs help does not understand what I am 
+talking about, I can explain how it works in practice. Also I can send some youtube videos 
+that explain better than me. This week, I helped one of the group members with github push 
+process by using Zoom.  
+
+what is my contribution towards the team’s use of Scrum? 
+
+- I am a member of the development team. what I contribute to the group's use of scrum is 
+that I stick to deadlines and tasks we have taken on during each sprint. I can say too 
+that I'm good at GitHub, so when a group member needs help on GitHub, they come to me. 
+I'm also trying to resolve merger conflicts in Github. In addition, I organize the group's 
+meeting times.  
+
+ 
+
+what is my contribution towards the team’s deliveries? 
+
+This sprint I have coded and finished my own tasks and helped others finish theirs. 

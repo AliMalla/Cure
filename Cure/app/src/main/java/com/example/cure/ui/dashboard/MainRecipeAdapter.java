@@ -65,7 +65,7 @@ public class MainRecipeAdapter extends ArrayAdapter {
         recipeFat.setText(items.get(i).getFat());
         recipeProtein.setText(items.get(i).getProtein());
         recipeCarbs.setText(items.get(i).getCarbs());
-        Picasso.get().load(items.get(i).getImage()).resize(300, 90).into(recipeImage);
+        Picasso.get().load(items.get(i).getImage()).resize(300, 115).into(recipeImage);
 
 
         return v;
