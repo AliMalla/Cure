@@ -24,16 +24,16 @@ import com.example.cure.ui.dashboard.recipeInformation.RecipeInformationActivity
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class DashboardFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private static DashboardViewModel dashboardViewModel;
     private FragmentDashboardBinding binding;
     private MainRecipeAdapter mra;
     private Intent intent;
-
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -182,5 +182,9 @@ public class DashboardFragment extends Fragment {
         });
 
         return root;
+    }
+
+    public DashboardViewModel getModel(){
+        return dashboardViewModel;
     }
 }

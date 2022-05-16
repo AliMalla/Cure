@@ -11,9 +11,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.databinding.FragmentHomeBinding;
+import com.example.cure.ui.dashboard.DashboardFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.example.cure.model.data.SpecificRecipeRoot;
 import com.example.cure.model.server.api.OnResponseListener;
@@ -74,7 +76,18 @@ public class HomeFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                homeViewModel.addMeal(horizontalCalendar.getSelectedDate().getTime());
+                // Create new fragment and transaction
+                DashboardFragment newFragment = new DashboardFragment();
+                newFragment.getModel().setDate(horizontalCalendar.getSelectedDate().getTime());
+                // consider using Java coding conventions (upper first char class names!!!)
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                // Replace whatever is in the fragment_container view with this fragment,
+                // and add the transaction to the back stack
+                transaction.replace(R.id.nav_host_fragment_activity_main, newFragment);
+
+                // Commit the transaction
+                transaction.commit();
             }
         });
 

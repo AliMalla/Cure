@@ -1,6 +1,8 @@
 package com.example.cure.ui.dashboard;
 
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -13,6 +15,8 @@ import com.example.cure.model.server.api.APIConnection;
 import com.example.cure.model.server.api.OnResponseListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import com.example.cure.model.other.Sorting;
@@ -34,7 +38,6 @@ public class DashboardViewModel extends ViewModel {
         mText = new MutableLiveData<>();
         mText.setValue("JUST TEST THE API");
         recipeName = defaultRecipeName;
-
     }
 
     public LiveData<String> getText() {
@@ -168,5 +171,11 @@ public class DashboardViewModel extends ViewModel {
         }
 
         mainItems.postValue(mainRecipeItemList);
+    }
+
+    private static Date date = new Date();
+    public void setDate(Date time) {
+        date = time;
+        Log.e("date", date.toString());
     }
 }
