@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import com.example.cure.databinding.ActivityRecipeInformationBinding;
+import com.example.cure.ui.home.HomeFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -138,7 +139,6 @@ public class RecipeInformationActivity extends AppCompatActivity {
 
                     else {
                         viewModel.addMeal(id, new GregorianCalendar());
-
                         Toast.makeText(getBaseContext(), "The meal has been added", Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {}

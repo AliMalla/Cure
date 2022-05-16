@@ -99,9 +99,9 @@ public class HomeViewModel extends ViewModel {
         return dailyRecipeItems;
     }
 
+
     public void updateDailyRecipes(Calendar date) {
         fetchDailyRecipes(date);
     }
-
 
 }

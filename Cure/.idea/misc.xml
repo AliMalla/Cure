@@ -10,23 +10,13 @@
         <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/fragment_notifications.xml" value="0.1598731884057971" />
         <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/listview_item.xml" value="0.536" />
         <entry key="..\:/Users/46707/Desktop/CureProject/Cure/Cure/app/src/main/res/layout/listview_recipe.xml" value="0.264" />
-        <entry key="..\:/Users/46707/Desktop/MyCureP/Cure/Cure/app/src/main/res/layout/activity_intro.xml" value="0.1" />
-        <entry key="..\:/Users/46707/Desktop/MyCureP/Cure/Cure/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/46707/Desktop/MyCureP/Cure/Cure/app/src/main/res/layout/activity_recipe_information.xml" value="0.2" />
-        <entry key="..\:/Users/46707/Desktop/MyCureP/Cure/Cure/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
-        <entry key="..\:/Users/46707/Desktop/MyCureP/Cure/Cure/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/Users/46707/Desktop/MyCureP/Cure/Cure/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
-        <entry key="..\:/Users/46707/Desktop/MyCureP/Cure/Cure/app/src/main/res/layout/listview_item.xml" value="0.4" />
-        <entry key="..\:/Users/46707/Desktop/MyCureP/Cure/Cure/app/src/main/res/layout/listview_recipe.xml" value="0.21875" />
-        <entry key="..\:/Users/Aloshi/Desktop/DAT257/Cure/Cure/app/src/main/res/layout/activity_intro.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/Aloshi/Desktop/DAT257/Cure/Cure/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/Aloshi/Desktop/DAT257/Cure/Cure/app/src/main/res/layout/activity_recipe_information.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Aloshi/Desktop/DAT257/Cure/Cure/app/src/main/res/layout/fragment_dashboard.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/AndreasJohansson/StudioProjects/Cure/Cure/app/src/main/res/layout/activity_main.xml" value="0.1265625" />
-        <entry key="..\:/Users/AndreasJohansson/StudioProjects/Cure/Cure/app/src/main/res/layout/fragment_dashboard.xml" value="0.1265625" />
-        <entry key="..\:/Users/AndreasJohansson/StudioProjects/Cure/Cure/app/src/main/res/layout/fragment_home.xml" value="0.1265625" />
-        <entry key="..\:/Users/AndreasJohansson/StudioProjects/Cure/Cure/app/src/main/res/layout/fragment_notifications.xml" value="0.1265625" />
-        <entry key="..\:/Users/AndreasJohansson/StudioProjects/Cure/Cure/app/src/main/res/layout/listview_item.xml" value="0.1265625" />
+        <entry key="..\:/Users/46707/Desktop/MyCurePr/Cure/Cure/app/src/main/res/layout/activity_recipe_information.xml" value="0.2" />
+        <entry key="..\:/Users/46707/Desktop/MyCurePr/Cure/Cure/app/src/main/res/layout/add_popup_window.xml" value="0.25" />
+        <entry key="..\:/Users/46707/Desktop/MyCurePr/Cure/Cure/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
+        <entry key="..\:/Users/46707/Desktop/MyCurePr/Cure/Cure/app/src/main/res/layout/fragment_home.xml" value="0.14937759336099585" />
+        <entry key="..\:/Users/46707/Desktop/MyCurePr/Cure/Cure/app/src/main/res/layout/fragment_notifications.xml" value="0.15517241379310345" />
+        <entry key="..\:/Users/46707/Desktop/MyCurePr/Cure/Cure/app/src/main/res/layout/listview_item.xml" value="0.22327898550724637" />
+        <entry key="..\:/Users/46707/Desktop/MyCurePr/Cure/Cure/app/src/main/res/layout/listview_recipe.xml" value="0.1" />
         <entry key="..\:/Users/alima/AndroidStudioProjects/Cure/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
       </map>
     </option>
