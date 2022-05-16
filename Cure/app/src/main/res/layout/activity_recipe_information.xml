@@ -5,41 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/backButton"
-        android:layout_width="51dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="#6089D8"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bannerBtn"
+        android:layout_width="345dp"
+        android:layout_height="46dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/yellow_button"
+        app:layout_constraintBottom_toTopOf="@+id/recipeImageInfoPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="282dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="44dp"
+            android:text="Recipe Calc"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="88dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#6089D8"
+        app:layout_constraintBottom_toTopOf="@+id/recipeImageInfoPage"
+        app:layout_constraintEnd_toStartOf="@+id/bannerBtn"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@android:drawable/ic_menu_revert"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="302dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="48dp"
-        android:background="#FFCF87"
-        android:text="Recipe Calc"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/recipeImageInfoPage"
         android:layout_width="220sp"
         android:layout_height="130sp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="64dp"
         android:background="#37B8F3"
         android:padding="1dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <TextView
@@ -70,8 +85,8 @@
 
     <ListView
         android:id="@+id/nutrientsListViewInfoPage"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,24 +96,24 @@
         android:id="@+id/imageView4"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
-        android:background="#F8F8F8"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="12dp"
+        android:background="#FAE5E5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/bannerBtn"
         app:srcCompat="@mipmap/time_icon" />
 
     <TextView
         android:id="@+id/recipeTimeInfoPage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="18dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="28dp"
         android:text="TextView"
         android:textColor="#8A6C6C"
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toTopOf="@+id/bannerBtn" />
 
     <TextView
         android:id="@+id/caloriesInfoPage"
@@ -126,14 +141,21 @@
         app:layout_constraintTop_toBottomOf="@+id/caloriesInfoPage" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addMealInfoPage"
+        android:id="@+id/floatingActionButton4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="4dp"
         android:layout_marginBottom="10dp"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/nutrientsListViewInfoPage"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:layout_constraintHorizontal_bias="0.904"
+        app:layout_constraintStart_toEndOf="@+id/textView33"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/ic_input_add"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
