@@ -6,9 +6,9 @@ public class DailyRecipeItem {
     private final String name;
     private final String image;
     private final int calories;
-    private Type type;
+    private String type;
 
-    public DailyRecipeItem(String id, String name, String image, int calories, Type type) {
+    public DailyRecipeItem(String id, String name, String image, int calories, String type) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -33,11 +33,7 @@ public class DailyRecipeItem {
         return calories;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
-    }
-
-    enum Type {
-        BREAKFAST, LUNCH, DINNER, OTHER
     }
 }

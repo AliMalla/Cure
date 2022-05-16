@@ -24,24 +24,19 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class HomeViewModel extends ViewModel {
     private Repository rep;
     private List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
     private Arithmetic arithmetic;
-    private List<SpecificRecipeRoot> list = new ArrayList<>();
     private List<Recipe> recipes = new ArrayList<>();
     private Context context;
 
 
     public void init(Context context){
         this.arithmetic = new Arithmetic();
-        rep = new Repository(context);
-    }
-
-
-    public List<SpecificRecipeRoot> getList() {
-        return list;
+        rep = Repository.getInstance(context);
     }
 
 
@@ -82,9 +77,11 @@ public class HomeViewModel extends ViewModel {
                 @Override
                 public void recipeByIdFetched(SpecificRecipeRoot sr) {
                     if (dailyRecipeItems.size() != recipeIdList.size()) {
-                        dailyRecipeItems.add(new DailyRecipeItem(id, sr.getRecipe().getLabel(),
-                                sr.getRecipe().getImage(), (int) sr.getRecipe().getCalories(), DailyRecipeItem.Type.LUNCH));
-                        recipes.add(sr.getRecipe());
+                        Recipe recipe = sr.getRecipe();
+                        String [] dishTypes = recipe.getDishType();
+                        dailyRecipeItems.add(new DailyRecipeItem(id, recipe.getLabel(),
+                                recipe.getImage(), (int)(recipe.getCalories()/recipe.getYield()), dishTypes[0].toUpperCase(Locale.ROOT)));
+                        recipes.add(recipe);
                     }
                 }
 
@@ -97,14 +94,15 @@ public class HomeViewModel extends ViewModel {
 
     }
 
+
     public List<DailyRecipeItem> getDailyRecipeItems(Calendar date) {
         fetchDailyRecipes(date);
         return dailyRecipeItems;
     }
 
+
     public void updateDailyRecipes(Calendar date) {
         fetchDailyRecipes(date);
     }
-
 
 }

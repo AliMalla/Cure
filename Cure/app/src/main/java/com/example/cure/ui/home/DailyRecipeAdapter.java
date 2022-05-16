@@ -56,7 +56,7 @@ public class DailyRecipeAdapter extends BaseAdapter {
         ImageView image = (ImageView) v.findViewById(R.id.recipeImage);
 
         recipeName.setText(dailyRecipeItems.get(i).getName());
-        recipeCalories.setText(""+ dailyRecipeItems.get(i).getCalories() + " kcal");
+        recipeCalories.setText(dailyRecipeItems.get(i).getCalories() + " kcal");
         recipeType.setText(dailyRecipeItems.get(i).getType().toString());
         Picasso.get().load(dailyRecipeItems.get(i).getImage()).into(image);
 

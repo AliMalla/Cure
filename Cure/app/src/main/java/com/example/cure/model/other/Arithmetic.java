@@ -9,7 +9,7 @@ public class Arithmetic {
     public double calculateTotalCalories(List<Recipe> recipes){
         double totalCalories = 0;
         for (Recipe rec : recipes){
-            totalCalories += rec.getCalories();
+            totalCalories += (rec.getCalories()/rec.getYield());
         }
         return totalCalories;
     }
@@ -17,7 +17,7 @@ public class Arithmetic {
     public double calculateTotalFat(List<Recipe> recipes){
         double totalFat = 0;
         for (Recipe rec : recipes){
-            totalFat += rec.getTotalNutrients().getFat().getQuantity();
+            totalFat += (rec.getTotalNutrients().getFat().getQuantity()/rec.getYield());
         }
         return totalFat;
     }
@@ -25,7 +25,7 @@ public class Arithmetic {
     public double calculateTotalCarbs(List<Recipe> recipes){
         double totalCarbs = 0;
         for (Recipe rec : recipes){
-            totalCarbs += rec.getTotalNutrients().getCarbs().getQuantity();
+            totalCarbs += (rec.getTotalNutrients().getCarbs().getQuantity()/rec.getYield());
         }
         return totalCarbs;
     }
@@ -34,7 +34,7 @@ public class Arithmetic {
     public double calculateTotalProtein(List<Recipe> recipes){
         double totalProtein = 0;
         for (Recipe rec : recipes){
-            totalProtein += rec.getTotalNutrients().getProtein().getQuantity();
+            totalProtein += (rec.getTotalNutrients().getProtein().getQuantity()/rec.getYield());
         }
         return totalProtein;
     }
