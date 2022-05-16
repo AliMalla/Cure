@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.R;
 import com.example.cure.databinding.FragmentDashboardBinding;
+import com.example.cure.model.data.Ingredient;
 import com.example.cure.model.data.Recipe;
 import com.example.cure.ui.dashboard.recipeInformation.RecipeInformationActivity;
 
@@ -130,6 +131,7 @@ public class DashboardFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String recipeId = dashboardViewModel.getItems().getValue().get(i).getId();
+                int recipeYield = (int)dashboardViewModel.getLiveRecipes().getValue().get(i).getYield();
                 String recipeName = dashboardViewModel.getItems().getValue().get(i).getName();
                 String recipeImage = dashboardViewModel.getItems().getValue().get(i).getImage();
                 String recipeTime = (int)dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalTime() + " minutes";
@@ -149,7 +151,15 @@ public class DashboardFragment extends Fragment {
                 String recipeVitaminD = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getVitaminD().getValue();
                 String recipeVitaminE = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getVitaminE().getValue();
 
+                Ingredient[] ingredients = dashboardViewModel.getLiveRecipes().getValue().get(i).getIngredients();
+                ArrayList<String> ingredientsArrayList = new ArrayList<>();
+                for(int j = 0; j < ingredients.length; j++){
+                    String recipeIngredient = ingredients[j].getText() + ", weight: " + ingredients[j].getWeight();
+                    ingredientsArrayList.add(recipeIngredient);
+                }
+
                 intent.putExtra("recipeId", recipeId);
+                intent.putExtra("recipeYield", recipeYield);
                 intent.putExtra("recipeName", recipeName);
                 intent.putExtra("recipeImage", recipeImage);
                 intent.putExtra("recipeTime", recipeTime);
@@ -168,7 +178,7 @@ public class DashboardFragment extends Fragment {
                 intent.putExtra("recipeVitaminC", recipeVitaminC);
                 intent.putExtra("recipeVitaminD", recipeVitaminD);
                 intent.putExtra("recipeVitaminE", recipeVitaminE);
-
+                intent.putStringArrayListExtra("ingredients",ingredientsArrayList);
 
                 startActivity(intent);
 
