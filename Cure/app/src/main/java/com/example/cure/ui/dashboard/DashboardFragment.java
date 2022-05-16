@@ -75,12 +75,6 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        dashboardViewModel.getLiveRecipes().observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
-            @Override
-            public void onChanged(List<Recipe> recipes) {
-
-            }
-        });
 
         ///////// Sorting stuff
         ArrayAdapter<CharSequence> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, dashboardViewModel.getSortTypes());
