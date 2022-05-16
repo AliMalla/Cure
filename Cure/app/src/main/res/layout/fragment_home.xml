@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="70dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="#988D6A"
-            android:dividerHeight="2dp"/>
+            android:dividerHeight="2dp" />
     </LinearLayout>
 
     <TextView
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="80dp"
         android:text="TextView"
         android:textColor="#090808"
         android:textSize="17sp"
@@ -54,8 +54,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginEnd="75dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginBottom="80dp"
         android:text="TextView"
         android:textColor="#070707"
         android:textSize="17sp"
@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="80dp"
         android:text="TextView"
         android:textColor="#070707"
         android:textSize="17sp"
@@ -81,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="159dp"
         android:layout_marginEnd="159dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="90dp"
         android:text="400 kcal"
         android:textColor="#000000"
         android:textSize="25sp"
@@ -107,11 +107,13 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="75dp"
         android:layout_marginBottom="5dp"
         android:text="Fat"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/totalDailyFat"
+        app:layout_constraintEnd_toStartOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="@+id/totalDailyFat" />
 
     <TextView
@@ -130,6 +132,7 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

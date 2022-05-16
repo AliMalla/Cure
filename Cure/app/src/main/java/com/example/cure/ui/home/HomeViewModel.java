@@ -77,10 +77,11 @@ public class HomeViewModel extends ViewModel {
                 @Override
                 public void recipeByIdFetched(SpecificRecipeRoot sr) {
                     if (dailyRecipeItems.size() != recipeIdList.size()) {
-                        String [] dishTypes = sr.getRecipe().getDishType();
-                        dailyRecipeItems.add(new DailyRecipeItem(id, sr.getRecipe().getLabel(),
-                                sr.getRecipe().getImage(), (int) sr.getRecipe().getCalories(), dishTypes[0].toUpperCase(Locale.ROOT)));
-                        recipes.add(sr.getRecipe());
+                        Recipe recipe = sr.getRecipe();
+                        String [] dishTypes = recipe.getDishType();
+                        dailyRecipeItems.add(new DailyRecipeItem(id, recipe.getLabel(),
+                                recipe.getImage(), (int)(recipe.getCalories()/recipe.getYield()), dishTypes[0].toUpperCase(Locale.ROOT)));
+                        recipes.add(recipe);
                     }
                 }
 
@@ -93,14 +94,15 @@ public class HomeViewModel extends ViewModel {
 
     }
 
+
     public List<DailyRecipeItem> getDailyRecipeItems(Calendar date) {
         fetchDailyRecipes(date);
         return dailyRecipeItems;
     }
 
+
     public void updateDailyRecipes(Calendar date) {
         fetchDailyRecipes(date);
     }
-
 
 }

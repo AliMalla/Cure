@@ -113,11 +113,14 @@ public class Repository {
      * @param date date
      * @return list of ids
      */
+    /*
     public List<String> getRecipeIds(String date) {
         db.addRecipe("b66666d5c882ca199f43def8f1b8a03f", "20220313");
         db.addRecipe("e7e22b5f9afdae010472f2084a76fd6c", "20220313");
         return db.getRecipes(date);
     }
+
+     */
 
 
 

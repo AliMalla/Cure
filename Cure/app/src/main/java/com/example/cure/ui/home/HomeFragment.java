@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
+    private DailyRecipeAdapter adapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,7 +44,6 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
         homeViewModel.init(getContext());
 
-        //View view = inflater.inflate(R.layout.fragment_home, container, false);
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
 
@@ -78,34 +78,22 @@ public class HomeFragment extends Fragment {
             }
         });
 
-
-        setDailyTotalCalories();
-        setDailyTotalCarbs();
-        setDailyTotalFat();
-        setDailyTotalProtein();
-
-        /*
-        DailyRecipeAdapter adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar()), getContext());
-        binding.previousRecipesList.setAdapter(adapter);
-
-         */
-
         return root;
     }
+
+
 
     @Override
     public void onResume() {
         super.onResume();
-        DailyRecipeAdapter adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar()), getContext());
+        adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar()), getContext());
         binding.previousRecipesList.setAdapter(adapter);
-
+        setDailyTotalCalories();
+        setDailyTotalCarbs();
+        setDailyTotalFat();
+        setDailyTotalProtein();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 
     private void setDailyTotalProtein() {
        String text = (int)homeViewModel.getDailyProtein(new GregorianCalendar()) + " g";
