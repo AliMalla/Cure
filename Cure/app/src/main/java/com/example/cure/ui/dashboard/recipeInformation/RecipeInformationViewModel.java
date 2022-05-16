@@ -16,7 +16,14 @@ public class RecipeInformationViewModel extends ViewModel {
         this.rep = Repository.getInstance(context);
     }
 
-    public void addMeal(String recipeId, Calendar date) {
+    protected void addMeal(String recipeId, Calendar date) {
         rep.addRecipe(recipeId, date);
     }
+
+    protected boolean checkMealAlreadyEaten(String recipeId, Calendar date) {
+        return rep.getRecipes(date).contains(recipeId);
+    }
+
+
+
 }
