@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
+    private DailyRecipeAdapter adapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,7 +44,6 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
         homeViewModel.init(getContext());
 
-        //View view = inflater.inflate(R.layout.fragment_home, container, false);
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
 
@@ -78,38 +78,35 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        return root;
+    }
 
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar()), getContext());
+        binding.previousRecipesList.setAdapter(adapter);
         setDailyTotalCalories();
         setDailyTotalCarbs();
         setDailyTotalFat();
         setDailyTotalProtein();
-
-
-
-        DailyRecipeAdapter adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar(2022, 03, 13)), getContext());
-        binding.previousRecipesList.setAdapter(adapter);
-
-        return root;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
 
     private void setDailyTotalProtein() {
-       String text = ""+ (int)homeViewModel.getDailyProtein(new GregorianCalendar());
+       String text = (int)homeViewModel.getDailyProtein(new GregorianCalendar()) + " g";
         binding.totalDailyProtein.setText(text);
     }
 
     private void setDailyTotalFat(){
-       String text = ""+(int)homeViewModel.getDailyFat(new GregorianCalendar());
+       String text = (int)homeViewModel.getDailyFat(new GregorianCalendar()) + " g";
        binding.totalDailyFat.setText(text);
     }
 
     private void setDailyTotalCarbs(){
-       String text = ""+(int)homeViewModel.getDailyCarbs(new GregorianCalendar());
+       String text = (int)homeViewModel.getDailyCarbs(new GregorianCalendar()) + " g";
        binding.totalDailyCarbs.setText(text);
     }
 

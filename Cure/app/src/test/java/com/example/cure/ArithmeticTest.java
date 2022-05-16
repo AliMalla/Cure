@@ -26,7 +26,7 @@ public class ArithmeticTest {
 
         double totalCalories = arithmetic.calculateTotalCalories(recipes);
 
-        assertEquals(167, totalCalories,0.000000001);
+        assertEquals(5.935, totalCalories,0.001);
 
     }
 
@@ -51,7 +51,7 @@ public class ArithmeticTest {
 
         double totalCarbs = arithmetic.calculateTotalCarbs(recipes);
 
-        assertEquals(280, totalCarbs,0.000000001);
+        assertEquals(11.307, totalCarbs,0.001);
     }
 
     @Test
@@ -74,7 +74,7 @@ public class ArithmeticTest {
 
         double totalFat = arithmetic.calculateTotalFat(recipes);
 
-        assertEquals(245, totalFat,0.000000001);
+        assertEquals(10.203, totalFat,0.001);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class ArithmeticTest {
 
         double totalProtein = arithmetic.calculateTotalProtein(recipes);
 
-        assertEquals(145, totalProtein,0.000000001);
+        assertEquals(5.708, totalProtein,0.001);
     }
 
 }
