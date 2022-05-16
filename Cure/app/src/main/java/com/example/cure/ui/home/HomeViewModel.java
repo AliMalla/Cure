@@ -94,6 +94,7 @@ public class HomeViewModel extends ViewModel {
 
     }
 
+
     public List<DailyRecipeItem> getDailyRecipeItems(Calendar date) {
         fetchDailyRecipes(date);
         return dailyRecipeItems;

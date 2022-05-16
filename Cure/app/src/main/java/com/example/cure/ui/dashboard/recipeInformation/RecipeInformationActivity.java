@@ -40,7 +40,6 @@ public class RecipeInformationActivity extends AppCompatActivity {
 
 
 
-        binding.textView13.setText("");
         setBasicInfo();
         setRecipePrimaryValues();
 
@@ -127,10 +126,13 @@ public class RecipeInformationActivity extends AppCompatActivity {
         binding.recipeWeightInfoPage.setText(weight);
         binding.caloriesInfoPage.setText(calories);
 
+
         if(yield > 1)
             binding.remarkingInfoPage.setText("This meal is enough for " + yield + " people");
         else
             binding.remarkingInfoPage.setText("This meal is enough for " + yield + " person");
+
+
 
     }
 

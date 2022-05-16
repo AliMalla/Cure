@@ -31,7 +31,6 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
-    private List<DailyRecipeItem> items;
     private DailyRecipeAdapter adapter;
 
 
@@ -45,7 +44,6 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
         homeViewModel.init(getContext());
 
-        items = homeViewModel.getDailyRecipeItems(new GregorianCalendar());
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
 
@@ -94,7 +92,6 @@ public class HomeFragment extends Fragment {
         setDailyTotalCarbs();
         setDailyTotalFat();
         setDailyTotalProtein();
-        //Toast.makeText(getContext(), "on resume", Toast.LENGTH_LONG).show();
     }
 
 
