@@ -49,6 +49,8 @@ public class RecipeInformationActivity extends AppCompatActivity {
         String vitaminD = intent.getStringExtra("recipeVitaminD");
         String vitaminE = intent.getStringExtra("recipeVitaminE");
 
+        ArrayList<String> ingredients = intent.getStringArrayListExtra("ingredients");
+
 
         List<String> nutrients = new ArrayList<>();
         nutrients.add("Protein      " + protein);
@@ -62,6 +64,9 @@ public class RecipeInformationActivity extends AppCompatActivity {
         nutrients.add("Vitamin C:      " + vitaminC);
         nutrients.add("Vitamin D:      " + vitaminD);
         nutrients.add("Vitamin E:      " + vitaminE);
+
+
+
 
 
         binding.recpieNameInfoPage.setText(name);
@@ -86,6 +91,9 @@ public class RecipeInformationActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        ArrayAdapter ingredientsAdapter = new ArrayAdapter(this, android.R.layout.preference_category,ingredients);
+        binding.ingredients.setAdapter(ingredientsAdapter);
 
     }
 }
