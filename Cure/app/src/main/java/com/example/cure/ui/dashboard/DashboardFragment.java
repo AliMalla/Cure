@@ -158,6 +158,7 @@ public class DashboardFragment extends Fragment {
                     ingredientsArrayList.add(recipeIngredient);
                 }
 
+
                 intent.putExtra("recipeId", recipeId);
                 intent.putExtra("recipeYield", recipeYield);
                 intent.putExtra("recipeName", recipeName);
@@ -179,6 +180,7 @@ public class DashboardFragment extends Fragment {
                 intent.putExtra("recipeVitaminD", recipeVitaminD);
                 intent.putExtra("recipeVitaminE", recipeVitaminE);
                 intent.putStringArrayListExtra("ingredients",ingredientsArrayList);
+
 
                 startActivity(intent);
 
