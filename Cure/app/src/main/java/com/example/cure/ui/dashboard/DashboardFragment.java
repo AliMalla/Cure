@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -76,12 +75,6 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        dashboardViewModel.getLiveRecipes().observe(getViewLifecycleOwner(), new Observer<List<Recipe>>() {
-            @Override
-            public void onChanged(List<Recipe> recipes) {
-
-            }
-        });
 
         ///////// Sorting stuff
         ArrayAdapter<CharSequence> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, dashboardViewModel.getSortTypes());
@@ -99,14 +92,14 @@ public class DashboardFragment extends Fragment {
                         //dashboardViewModel.getSortedRecipesByTimeAscOrd(new ArrayList<>()); break;
                     case "Time-": Toast.makeText(getContext(),"Time-",Toast.LENGTH_LONG).show(); break;
                         //dashboardViewModel.getSortedRecipesByCaloriesDesOrd(new ArrayList<>()); break;
-                    case "Fat+": Toast.makeText(getContext(),"Fat+",Toast.LENGTH_LONG).show(); break;
-                        //dashboardViewModel.getSortedRecipesByFatAscOrd(new ArrayList<>()); break;
-                    case "Fat-": Toast.makeText(getContext(),"Fat-",Toast.LENGTH_LONG).show(); break;
-                        //dashboardViewModel.getSortedRecipesByFatDesOrd(new ArrayList<>()); break;
-                    case "Protein+": Toast.makeText(getContext(),"Protein+",Toast.LENGTH_LONG).show(); break;
-                        //dashboardViewModel.getSortedRecipesByProteinAscOrd(recipes); break;
-                    case "Protein-": Toast.makeText(getContext(),"Protein-",Toast.LENGTH_LONG).show(); break;
-                        //dashboardViewModel.getSortedRecipesByProteinDesOrd(new ArrayList<>()); break;
+                    case "Fat+": Toast.makeText(getContext(),"Fat+",Toast.LENGTH_LONG).show();
+                        dashboardViewModel.sortRecipesByFatAscOrd(); break;
+                    case "Fat-": Toast.makeText(getContext(),"Fat-",Toast.LENGTH_LONG).show();
+                        dashboardViewModel.sortRecipesByFatDesOrd(); break;
+                    case "Protein+": Toast.makeText(getContext(),"Protein+",Toast.LENGTH_LONG).show();
+                        dashboardViewModel.sortedRecipesByProteinAscOrd(); break;
+                    case "Protein-": Toast.makeText(getContext(),"Protein-",Toast.LENGTH_LONG).show();
+                        dashboardViewModel.sortRecipesByProteinDesOrd(); break;
                     case "Calories+": Toast.makeText(getContext(),"Calories+",Toast.LENGTH_LONG).show(); break;
                         //dashboardViewModel.getSortedRecipesByCaloriesAscOrd(recipes); break;
                     case "Calories-": Toast.makeText(getContext(),"Calories-",Toast.LENGTH_LONG).show(); break;
