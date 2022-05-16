@@ -8,8 +8,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import com.example.cure.databinding.ActivityRecipeInformationBinding;
-import com.example.cure.ui.home.HomeFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,6 +21,7 @@ public class RecipeInformationActivity extends AppCompatActivity {
     private ActivityRecipeInformationBinding binding;
     private RecipeInformationViewModel viewModel;
     private Intent intent;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +34,47 @@ public class RecipeInformationActivity extends AppCompatActivity {
         viewModel = new RecipeInformationViewModel(this);
 
         intent = getIntent();
-        String id = intent.getStringExtra("recipeId");
+        id = intent.getStringExtra("recipeId");
+
+
+
+        binding.textView13.setText("");
+        setBasicInfo();
+        setRecipePrimaryValues();
+
+
+        ArrayList<String> ingredients = intent.getStringArrayListExtra("ingredients");
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.preference_category, getNutrients() );
+        binding.nutrientsListViewInfoPage.setAdapter(adapter);
+
+        ArrayAdapter ingredientsAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,ingredients);
+        binding.ingredients.setAdapter(ingredientsAdapter);
+
+        binding.backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        onClickAddMeal();
+
+
+    }
+
+    private void setBasicInfo(){
+
         String name = intent.getStringExtra("recipeName");
         String image = intent.getStringExtra("recipeImage");
-        String time = intent.getStringExtra("recipeTime");
-        String weight = intent.getStringExtra("recipeWeight");
-        String calories = intent.getStringExtra("recipeCalories");
+
+        binding.recpieNameInfoPage.setText(name);
+        Picasso.get().load(image).resize(175, 120).into(binding.recipeImageInfoPage);
+    }
+
+    private List<String> getNutrients(){
+
+        List<String> nutrients = new ArrayList<>();
 
         String water = intent.getStringExtra("recipeWater");
         String protein = intent.getStringExtra("recipeProtein");
@@ -54,47 +90,59 @@ public class RecipeInformationActivity extends AppCompatActivity {
         String vitaminD = intent.getStringExtra("recipeVitaminD");
         String vitaminE = intent.getStringExtra("recipeVitaminE");
 
+        nutrients.add("Water:  " + water);
+        nutrients.add("Protein:  " + protein);
+        nutrients.add("Fat:  " + fat);
+        nutrients.add("Carbs:  " + carbs);
+        nutrients.add("Sugar:  " + sugar);
+        nutrients.add("Iron:  " + iron);
+        nutrients.add("Zinc:  " + zinc);
+        nutrients.add("Calcium:  " + calcium);
+        nutrients.add("Vitamin A:  " + vitaminA);
+        nutrients.add("Vitamin B16:  " + vitaminB16);
+        nutrients.add("Vitamin C:  " + vitaminC);
+        nutrients.add("Vitamin D:  " + vitaminD);
+        nutrients.add("Vitamin E:  " + vitaminE);
 
-        List<String> nutrients = new ArrayList<>();
-        nutrients.add("Water:      " + water);
-        nutrients.add("Protein:      " + protein);
-        nutrients.add("Fat:      " + fat);
-        nutrients.add("Carbs:      " + carbs);
-        nutrients.add("Sugar:      " + sugar);
-        nutrients.add("Iron:      " + iron);
-        nutrients.add("Zinc:      " + zinc);
-        nutrients.add("Calcium:      " + calcium);
-        nutrients.add("Vitamin A:      " + vitaminA);
-        nutrients.add("Vitamin B16:      " + vitaminB16);
-        nutrients.add("Vitamin C:      " + vitaminC);
-        nutrients.add("Vitamin D:      " + vitaminD);
-        nutrients.add("Vitamin E:      " + vitaminE);
+        return nutrients;
+    }
 
+    private void setRecipePrimaryValues(){
 
-        binding.recpieNameInfoPage.setText(name);
-        Picasso.get().load(image).resize(208, 120).into(binding.recipeImageInfoPage);
+        String time = intent.getStringExtra("recipeTime");
+        String weight = intent.getStringExtra("recipeWeight");
+        String calories = intent.getStringExtra("recipeCalories");
+        int yield = intent.getIntExtra("recipeYield", 0);
+
         binding.recipeTimeInfoPage.setText(time);
         binding.recipeWeightInfoPage.setText(weight);
         binding.caloriesInfoPage.setText(calories);
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.preference_category, nutrients);
-        binding.nutrientsListViewInfoPage.setAdapter(adapter);
 
-        binding.backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        if(yield > 1)
+            binding.remarkingInfoPage.setText("This meal is enough for " + yield + " people");
+        else
+            binding.remarkingInfoPage.setText("This meal is enough for " + yield + " person");
 
+    }
+
+    public void onClickAddMeal(){
         binding.addMealInfoPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    viewModel.addMeal(id, new GregorianCalendar());
-                    Toast.makeText(getBaseContext(), "The meal has been added", Toast.LENGTH_SHORT).show();
+
+                    if(viewModel.checkMealAlreadyEaten(id, new GregorianCalendar())) {
+                        Toast.makeText(getBaseContext(), "This meal has already been eaten on the chosen date", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    else {
+                        viewModel.addMeal(id, new GregorianCalendar());
+
+                        Toast.makeText(getBaseContext(), "The meal has been added", Toast.LENGTH_SHORT).show();
+                    }
                 } catch (Exception e) {}
             }
         });
-
     }
 }
