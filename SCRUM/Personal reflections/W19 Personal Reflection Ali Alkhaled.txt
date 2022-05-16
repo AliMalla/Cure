@@ -1,0 +1,21 @@
+What do I want to learn or understand better?
+
+-I want to learn more about how to make a good technical documentation and be able to efficiently make it useful in improvement of the software delevelopment and team work.  
+
+
+
+How can I help someone else, or the entire team, to learn something new?
+
+-Most important, by doing code reviews frequently, especially now when the product should be completely done very soon.
+
+
+
+What is my contribution towards the team’s use of Scrum?
+
+-Im a developer in the team. I still try to get some knowledge about other roles.
+
+
+
+What is my contribution towards the team’s deliveries?
+
+-I fixed some issues depending on feedback the team got from the Product Owner. Also, I worked alot with the new page/activity, recipe information, such as showing up all the information about a certian recipe.
