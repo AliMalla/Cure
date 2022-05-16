@@ -84,12 +84,21 @@ public class HomeFragment extends Fragment {
         setDailyTotalFat();
         setDailyTotalProtein();
 
-
-
-        DailyRecipeAdapter adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar(2022, 03, 13)), getContext());
+        /*
+        DailyRecipeAdapter adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar()), getContext());
         binding.previousRecipesList.setAdapter(adapter);
 
+         */
+
         return root;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DailyRecipeAdapter adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar()), getContext());
+        binding.previousRecipesList.setAdapter(adapter);
+
     }
 
     @Override
@@ -99,17 +108,17 @@ public class HomeFragment extends Fragment {
     }
 
     private void setDailyTotalProtein() {
-       String text = ""+ (int)homeViewModel.getDailyProtein(new GregorianCalendar());
+       String text = (int)homeViewModel.getDailyProtein(new GregorianCalendar()) + " g";
         binding.totalDailyProtein.setText(text);
     }
 
     private void setDailyTotalFat(){
-       String text = ""+(int)homeViewModel.getDailyFat(new GregorianCalendar());
+       String text = (int)homeViewModel.getDailyFat(new GregorianCalendar()) + " g";
        binding.totalDailyFat.setText(text);
     }
 
     private void setDailyTotalCarbs(){
-       String text = ""+(int)homeViewModel.getDailyCarbs(new GregorianCalendar());
+       String text = (int)homeViewModel.getDailyCarbs(new GregorianCalendar()) + " g";
        binding.totalDailyCarbs.setText(text);
     }
 
