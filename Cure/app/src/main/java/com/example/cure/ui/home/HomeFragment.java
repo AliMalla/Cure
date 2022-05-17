@@ -1,12 +1,10 @@
 package com.example.cure.ui.home;
 
 import android.os.Bundle;
-import android.util.Log;
-import com.example.cure.R;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,13 +13,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.databinding.FragmentHomeBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.example.cure.model.data.SpecificRecipeRoot;
-import com.example.cure.model.server.api.OnResponseListener;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.HorizontalCalendarView;
@@ -31,21 +25,28 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
-    private DailyRecipeAdapter adapter;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
-
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         homeViewModel.init(getContext());
+        binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(new GregorianCalendar()));
+
+        setDailyTotalCalories();
+        setDailyTotalCarbs();
+        setDailyTotalFat();
+        setDailyTotalProtein();
+        setNumberOfMeals();
 
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
+
 
         /* ends after 1 month from now */
         Calendar endDate = Calendar.getInstance();
@@ -78,6 +79,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+
         return root;
     }
 
@@ -86,18 +89,36 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        adapter = new DailyRecipeAdapter(homeViewModel.getDailyRecipeItems(new GregorianCalendar()), getContext());
-        binding.previousRecipesList.setAdapter(adapter);
-        setDailyTotalCalories();
-        setDailyTotalCarbs();
-        setDailyTotalFat();
-        setDailyTotalProtein();
+        updateValues();
+    }
+
+    private void updateValues(){
+        if(binding.totalDailyCalories.getText().equals("0 kcal") && homeViewModel.recipeIdList(new GregorianCalendar()).size() > 0) {
+            CountDownTimer c = new CountDownTimer(4500, 1500) {
+                @Override
+                public void onTick(long l) {
+                    setDailyTotalCalories();
+                    setDailyTotalCarbs();
+                    setDailyTotalFat();
+                    setDailyTotalProtein();
+                }
+
+                @Override
+                public void onFinish() {
+                    setDailyTotalCalories();
+                    setDailyTotalCarbs();
+                    setDailyTotalFat();
+                    setDailyTotalProtein();
+                }
+
+            }.start();
+        }
     }
 
 
     private void setDailyTotalProtein() {
        String text = (int)homeViewModel.getDailyProtein(new GregorianCalendar()) + " g";
-        binding.totalDailyProtein.setText(text);
+       binding.totalDailyProtein.setText(text);
     }
 
     private void setDailyTotalFat(){
@@ -113,6 +134,15 @@ public class HomeFragment extends Fragment {
     private void setDailyTotalCalories(){
        String text = ""+(int)homeViewModel.getDailyCalories(new GregorianCalendar());
        binding.totalDailyCalories.setText(text + " kcal");
+    }
+
+    private void setNumberOfMeals(){
+       final int number = homeViewModel.recipeIdList(new GregorianCalendar()).size();
+
+       if (number == 1)
+           binding.numberOfDailyMeals.setText("(" + number + " meal)");
+       else
+           binding.numberOfDailyMeals.setText("(" + number + " meals)");
     }
 
 
