@@ -213,7 +213,7 @@ public class DashboardViewModel extends ViewModel {
 
         Bundle bundle = new Bundle();
         bundle.putString("recipeId", recipeId);
-
+        bundle.putString("date", date.toString());
         bundle.putInt("recipeYield", recipeYield);
         bundle.putString("recipeName", recipeName);
         bundle.putString("recipeImage", recipeImage);
