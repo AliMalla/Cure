@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment {
 
     private void updateValues(){
         if(binding.totalDailyCalories.getText().equals("0 kcal") && homeViewModel.recipeIdList(new GregorianCalendar()).size() > 0) {
-            CountDownTimer c = new CountDownTimer(4500, 1500) {
+            CountDownTimer c = new CountDownTimer(6000, 1500) {
                 @Override
                 public void onTick(long l) {
                     setDailyTotalCalories();
