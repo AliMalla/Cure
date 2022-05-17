@@ -122,62 +122,7 @@ public class DashboardFragment extends Fragment {
         binding.mainRecipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                String recipeId = dashboardViewModel.getItems().getValue().get(i).getId();
-                int recipeYield = (int)dashboardViewModel.getLiveRecipes().getValue().get(i).getYield();
-                String recipeName = dashboardViewModel.getItems().getValue().get(i).getName();
-                String recipeImage = dashboardViewModel.getItems().getValue().get(i).getImage();
-                String recipeTime = (int)dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalTime() + " minutes";
-                String recipeWeight = (int)dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalWeight() + " g";
-                String recipeCalories = dashboardViewModel.getItems().getValue().get(i).getCalories();
-                String recipeWater = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getWater().getValue();
-                String recipeProtein = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getProtein().getValue();
-                String recipeFat = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getFat().getValue();
-                String recipeCarbs = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getCarbs().getValue();
-                String recipeSugar = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getSugar().getValue();
-                String recipeIron = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getIron().getValue();
-                String recipeZinc = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getZinc().getValue();
-                String recipeCalcium = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getCalcium().getValue();
-                String recipeVitaminA = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getVitaminA().getValue();
-                String recipeVitaminB16 = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getVitaminB6().getValue();
-                String recipeVitaminC = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getVitaminC().getValue();
-                String recipeVitaminD = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getVitaminD().getValue();
-                String recipeVitaminE = dashboardViewModel.getLiveRecipes().getValue().get(i).getTotalNutrients().getVitaminE().getValue();
-
-                Ingredient[] ingredients = dashboardViewModel.getLiveRecipes().getValue().get(i).getIngredients();
-                ArrayList<String> ingredientsArrayList = new ArrayList<>();
-                for(int j = 0; j < ingredients.length; j++){
-                    String recipeIngredient = ingredients[j].getText() + ", weight: " + ingredients[j].getWeight();
-                    ingredientsArrayList.add(recipeIngredient);
-                }
-
-
-                intent.putExtra("recipeId", recipeId);
-                intent.putExtra("recipeYield", recipeYield);
-                intent.putExtra("recipeName", recipeName);
-                intent.putExtra("recipeImage", recipeImage);
-                intent.putExtra("recipeTime", recipeTime);
-                intent.putExtra("recipeWeight", recipeWeight);
-                intent.putExtra("recipeCalories", recipeCalories);
-                intent.putExtra("recipeWater", recipeWater);
-                intent.putExtra("recipeProtein", recipeProtein);
-                intent.putExtra("recipeFat", recipeFat);
-                intent.putExtra("recipeCarbs", recipeCarbs);
-                intent.putExtra("recipeSugar", recipeSugar);
-                intent.putExtra("recipeIron", recipeIron);
-                intent.putExtra("recipeZinc", recipeZinc);
-                intent.putExtra("recipeCalcium", recipeCalcium);
-                intent.putExtra("recipeVitaminA", recipeVitaminA);
-                intent.putExtra("recipeVitaminB16", recipeVitaminB16);
-                intent.putExtra("recipeVitaminC", recipeVitaminC);
-                intent.putExtra("recipeVitaminD", recipeVitaminD);
-                intent.putExtra("recipeVitaminE", recipeVitaminE);
-                intent.putStringArrayListExtra("ingredients",ingredientsArrayList);
-
-
-                startActivity(intent);
-
-
+                startActivity(intent.putExtras(dashboardViewModel.populateIntentDetails(i)));
             }
         });
 
