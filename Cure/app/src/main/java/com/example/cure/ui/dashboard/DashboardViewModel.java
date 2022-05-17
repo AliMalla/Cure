@@ -1,7 +1,9 @@
 package com.example.cure.ui.dashboard;
 
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -23,7 +25,6 @@ import com.example.cure.model.other.Sorting;
 
 public class DashboardViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
     private Sorting sorting = new Sorting();
 
     private MutableLiveData<List<Recipe>> liveRecipes = new MutableLiveData<>();
@@ -35,69 +36,10 @@ public class DashboardViewModel extends ViewModel {
 
 
     public DashboardViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("JUST TEST THE API");
         recipeName = defaultRecipeName;
     }
 
-    public LiveData<String> getText() {
-        return mText;
-    }
 
-
-    public List<Recipe> getSortedRecipesByTimeAscOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByTimeAscendingOrder(recipes);
-    }
-
-    public List<Recipe> getSortedRecipesByTimeDesOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByTimeDescendingOrder(recipes);
-    }
-
-    public List<Recipe> getSortedRecipesByCaloriesAscOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByCaloriesAscendingOrder(recipes);
-    }
-
-    public List<Recipe> getSortedRecipesByCaloriesDesOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByCaloriesDescendingOrder(recipes);
-    }
-
-
-    public void sortRecipesByFatAscOrd(){
-        sortMainRecipeItems(sorting.sortRecipesByFatAscendingOrder(liveRecipes.getValue()));
-    }
-
-    public void sortRecipesByFatDesOrd(){
-        sortMainRecipeItems(sorting.sortRecipesByFatDescendingOrder(liveRecipes.getValue()));
-    }
-
-
-    public void sortedRecipesByProteinAscOrd(){
-        sortMainRecipeItems(sorting.sortRecipesByProteinAscendingOrder(liveRecipes.getValue()));
-    }
-
-    public void sortRecipesByProteinDesOrd(){
-        sortMainRecipeItems(sorting.sortRecipesByProteinDescendingOrder(liveRecipes.getValue()));
-    }
-
-
-
-
-    public List<CharSequence> getSortTypes(){
-        ArrayList<CharSequence> sortTypes = new ArrayList<>();
-
-        sortTypes.add("Default");
-        sortTypes.add("Time+");
-        sortTypes.add("Time-");
-        sortTypes.add("Fat+");
-        sortTypes.add("Fat-");
-        sortTypes.add("Protein+");
-        sortTypes.add("Protein-");
-        sortTypes.add("Calories+");
-        sortTypes.add("Calories-");
-
-
-        return sortTypes;
-    }
 
 
     private void fetchData(){
@@ -159,7 +101,7 @@ public class DashboardViewModel extends ViewModel {
     public void setDefaultRecipeName(String defaultRecipeName){this.defaultRecipeName = defaultRecipeName;}
 
 
-
+    //////////////// SORTING STUFF /////////////////////////////////////
     private void sortMainRecipeItems(List<Recipe> sortedRecipes){
         List<Recipe> srtRecipes = sortedRecipes;
         List<MainRecipeItem> mainRecipeItemList = new ArrayList<>();
@@ -172,6 +114,87 @@ public class DashboardViewModel extends ViewModel {
 
         mainItems.postValue(mainRecipeItemList);
     }
+
+
+    private void sortRecipesByTimeAscOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByTimeAscendingOrder(liveRecipes.getValue()));
+    }
+
+    private void sortRecipesByTimeDesOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByTimeDescendingOrder(liveRecipes.getValue()));
+    }
+
+
+    private void sortRecipesByCaloriesAscOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByCaloriesAscendingOrder(liveRecipes.getValue()));
+    }
+
+    private void sortRecipesByCaloriesDesOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByCaloriesDescendingOrder(liveRecipes.getValue()));
+    }
+
+    private void sortRecipesByFatAscOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByFatAscendingOrder(liveRecipes.getValue()));
+    }
+
+    private void sortRecipesByFatDesOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByFatDescendingOrder(liveRecipes.getValue()));
+    }
+
+
+    private void sortedRecipesByProteinAscOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByProteinAscendingOrder(liveRecipes.getValue()));
+    }
+
+    private void sortRecipesByProteinDesOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByProteinDescendingOrder(liveRecipes.getValue()));
+    }
+
+
+
+
+    public List<CharSequence> getSortTypes(){
+        ArrayList<CharSequence> sortTypes = new ArrayList<>();
+
+        sortTypes.add("Default");
+        sortTypes.add("Time+");
+        sortTypes.add("Time-");
+        sortTypes.add("Fat+");
+        sortTypes.add("Fat-");
+        sortTypes.add("Protein+");
+        sortTypes.add("Protein-");
+        sortTypes.add("Calories+");
+        sortTypes.add("Calories-");
+
+
+        return sortTypes;
+    }
+
+
+
+    public void sortRecipesBySpecificType(String type, Context context){
+        switch (type){
+            case "Time+": Toast.makeText(context,"SORTED BY TIME IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByTimeAscOrd(); break;
+            case "Time-": Toast.makeText(context,"SORTED BY TIME IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByTimeDesOrd(); break;
+            case "Fat+": Toast.makeText(context,"SORTED BY FAT IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByFatAscOrd(); break;
+            case "Fat-": Toast.makeText(context,"SORTED BY FAT IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByFatDesOrd(); break;
+            case "Protein+": Toast.makeText(context,"SORTED BY PROTEIN IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortedRecipesByProteinAscOrd(); break;
+            case "Protein-": Toast.makeText(context,"SORTED BY PROTEIN IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByProteinDesOrd(); break;
+            case "Calories+": Toast.makeText(context,"SORTED BY CALORIES IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByCaloriesAscOrd(); break;
+            case "Calories-": Toast.makeText(context,"SORTED BY CALORIES IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByCaloriesDesOrd(); break;
+            default: break;
+        }
+    }
+    ////////////////////////////////////////////////////////////////////
+
 
     private static Date date = new Date();
     public void setDate(Date time) {
