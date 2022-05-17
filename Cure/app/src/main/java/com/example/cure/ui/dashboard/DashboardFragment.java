@@ -84,9 +84,10 @@ public class DashboardFragment extends Fragment {
         binding.spSort.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                String sortType= adapterView.getItemAtPosition(i).toString();
-                dashboardViewModel.sortRecipesBySpecificType(sortType,getContext());
 
+                String sortType = adapterView.getItemAtPosition(i).toString();
+                dashboardViewModel.sortRecipesBySpecificType(sortType,getContext());
+                adapterView.setSelection(0);
             }
 
             @Override
