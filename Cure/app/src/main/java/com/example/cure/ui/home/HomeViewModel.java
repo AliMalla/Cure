@@ -51,19 +51,19 @@ public class HomeViewModel extends ViewModel {
         rep.deleteRecipe(id, date);
     }
 
-    public double getDailyCalories(Calendar date) {
+    public double getDailyCalories() {
         return arithmetic.calculateTotalCalories(recipes);
     }
 
-    public double getDailyProtein(Calendar date) {
+    public double getDailyProtein() {
         return arithmetic.calculateTotalProtein(recipes);
     }
 
-    public double getDailyCarbs(Calendar date) {
+    public double getDailyCarbs() {
         return arithmetic.calculateTotalCarbs(recipes);
     }
 
-    public double getDailyFat(Calendar date) {
+    public double getDailyFat() {
         return arithmetic.calculateTotalFat(recipes);
     }
 

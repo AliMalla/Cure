@@ -108,7 +108,7 @@ public class HomeFragment extends Fragment {
 
     private void updateValues(){
         if(binding.totalDailyCalories.getText().equals("0 kcal") && homeViewModel.recipeIdList(new GregorianCalendar()).size() > 0) {
-            CountDownTimer c = new CountDownTimer(4500, 1500) {
+            CountDownTimer c = new CountDownTimer(6000, 1500) {
                 @Override
                 public void onTick(long l) {
                     setDailyTotalCalories();
@@ -131,22 +131,22 @@ public class HomeFragment extends Fragment {
 
 
     private void setDailyTotalProtein() {
-       String text = (int)homeViewModel.getDailyProtein(new GregorianCalendar()) + " g";
+       String text = (int)homeViewModel.getDailyProtein() + " g";
        binding.totalDailyProtein.setText(text);
     }
 
     private void setDailyTotalFat(){
-       String text = (int)homeViewModel.getDailyFat(new GregorianCalendar()) + " g";
+       String text = (int)homeViewModel.getDailyFat() + " g";
        binding.totalDailyFat.setText(text);
     }
 
     private void setDailyTotalCarbs(){
-       String text = (int)homeViewModel.getDailyCarbs(new GregorianCalendar()) + " g";
+       String text = (int)homeViewModel.getDailyCarbs() + " g";
        binding.totalDailyCarbs.setText(text);
     }
 
     private void setDailyTotalCalories(){
-       String text = ""+(int)homeViewModel.getDailyCalories(new GregorianCalendar());
+       String text = ""+(int)homeViewModel.getDailyCalories();
        binding.totalDailyCalories.setText(text + " kcal");
     }
 
