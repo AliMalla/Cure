@@ -5,7 +5,6 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -92,9 +91,7 @@ public class HomeFragment extends Fragment {
                 transaction.commit();
             }
         });
-
-
-
+        setRemarkingWhenNoMeals();
         return root;
     }
 
@@ -157,6 +154,14 @@ public class HomeFragment extends Fragment {
            binding.numberOfDailyMeals.setText("(" + number + " meal)");
        else
            binding.numberOfDailyMeals.setText("(" + number + " meals)");
+    }
+
+    private void setRemarkingWhenNoMeals(){
+        if (homeViewModel.recipeIdList(new GregorianCalendar()).size() != 0)
+            binding.noRecipesYetRemarking.setText("");
+
+        if (homeViewModel.recipeIdList(new GregorianCalendar()).size() == 0)
+            binding.noRecipesYetRemarking.setText("No meals have been added yet");
     }
 
 
