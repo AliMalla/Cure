@@ -1,6 +1,8 @@
 package com.example.cure.ui.dashboard;
 
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -13,6 +15,8 @@ import com.example.cure.model.server.api.APIConnection;
 import com.example.cure.model.server.api.OnResponseListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import com.example.cure.model.other.Sorting;
@@ -34,7 +38,6 @@ public class DashboardViewModel extends ViewModel {
         mText = new MutableLiveData<>();
         mText.setValue("JUST TEST THE API");
         recipeName = defaultRecipeName;
-
     }
 
     public LiveData<String> getText() {
@@ -58,21 +61,24 @@ public class DashboardViewModel extends ViewModel {
         return sorting.sortRecipesByCaloriesDescendingOrder(recipes);
     }
 
-    public List<Recipe> getSortedRecipesByFatAscOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByFatAscendingOrder(recipes);
+
+    public void sortRecipesByFatAscOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByFatAscendingOrder(liveRecipes.getValue()));
     }
 
-    public List<Recipe> getSortedRecipesByFatDesOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByFatDescendingOrder(recipes);
+    public void sortRecipesByFatDesOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByFatDescendingOrder(liveRecipes.getValue()));
     }
 
-    public List<Recipe> getSortedRecipesByProteinAscOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByProteinAscendingOrder(recipes);
+
+    public void sortedRecipesByProteinAscOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByProteinAscendingOrder(liveRecipes.getValue()));
     }
 
-    public List<Recipe> getSortedRecipesByProteinDesOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByProteinDescendingOrder(recipes);
+    public void sortRecipesByProteinDesOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByProteinDescendingOrder(liveRecipes.getValue()));
     }
+
 
 
 
@@ -149,5 +155,27 @@ public class DashboardViewModel extends ViewModel {
     public String getDefaultRecipeName() {
         return defaultRecipeName;
     }
+
     public void setDefaultRecipeName(String defaultRecipeName){this.defaultRecipeName = defaultRecipeName;}
+
+
+
+    private void sortMainRecipeItems(List<Recipe> sortedRecipes){
+        List<Recipe> srtRecipes = sortedRecipes;
+        List<MainRecipeItem> mainRecipeItemList = new ArrayList<>();
+        mainItems.getValue().clear();
+        for(Recipe rec : srtRecipes){
+            mainRecipeItemList.add(new MainRecipeItem(getRecipeId(rec), rec.getLabel(), rec.getImage(), (int)rec.getCalories()+" kcal",
+                    "Fat    "+(int)rec.getTotalNutrients().getFat().getQuantity() + " " + rec.getTotalNutrients().getFat().getUnit(), "Protein    "+(int)rec.getTotalNutrients().getProtein().getQuantity() +" "+ rec.getTotalNutrients().getProtein().getUnit(),
+                    "Carbs    "+(int)rec.getTotalNutrients().getCarbs().getQuantity() + " " +rec.getTotalNutrients().getCarbs().getUnit(), (int)rec.getTotalTime() + " minuter"));
+        }
+
+        mainItems.postValue(mainRecipeItemList);
+    }
+
+    private static Date date = new Date();
+    public void setDate(Date time) {
+        date = time;
+        Log.e("date", date.toString());
+    }
 }
