@@ -23,7 +23,6 @@ import com.example.cure.model.other.Sorting;
 
 public class DashboardViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
     private Sorting sorting = new Sorting();
 
     private MutableLiveData<List<Recipe>> liveRecipes = new MutableLiveData<>();
@@ -35,13 +34,7 @@ public class DashboardViewModel extends ViewModel {
 
 
     public DashboardViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("JUST TEST THE API");
         recipeName = defaultRecipeName;
-    }
-
-    public LiveData<String> getText() {
-        return mText;
     }
 
 
