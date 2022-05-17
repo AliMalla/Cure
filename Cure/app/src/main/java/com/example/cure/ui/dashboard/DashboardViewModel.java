@@ -1,7 +1,9 @@
 package com.example.cure.ui.dashboard;
 
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -93,6 +95,28 @@ public class DashboardViewModel extends ViewModel {
     }
 
 
+    public void sortRecipesBySpecificType(String type, Context context){
+        switch (type){
+            case "Default": Toast.makeText(context,"SORTED RANDOMLY",Toast.LENGTH_LONG).show(); break;
+            case "Time+": Toast.makeText(context,"SORTED BY TIME IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByTimeAscOrd(); break;
+            case "Time-": Toast.makeText(context,"SORTED BY TIME IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByTimeDesOrd(); break;
+            case "Fat+": Toast.makeText(context,"SORTED BY FAT IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByFatAscOrd(); break;
+            case "Fat-": Toast.makeText(context,"SORTED BY FAT IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByFatDesOrd(); break;
+            case "Protein+": Toast.makeText(context,"SORTED BY PROTEIN IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortedRecipesByProteinAscOrd(); break;
+            case "Protein-": Toast.makeText(context,"SORTED BY PROTEIN IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByProteinDesOrd(); break;
+            case "Calories+": Toast.makeText(context,"SORTED BY CALORIES IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByCaloriesAscOrd(); break;
+            case "Calories-": Toast.makeText(context,"SORTED BY CALORIES IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
+                sortRecipesByCaloriesDesOrd(); break;
+        }
+    }
+
     private void fetchData(){
         APIConnection.getRootModel(recipeName, new OnResponseListener() {
             @Override
@@ -150,7 +174,6 @@ public class DashboardViewModel extends ViewModel {
     }
 
     public void setDefaultRecipeName(String defaultRecipeName){this.defaultRecipeName = defaultRecipeName;}
-
 
 
     private void sortMainRecipeItems(List<Recipe> sortedRecipes){
