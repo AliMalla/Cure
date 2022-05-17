@@ -8,6 +8,10 @@ import com.example.cure.model.server.database.Repository;
 
 import java.util.Calendar;
 
+/**
+ *
+ * @author Ali Alkhaled
+ */
 public class RecipeInformationViewModel extends ViewModel {
 
     private final Repository rep;

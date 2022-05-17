@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/recipeItemName"
-        android:layout_width="wrap_content"
+        android:layout_width="180sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="10dp"
@@ -42,8 +42,8 @@
         android:id="@+id/recipeItemCalories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="170dp"
-        android:layout_marginTop="13dp"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="7dp"
         android:text="TextView"
         android:textColor="#AE342B"
         android:textSize="15sp"
