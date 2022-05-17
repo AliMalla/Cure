@@ -174,7 +174,6 @@ public class DashboardViewModel extends ViewModel {
 
     public void sortRecipesBySpecificType(String type, Context context){
         switch (type){
-            case "Default": Toast.makeText(context,"SORTED RANDOMLY",Toast.LENGTH_LONG).show(); break;
             case "Time+": Toast.makeText(context,"SORTED BY TIME IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
                 sortRecipesByTimeAscOrd(); break;
             case "Time-": Toast.makeText(context,"SORTED BY TIME IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
@@ -191,6 +190,7 @@ public class DashboardViewModel extends ViewModel {
                 sortRecipesByCaloriesAscOrd(); break;
             case "Calories-": Toast.makeText(context,"SORTED BY CALORIES IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
                 sortRecipesByCaloriesDesOrd(); break;
+            default: break;
         }
     }
     ////////////////////////////////////////////////////////////////////
