@@ -22,12 +22,10 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="300dp"
         android:layout_marginBottom="70dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <ListView
             android:id="@+id/previousRecipesList"
@@ -42,10 +40,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="45dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="95dp"
         android:text="TextView"
         android:textColor="#090808"
-        android:textSize="17sp"
+        android:textSize="19sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -54,11 +52,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="95dp"
         android:text="TextView"
         android:textColor="#070707"
-        android:textSize="17sp"
+        android:textSize="19sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@+id/totalDailyProtein"
         app:layout_constraintStart_toEndOf="@+id/totalDailyCarbs" />
@@ -68,10 +66,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="45dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="95dp"
         android:text="TextView"
         android:textColor="#070707"
-        android:textSize="17sp"
+        android:textSize="19sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -80,15 +78,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="159dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="159dp"
-        android:layout_marginBottom="90dp"
         android:text="400 kcal"
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/totalDailyFat"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
 
     <TextView
         android:id="@+id/textView5"
@@ -97,8 +95,9 @@
         android:layout_marginStart="45dp"
         android:layout_marginBottom="5dp"
         android:text="Carbs"
+        android:textColor="#FFC107"
         android:textIsSelectable="false"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/totalDailyCarbs"
         app:layout_constraintStart_toStartOf="parent" />
@@ -107,10 +106,11 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="75dp"
+        android:layout_marginEnd="70dp"
         android:layout_marginBottom="5dp"
         android:text="Fat"
-        android:textSize="18sp"
+        android:textColor="#DC3F0E"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/totalDailyFat"
         app:layout_constraintEnd_toStartOf="@+id/textView7"
@@ -123,7 +123,8 @@
         android:layout_marginEnd="45dp"
         android:layout_marginBottom="5dp"
         android:text="Protein"
-        android:textSize="18sp"
+        android:textColor="#297BBC"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/totalDailyProtein"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -145,16 +146,54 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="12dp"
         android:autoText="false"
         android:text="Daily eaten meals"
         android:textColor="#03AA9A"
         android:textSize="22dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/numberOfDailyMeals"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="12dp"
+        android:text="TextView"
+        android:textColor="#152C2A"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="351dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/teal_700"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/totalDailyCarbs" />
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="351dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="18dp"
+        android:background="@color/teal_700"
+        app:layout_constraintBottom_toTopOf="@+id/totalDailyCalories"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
