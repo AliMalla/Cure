@@ -32,7 +32,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="#988D6A"
-            android:dividerHeight="2dp" />
+            android:dividerHeight="2dp" >
+
+        </ListView>
     </LinearLayout>
 
     <TextView
@@ -194,6 +196,15 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:text="No meals"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
