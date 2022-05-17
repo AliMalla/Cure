@@ -45,22 +45,22 @@ public class DashboardViewModel extends ViewModel {
     }
 
 
-    public List<Recipe> getSortedRecipesByTimeAscOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByTimeAscendingOrder(recipes);
+    public void sortRecipesByTimeAscOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByTimeAscendingOrder(liveRecipes.getValue()));
     }
 
-    public List<Recipe> getSortedRecipesByTimeDesOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByTimeDescendingOrder(recipes);
+    public void sortRecipesByTimeDesOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByTimeDescendingOrder(liveRecipes.getValue()));
     }
 
-    public List<Recipe> getSortedRecipesByCaloriesAscOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByCaloriesAscendingOrder(recipes);
+
+    public void sortRecipesByCaloriesAscOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByCaloriesAscendingOrder(liveRecipes.getValue()));
     }
 
-    public List<Recipe> getSortedRecipesByCaloriesDesOrd(List<Recipe> recipes){
-        return sorting.sortRecipesByCaloriesDescendingOrder(recipes);
+    public void sortRecipesByCaloriesDesOrd(){
+        sortMainRecipeItems(sorting.sortRecipesByCaloriesDescendingOrder(liveRecipes.getValue()));
     }
-
 
     public void sortRecipesByFatAscOrd(){
         sortMainRecipeItems(sorting.sortRecipesByFatAscendingOrder(liveRecipes.getValue()));
