@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.cure.R;
 import com.example.cure.databinding.FragmentHomeBinding;
 import com.example.cure.ui.dashboard.DashboardFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
