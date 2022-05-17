@@ -85,26 +85,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String sortType= adapterView.getItemAtPosition(i).toString();
-
-                switch (sortType){
-                    case "Default": Toast.makeText(getContext(),"SORTED RANDOMLY",Toast.LENGTH_LONG).show(); break;
-                    case "Time+": Toast.makeText(getContext(),"SORTED BY TIME IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
-                        dashboardViewModel.sortRecipesByTimeAscOrd(); break;
-                    case "Time-": Toast.makeText(getContext(),"SORTED BY TIME IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
-                    dashboardViewModel.sortRecipesByTimeDesOrd(); break;
-                    case "Fat+": Toast.makeText(getContext(),"SORTED BY FAT IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
-                        dashboardViewModel.sortRecipesByFatAscOrd(); break;
-                    case "Fat-": Toast.makeText(getContext(),"SORTED BY FAT IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
-                        dashboardViewModel.sortRecipesByFatDesOrd(); break;
-                    case "Protein+": Toast.makeText(getContext(),"SORTED BY PROTEIN IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
-                        dashboardViewModel.sortedRecipesByProteinAscOrd(); break;
-                    case "Protein-": Toast.makeText(getContext(),"SORTED BY PROTEIN IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
-                        dashboardViewModel.sortRecipesByProteinDesOrd(); break;
-                    case "Calories+": Toast.makeText(getContext(),"SORTED BY CALORIES IN ASCENDING ORDER",Toast.LENGTH_LONG).show();
-                        dashboardViewModel.sortRecipesByCaloriesAscOrd(); break;
-                    case "Calories-": Toast.makeText(getContext(),"SORTED BY CALORIES IN DESCENDING ORDER",Toast.LENGTH_LONG).show();
-                        dashboardViewModel.sortRecipesByCaloriesDesOrd(); break;
-                }
+                dashboardViewModel.sortRecipesBySpecificType(sortType,getContext());
 
             }
 
