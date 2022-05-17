@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/white_background_with_corners"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -24,7 +25,7 @@
         android:textColor="#151414"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:typeface="monospace"
+        android:typeface="sans"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeImageMain" />
 
@@ -61,7 +62,7 @@
         android:layout_marginTop="35dp"
         android:layout_marginEnd="20dp"
         android:text="TextView"
-        android:textColor="#191616"
+        android:textColor="#297BBC"
         android:textSize="16sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -74,7 +75,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:text="TextView"
-        android:textColor="#191616"
+        android:textColor="#DC3F0E"
         android:textSize="16sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +88,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="20dp"
         android:text="TextView"
-        android:textColor="#191616"
+        android:textColor="#FF9800"
         android:textSize="16sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
