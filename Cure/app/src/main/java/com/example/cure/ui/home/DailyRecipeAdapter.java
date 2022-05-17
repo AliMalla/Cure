@@ -20,7 +20,6 @@ public class DailyRecipeAdapter extends BaseAdapter {
     private Context context;
 
     public DailyRecipeAdapter(List<DailyRecipeItem> dailyRecipeItems, Context context) {
-        //super(context, R.layout.listview_item, dailyRecipeItems);
         this.dailyRecipeItems = dailyRecipeItems;
         this.context = context;
     }

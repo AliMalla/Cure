@@ -23,20 +23,23 @@ import com.example.cure.model.server.database.Repository;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
 public class HomeViewModel extends ViewModel {
     private Repository rep;
-    private List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
     private Arithmetic arithmetic;
+    private List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
+    private List<String> tempIds = new ArrayList<>();
     private List<Recipe> recipes = new ArrayList<>();
-    private Context context;
+    private DailyRecipeAdapter adapter;
 
 
     public void init(Context context){
-        this.arithmetic = new Arithmetic();
+        arithmetic = new Arithmetic();
         rep = Repository.getInstance(context);
+        adapter = new DailyRecipeAdapter(dailyRecipeItems, context);
     }
 
 
@@ -65,7 +68,7 @@ public class HomeViewModel extends ViewModel {
     }
 
 
-    public List<String> recipeIdList(Calendar date){
+    protected List<String> recipeIdList(Calendar date){
         List<String> list = rep.getRecipes(date);
         return list;
     }
@@ -73,31 +76,31 @@ public class HomeViewModel extends ViewModel {
     private void fetchDailyRecipes(Calendar date) {
         List<String> recipeIdList = recipeIdList(date);
         for (String id : recipeIdList) {
-            APIConnection.getRecipeById(id, new OnResponseListener() {
-                @Override
-                public void recipeByIdFetched(SpecificRecipeRoot sr) {
-                    if (dailyRecipeItems.size() != recipeIdList.size()) {
-                        Recipe recipe = sr.getRecipe();
-                        String [] dishTypes = recipe.getDishType();
-                        dailyRecipeItems.add(new DailyRecipeItem(id, recipe.getLabel(),
-                                recipe.getImage(), (int)(recipe.getCalories()/recipe.getYield()), dishTypes[0].toUpperCase(Locale.ROOT)));
-                        recipes.add(recipe);
+            if (!tempIds.contains(id)) {
+                APIConnection.getRecipeById(id, new OnResponseListener() {
+                    @Override
+                    public void recipeByIdFetched(SpecificRecipeRoot sr) {
+                        if (dailyRecipeItems.size() != recipeIdList.size()) {
+                            Recipe recipe = sr.getRecipe();
+                            String[] dishTypes = recipe.getDishType();
+                            dailyRecipeItems.add(new DailyRecipeItem(id, recipe.getLabel(),
+                                    recipe.getImage(), (int) (recipe.getCalories() / recipe.getYield()), dishTypes[0].toUpperCase(Locale.ROOT)));
+                            recipes.add(recipe);
+                            adapter.notifyDataSetChanged();
+
+                            tempIds.add(id);
+                        }
                     }
-                }
 
-                @Override
-                public void recipesByQueryFetched(Root r) {
+                    @Override
+                    public void recipesByQueryFetched(Root r) {
 
-                }
-            });
+                    }
+                });
+            }
+
         }
 
-    }
-
-
-    public List<DailyRecipeItem> getDailyRecipeItems(Calendar date) {
-        fetchDailyRecipes(date);
-        return dailyRecipeItems;
     }
 
 
@@ -105,4 +108,8 @@ public class HomeViewModel extends ViewModel {
         fetchDailyRecipes(date);
     }
 
+    public DailyRecipeAdapter getAdapter(Calendar date) {
+        fetchDailyRecipes(date);
+        return adapter;
+    }
 }

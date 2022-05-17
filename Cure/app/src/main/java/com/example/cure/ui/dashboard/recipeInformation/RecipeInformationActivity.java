@@ -144,12 +144,12 @@ public class RecipeInformationActivity extends AppCompatActivity {
 
                     if(viewModel.checkMealAlreadyEaten(id, new GregorianCalendar())) {
                         Toast.makeText(getBaseContext(), "This meal has already been eaten on the chosen date", Toast.LENGTH_SHORT).show();
-
                     }
 
                     else {
                         viewModel.addMeal(id, new GregorianCalendar());
                         Toast.makeText(getBaseContext(), "The meal has been added", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 } catch (Exception e) {}
             }
