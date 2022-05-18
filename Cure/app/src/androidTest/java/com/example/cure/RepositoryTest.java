@@ -64,7 +64,7 @@ public class RepositoryTest {
 
         rep.addRecipe(testRecipe1, new GregorianCalendar(2021, 2, 8));
 
-        List<String> recipes = rep.getRecipeIds("20210208");
+        List<String> recipes = rep.getRecipes(new GregorianCalendar(2021, 2, 8));
 
         String res = recipes.get(0);
 
@@ -89,7 +89,7 @@ public class RepositoryTest {
         rep.addRecipe(testRecipe1, new GregorianCalendar(2022, 01, 03));
         rep.addRecipe(testRecipe2, new GregorianCalendar(2022, 01, 03));
 
-        List<String> recipes = rep.getRecipeIds("20220103");
+        List<String> recipes = rep.getRecipes(new GregorianCalendar(2022, 01, 03));
 
         assertEquals(2, recipes.size());
     }
@@ -102,9 +102,9 @@ public class RepositoryTest {
         rep.addRecipe(testRecipe1, new GregorianCalendar(2022, 01, 07));
         rep.addRecipe(testRecipe1, new GregorianCalendar(2022, 05, 03));
 
-        List<String> recipes1 = rep.getRecipeIds("20220103");
-        List<String> recipes2 = rep.getRecipeIds("20220107");
-        List<String> recipes3 = rep.getRecipeIds("20220503");
+        List<String> recipes1 = rep.getRecipes(new GregorianCalendar(2022, 01, 03));
+        List<String> recipes2 = rep.getRecipes(new GregorianCalendar(2022, 01, 07));
+        List<String> recipes3 = rep.getRecipes(new GregorianCalendar(2022, 05, 03));
 
         int res = recipes1.size() + recipes2.size() + recipes3.size();
 
@@ -119,7 +119,7 @@ public class RepositoryTest {
 
         rep.deleteRecipe(testRecipe1, new GregorianCalendar(2022, 01, 03));
 
-        List<String> recipes = rep.getRecipeIds("20220103");
+        List<String> recipes = rep.getRecipes(new GregorianCalendar(2022, 01, 03));
 
         assertEquals(0, recipes.size());
     }
@@ -131,7 +131,7 @@ public class RepositoryTest {
 
         rep.deleteRecipe(testRecipe1, new GregorianCalendar(2022, 01, 03));
 
-        List<String> recipes = rep.getRecipeIds("20220104");
+        List<String> recipes = rep.getRecipes(new GregorianCalendar(2022, 01, 04));
 
         assertEquals(1, recipes.size());
     }

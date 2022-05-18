@@ -1,14 +1,9 @@
 package com.example.cure.ui.home;
 
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.cure.model.data.Hit;
 import com.example.cure.model.data.Recipe;
 import com.example.cure.model.data.Root;
 import com.example.cure.model.data.SpecificRecipeRoot;
@@ -17,13 +12,10 @@ import com.example.cure.model.other.DataConverter;
 import com.example.cure.model.server.api.APIConnection;
 import com.example.cure.model.server.api.OnResponseListener;
 import com.example.cure.model.server.database.Repository;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.example.cure.model.server.database.Repository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -31,7 +23,7 @@ public class HomeViewModel extends ViewModel {
     private Repository rep;
     private Arithmetic arithmetic;
     private List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
-    private List<String> tempIds = new ArrayList<>();
+    private List<String> storedIds = new ArrayList<>();
     private List<Recipe> recipes = new ArrayList<>();
     private DailyRecipeAdapter adapter;
 
@@ -43,40 +35,37 @@ public class HomeViewModel extends ViewModel {
     }
 
 
-    public void addMeal(Date i) {
-        Log.e("Datum", i.toString());
-    }
 
     public void deleteItem(String id, Calendar date) {
         rep.deleteRecipe(id, date);
     }
 
-    public double getDailyCalories(Calendar date) {
+    public double getDailyCalories() {
         return arithmetic.calculateTotalCalories(recipes);
     }
 
-    public double getDailyProtein(Calendar date) {
+    public double getDailyProtein() {
         return arithmetic.calculateTotalProtein(recipes);
     }
 
-    public double getDailyCarbs(Calendar date) {
+    public double getDailyCarbs() {
         return arithmetic.calculateTotalCarbs(recipes);
     }
 
-    public double getDailyFat(Calendar date) {
+    public double getDailyFat() {
         return arithmetic.calculateTotalFat(recipes);
     }
 
 
-    protected List<String> recipeIdList(Calendar date){
-        List<String> list = rep.getRecipes(date);
-        return list;
+    protected List<String> recipeIdList(Calendar date) {
+        List<String> ids = rep.getRecipes(date);
+        return ids;
     }
 
     private void fetchDailyRecipes(Calendar date) {
         List<String> recipeIdList = recipeIdList(date);
         for (String id : recipeIdList) {
-            if (!tempIds.contains(id)) {
+            if (!itemAlreadyAdded(id, date)) {
                 APIConnection.getRecipeById(id, new OnResponseListener() {
                     @Override
                     public void recipeByIdFetched(SpecificRecipeRoot sr) {
@@ -88,7 +77,7 @@ public class HomeViewModel extends ViewModel {
                             recipes.add(recipe);
                             adapter.notifyDataSetChanged();
 
-                            tempIds.add(id);
+                            storeItem(id, date);
                         }
                     }
 
@@ -111,5 +100,36 @@ public class HomeViewModel extends ViewModel {
     public DailyRecipeAdapter getAdapter(Calendar date) {
         fetchDailyRecipes(date);
         return adapter;
+    }
+
+    /**
+     * Checking if an item is already existing in order to avoid repeated items on the same date
+     */
+    private boolean itemAlreadyAdded(String id, Calendar date) {
+
+        for (String storedId : storedIds) {
+
+            String dateStr = storedId.substring(0, 8);
+            String idStr = storedId.substring(9);
+
+            if(id.contains(idStr) && DataConverter.dateToString(date).contains(dateStr))
+                return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Storing an item's id and date in storedIds
+     */
+    private void storeItem(String id, Calendar date) {
+        StringBuilder result = new StringBuilder();
+        String dateStr = DataConverter.dateToString(date);
+
+        result.append(dateStr);
+        result.append("-");
+        result.append(id);
+
+        storedIds.add(result.toString());
     }
 }
