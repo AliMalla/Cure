@@ -46,7 +46,7 @@
         android:id="@+id/recipeTimeMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="45dp"
         android:layout_marginTop="23dp"
         android:text="TextView"
         android:textColor="#8A6C6C"
@@ -107,7 +107,7 @@
         android:layout_width="30sp"
         android:layout_height="30sp"
         android:layout_marginTop="17dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toStartOf="@+id/recipeTimeMain"
         app:layout_constraintTop_toBottomOf="@+id/recipeNameMain"
         app:srcCompat="@mipmap/time_icon" />
