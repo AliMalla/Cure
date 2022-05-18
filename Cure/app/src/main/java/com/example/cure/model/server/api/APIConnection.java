@@ -37,7 +37,7 @@ public class APIConnection {
     }
 
 
-    public static Call<Root> makeRootConnection(String query) {
+    private static Call<Root> makeRootConnection(String query) {
         PlaceHolderAPI placeHolderAPI = APIConnection.getRetrofit().create(PlaceHolderAPI.class);
 
         Call<Root> call = placeHolderAPI.getPosts(APIConnection.TYPE, query, APIConnection.APP_ID, APIConnection.APP_KEY);
@@ -56,7 +56,7 @@ public class APIConnection {
     }
 
 
-    public static void getRootModel(String query, OnResponseListener listener){
+    public static void getRootModel(String query, final OnResponseListener listener){
         Call<Root> call = APIConnection.makeRootConnection(query);
         call.enqueue(new Callback<Root>() {
             @Override
@@ -76,7 +76,6 @@ public class APIConnection {
 
     public static void getRecipeById(String id, final OnResponseListener listener) {
         Call<SpecificRecipeRoot> call = APIConnection.makeRecipeByIdConnection(id);
-
         call.enqueue(new Callback<SpecificRecipeRoot>() {
             @Override
             public void onResponse(Call<SpecificRecipeRoot> call, Response<SpecificRecipeRoot> response) {
