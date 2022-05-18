@@ -40,6 +40,13 @@
             android:translationX="75dp"
             android:translationY="530dp"
             app:cornerRadius="50dp" />
+
+        <ImageView
+            android:id="@+id/eatenRecipeInformationImageView"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:translationX="50dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
