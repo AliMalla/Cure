@@ -30,7 +30,7 @@ import java.util.Locale;
 public class HomeViewModel extends ViewModel {
     private Repository rep;
     private Arithmetic arithmetic;
-    private List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
+    public List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
     private List<String> tempIds = new ArrayList<>();
     private List<Recipe> recipes = new ArrayList<>();
     private DailyRecipeAdapter adapter;
