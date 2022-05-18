@@ -182,6 +182,7 @@ public class HomeFragment extends Fragment {
         String image = "" + homeViewModel.dailyRecipeItems.get(i).getImage();
         String fat = "" + homeViewModel.dailyRecipeItems.get(i).getFat();
         String carbs = "" + homeViewModel.dailyRecipeItems.get(i).getCarbs();
+        String protein = "" + homeViewModel.dailyRecipeItems.get(i).getProtein();
 
 
         intent.putExtra("calories",calories);
@@ -189,6 +190,7 @@ public class HomeFragment extends Fragment {
         intent.putExtra("image",image);
         intent.putExtra("fat",fat);
         intent.putExtra("carbs",carbs);
+        intent.putExtra("protein",protein);
 
     }
 
