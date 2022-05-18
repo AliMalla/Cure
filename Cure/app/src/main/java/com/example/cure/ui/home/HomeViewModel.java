@@ -77,7 +77,7 @@ public class HomeViewModel extends ViewModel {
                             String[] dishTypes = recipe.getDishType();
                             dailyRecipeItems.add(new DailyRecipeItem(id, recipe.getLabel(),
                                     recipe.getImage(), (int) (recipe.getCalories() / recipe.getYield()), dishTypes[0].toUpperCase(Locale.ROOT), (int)(recipe.getTotalNutrients().getFat().getQuantity()/recipe.getYield()),
-                                    (int)(recipe.getTotalNutrients().getCarbs().getQuantity()/recipe.getYield())));
+                                    (int)(recipe.getTotalNutrients().getCarbs().getQuantity()/recipe.getYield()), (int)(recipe.getTotalNutrients().getProtein().getQuantity()/recipe.getYield())));
                             recipes.add(recipe);
                             adapter.notifyDataSetChanged();
 
