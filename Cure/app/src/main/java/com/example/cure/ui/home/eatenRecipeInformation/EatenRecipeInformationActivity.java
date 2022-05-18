@@ -33,6 +33,7 @@ public class EatenRecipeInformationActivity extends AppCompatActivity {
         binding.eatenRecipeInformationCalories.setText("Calories: "+ intent.getStringExtra("calories")+ " kcal");
         binding.eatenRecipeInformationFat.setText("Fat: "+ intent.getStringExtra("fat")+ " g");
         binding.eatenRecipeInformationCarbs.setText("Carbs: "+ intent.getStringExtra("carbs")+ " g");
+        binding.eatenRecipeInformationProtein.setText("Protein: "+ intent.getStringExtra("protein")+ " g");
         String image = intent.getStringExtra("image");
         Picasso.get().load(image).resize(175, 120).into(binding.eatenRecipeInformationImageView);
 
