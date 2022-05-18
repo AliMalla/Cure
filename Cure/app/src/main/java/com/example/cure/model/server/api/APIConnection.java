@@ -18,8 +18,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIConnection {
 
     private final static String BASE_URL = "https://api.edamam.com";
-    private final static String APP_ID = "124b0fd4";
-    private final static String APP_KEY = "3b9f97bbd888e5a892f65166028e9842";
+    private final static String APP_ID_1 = "6e5c599d";
+    private final static String APP_KEY_1 = "477ece3e0fcc099b139f8064cb2594b9";
+    private final static String APP_ID_2 = "124b0fd4";
+    private final static String APP_KEY_2 = "3b9f97bbd888e5a892f65166028e9842";
+    private final static String APP_ID_3 = "89badfe2";
+    private final static String APP_KEY_3 = "142b81372c145c2ce03795d647532cfd";
     private final static String TYPE = "public";
     private static Retrofit retrofit;
 
@@ -40,17 +44,29 @@ public class APIConnection {
     private static Call<Root> makeRootConnection(String query) {
         PlaceHolderAPI placeHolderAPI = APIConnection.getRetrofit().create(PlaceHolderAPI.class);
 
-        Call<Root> call = placeHolderAPI.getPosts(APIConnection.TYPE, query, APIConnection.APP_ID, APIConnection.APP_KEY);
+        Call<Root> call = placeHolderAPI.getPosts(APIConnection.TYPE, query, APIConnection.APP_ID_1, APIConnection.APP_KEY_1);
 
         return call;
 
     }
 
 
-    private static Call<SpecificRecipeRoot> makeRecipeByIdConnection(String id) {
+    private static Call<SpecificRecipeRoot> makeRecipeByIdConnection(String id, int i) {
         PlaceHolderAPI placeHolderAPI = APIConnection.getRetrofit().create(PlaceHolderAPI.class);
 
-        Call<SpecificRecipeRoot> call = placeHolderAPI.getRecipe(id, APIConnection.TYPE, APIConnection.APP_ID, APIConnection.APP_KEY);
+        String ID = APP_ID_1;
+        String KEY = APP_KEY_1;
+        if (i%2==0) {
+            ID = APP_ID_2;
+            KEY = APP_KEY_2;
+        }
+
+        else if (i%2==1) {
+            ID = APP_ID_3;
+            KEY = APP_KEY_3;
+        }
+
+        Call<SpecificRecipeRoot> call = placeHolderAPI.getRecipe(id, APIConnection.TYPE, ID, KEY);
 
         return call;
     }
@@ -74,8 +90,8 @@ public class APIConnection {
         });
     }
 
-    public static void getRecipeById(String id, final OnResponseListener listener) {
-        Call<SpecificRecipeRoot> call = APIConnection.makeRecipeByIdConnection(id);
+    public static void getRecipeById(String id, int i, final OnResponseListener listener) {
+        Call<SpecificRecipeRoot> call = APIConnection.makeRecipeByIdConnection(id, i);
         call.enqueue(new Callback<SpecificRecipeRoot>() {
             @Override
             public void onResponse(Call<SpecificRecipeRoot> call, Response<SpecificRecipeRoot> response) {
