@@ -60,7 +60,7 @@
             android:translationY="205dp" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/eatenRecipeInformationCalories"
             android:layout_width="397dp"
             android:layout_height="wrap_content"
             android:text="Calories: 100 kcal"
@@ -70,7 +70,17 @@
             android:translationY="300dp" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/eatenRecipeInformationDate"
+            android:layout_width="397dp"
+            android:layout_height="wrap_content"
+            android:text="Date of eating it:2022/05/18"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:translationY="450dp" />
+
+        <TextView
+            android:id="@+id/eatenRecipeInformationCarbs"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:text="Carbs: 100 g"
@@ -81,7 +91,7 @@
             android:translationY="375dp" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/eatenRecipeInformationFat"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:text="Fat: 100 g"
@@ -92,7 +102,7 @@
             android:translationY="375dp" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/eatenRecipeInformationProtein"
             android:layout_width="125dp"
             android:layout_height="wrap_content"
             android:text="Protein: 100 g"
