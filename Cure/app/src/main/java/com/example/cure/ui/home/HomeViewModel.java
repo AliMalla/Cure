@@ -34,8 +34,6 @@ public class HomeViewModel extends ViewModel {
         adapter = new DailyRecipeAdapter(dailyRecipeItems, context);
     }
 
-
-
     public void deleteItem(String id, Calendar date) {
         rep.deleteRecipe(id, date);
     }
@@ -60,6 +58,10 @@ public class HomeViewModel extends ViewModel {
     protected List<String> recipeIdList(Calendar date) {
         List<String> ids = rep.getRecipes(date);
         return ids;
+    }
+
+    void clearList() {
+        dailyRecipeItems.clear();
     }
 
     private void fetchDailyRecipes(Calendar date) {

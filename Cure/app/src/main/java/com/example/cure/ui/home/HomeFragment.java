@@ -2,6 +2,7 @@ package com.example.cure.ui.home;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +28,12 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
+    private Calendar date;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        date = new GregorianCalendar();
 
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
@@ -38,7 +41,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         homeViewModel.init(getContext());
-        binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(new GregorianCalendar()));
+        binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(date));
 
         setDailyTotalCalories();
         setDailyTotalCarbs();
@@ -59,8 +62,14 @@ public class HomeFragment extends Fragment {
                 .build();
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
-            public void onDateSelected(Calendar date, int position) {
-                homeViewModel.updateDailyRecipes(date);
+            public void onDateSelected(Calendar newDate, int position) {
+                date = newDate;
+                homeViewModel.clearList();
+
+                //TODO Fix so that values and list is updated to selectedDate
+
+                //binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(date));
+                //updateValues();
             }
             @Override
             public void onCalendarScroll(HorizontalCalendarView calendarView, int dx, int dy) {
@@ -105,7 +114,7 @@ public class HomeFragment extends Fragment {
 
 
     private void updateValues(){
-        if(binding.totalDailyCalories.getText().equals("0 kcal") && homeViewModel.recipeIdList(new GregorianCalendar()).size() > 0) {
+        //if(binding.totalDailyCalories.getText().equals("0 kcal") && homeViewModel.recipeIdList(date).size() > 0) {
             CountDownTimer c = new CountDownTimer(6000, 1500) {
                 @Override
                 public void onTick(long l) {
@@ -124,7 +133,7 @@ public class HomeFragment extends Fragment {
                 }
 
             }.start();
-        }
+        //}
     }
 
 
@@ -149,7 +158,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setNumberOfMeals(){
-       final int number = homeViewModel.recipeIdList(new GregorianCalendar()).size();
+       final int number = homeViewModel.recipeIdList(date).size();
 
        if (number == 1)
            binding.numberOfDailyMeals.setText("(" + number + " meal)");
@@ -158,10 +167,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void setRemarkingWhenNoMeals(){
-        if (homeViewModel.recipeIdList(new GregorianCalendar()).size() != 0)
+        if (homeViewModel.recipeIdList(date).size() != 0)
             binding.noRecipesYetRemarking.setText("");
 
-        if (homeViewModel.recipeIdList(new GregorianCalendar()).size() == 0)
+        if (homeViewModel.recipeIdList(date).size() == 0)
             binding.noRecipesYetRemarking.setText("No meals have been added yet");
     }
 
