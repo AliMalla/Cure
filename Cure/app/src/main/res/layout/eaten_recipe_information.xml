@@ -47,6 +47,17 @@
             android:layout_height="200dp"
             android:translationX="50dp"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/eatenRecipeInformationName"
+            android:layout_width="397dp"
+            android:layout_height="wrap_content"
+            android:text="Recipe Name"
+            android:textAlignment="center"
+            android:textColor="#050505"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:translationY="205dp" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
