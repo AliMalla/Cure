@@ -180,11 +180,13 @@ public class HomeFragment extends Fragment {
         String calories = "" + homeViewModel.dailyRecipeItems.get(i).getCalories();
         String name = "" + homeViewModel.dailyRecipeItems.get(i).getName();
         String image = "" + homeViewModel.dailyRecipeItems.get(i).getImage();
+        String fat = "" + homeViewModel.dailyRecipeItems.get(i).getFat();
 
 
         intent.putExtra("calories",calories);
         intent.putExtra("name",name);
         intent.putExtra("image",image);
+        intent.putExtra("fat",fat);
 
     }
 
