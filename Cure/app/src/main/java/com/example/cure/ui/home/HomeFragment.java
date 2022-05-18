@@ -1,10 +1,12 @@
 package com.example.cure.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.cure.R;
 import com.example.cure.databinding.FragmentHomeBinding;
 import com.example.cure.ui.dashboard.DashboardFragment;
+import com.example.cure.ui.home.eatenRecipeInformation.EatenRecipeInformationActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
@@ -90,6 +93,16 @@ public class HomeFragment extends Fragment {
 
                 // Commit the transaction
                 transaction.commit();
+            }
+        });
+
+
+        binding.previousRecipesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(root.getContext(), EatenRecipeInformationActivity.class);
+                startActivity(intent);
+
             }
         });
 
