@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="88dp"
+        android:layout_height="59dp"
+        android:backgroundTint="#6089D8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <FrameLayout
+        android:id="@+id/eatenRecipeInformationPageFrameLayout"
+        android:layout_width="397dp"
+        android:layout_height="581dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="78dp"
+        android:background="#A8A8A8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backButton">
+
+        <Button
+            android:id="@+id/deleteRecipeButton"
+            android:layout_width="243dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#BC3434"
+            android:text="Delete Recipe"
+            android:translationX="75dp"
+            android:translationY="530dp"
+            app:cornerRadius="50dp" />
+
+        <ImageView
+            android:id="@+id/eatenRecipeInformationImageView"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:translationX="50dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/eatenRecipeInformationName"
+            android:layout_width="397dp"
+            android:layout_height="wrap_content"
+            android:text="Recipe Name"
+            android:textAlignment="center"
+            android:textColor="#050505"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:translationY="205dp" />
+
+        <TextView
+            android:id="@+id/eatenRecipeInformationCalories"
+            android:layout_width="397dp"
+            android:layout_height="wrap_content"
+            android:text="Calories: 100 kcal"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:translationY="300dp" />
+
+        <TextView
+            android:id="@+id/eatenRecipeInformationDate"
+            android:layout_width="397dp"
+            android:layout_height="wrap_content"
+            android:text="Date of eating it:2022/05/18"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:translationY="450dp" />
+
+        <TextView
+            android:id="@+id/eatenRecipeInformationCarbs"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Carbs: 100 g"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:translationX="5dp"
+            android:translationY="375dp" />
+
+        <TextView
+            android:id="@+id/eatenRecipeInformationFat"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Fat: 100 g"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:translationX="135dp"
+            android:translationY="375dp" />
+
+        <TextView
+            android:id="@+id/eatenRecipeInformationProtein"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Protein: 100 g"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:translationX="268dp"
+            android:translationY="375dp" />
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
