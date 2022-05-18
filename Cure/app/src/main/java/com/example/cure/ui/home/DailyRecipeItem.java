@@ -9,8 +9,9 @@ public class DailyRecipeItem {
     private String type;
     private final int fat;
     private final int carbs;
+    private final int protein;
 
-    public DailyRecipeItem(String id, String name, String image, int calories, String type, int fat, int carbs) {
+    public DailyRecipeItem(String id, String name, String image, int calories, String type, int fat, int carbs, int protein) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -18,6 +19,7 @@ public class DailyRecipeItem {
         this.type = type;
         this.fat = fat;
         this.carbs = carbs;
+        this.protein = protein;
     }
 
 
@@ -47,5 +49,9 @@ public class DailyRecipeItem {
 
     public int getCarbs() {
         return carbs;
+    }
+
+    public int getProtein() {
+        return protein;
     }
 }
