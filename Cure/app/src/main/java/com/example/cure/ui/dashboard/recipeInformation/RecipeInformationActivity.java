@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cure.MainActivity;
 
-import com.example.cure.MainActivity;
 import com.example.cure.databinding.ActivityRecipeInformationBinding;
 import com.squareup.picasso.Picasso;
 

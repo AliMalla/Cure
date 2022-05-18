@@ -103,6 +103,7 @@ public class HomeFragment extends Fragment {
         updateValues();
     }
 
+
     private void updateValues(){
         if(binding.totalDailyCalories.getText().equals("0 kcal") && homeViewModel.recipeIdList(new GregorianCalendar()).size() > 0) {
             CountDownTimer c = new CountDownTimer(6000, 1500) {
@@ -143,8 +144,8 @@ public class HomeFragment extends Fragment {
     }
 
     private void setDailyTotalCalories(){
-       String text = ""+(int)homeViewModel.getDailyCalories();
-       binding.totalDailyCalories.setText(text + " kcal");
+        String text = ""+(int)homeViewModel.getDailyCalories();
+        binding.totalDailyCalories.setText(text + " kcal");
     }
 
     private void setNumberOfMeals(){
