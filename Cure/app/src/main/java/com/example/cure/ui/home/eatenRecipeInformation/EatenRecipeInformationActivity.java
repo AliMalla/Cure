@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cure.databinding.EatenRecipeInformationBinding;
+import com.squareup.picasso.Picasso;
 
 public class EatenRecipeInformationActivity extends AppCompatActivity {
 
@@ -32,6 +33,9 @@ public class EatenRecipeInformationActivity extends AppCompatActivity {
         binding.eatenRecipeInformationCalories.setText("Calories: "+ intent.getStringExtra("calories")+ " kcal");
         binding.eatenRecipeInformationFat.setText("Fat: "+ intent.getStringExtra("fat")+ " g");
         binding.eatenRecipeInformationCarbs.setText("Carbs: "+ intent.getStringExtra("carbs")+ " g");
+        String image = intent.getStringExtra("image");
+        Picasso.get().load(image).resize(175, 120).into(binding.eatenRecipeInformationImageView);
+
 
     }
 }
