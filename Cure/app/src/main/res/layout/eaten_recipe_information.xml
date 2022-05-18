@@ -58,6 +58,49 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:translationY="205dp" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="397dp"
+            android:layout_height="wrap_content"
+            android:text="Calories: 100 kcal"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:translationY="300dp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Carbs: 100 g"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:translationX="5dp"
+            android:translationY="375dp" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Fat: 100 g"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:translationX="135dp"
+            android:translationY="375dp" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:text="Protein: 100 g"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:translationX="268dp"
+            android:translationY="375dp" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
