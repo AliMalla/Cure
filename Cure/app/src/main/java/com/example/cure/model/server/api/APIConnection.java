@@ -61,10 +61,13 @@ public class APIConnection {
             KEY = APP_KEY_2;
         }
 
+
         else if (i%2==1) {
             ID = APP_ID_3;
             KEY = APP_KEY_3;
         }
+
+
 
         Call<SpecificRecipeRoot> call = placeHolderAPI.getRecipe(id, APIConnection.TYPE, ID, KEY);
 

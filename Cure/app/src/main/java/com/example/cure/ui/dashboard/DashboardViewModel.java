@@ -205,7 +205,7 @@ public class DashboardViewModel extends ViewModel {
         Log.e("date", date.toString());
     }
 
-    Bundle populateIntentDetails(int i) {
+    protected Bundle populateIntentDetails(int i) {
         String recipeId = getItems().getValue().get(i).getId();
         int recipeYield = (int) getLiveRecipes().getValue().get(i).getYield();
         String recipeName = getItems().getValue().get(i).getName();
