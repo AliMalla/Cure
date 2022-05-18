@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
-                homeViewModel.updateDailyRecipes(date);
+                //homeViewModel.updateDailyRecipes(date);
             }
             @Override
             public void onCalendarScroll(HorizontalCalendarView calendarView, int dx, int dy) {
@@ -95,6 +95,7 @@ public class HomeFragment extends Fragment {
                 transaction.commit();
             }
         });
+        setRemarkingWhenNoMeals();
 
 
         intent = new Intent(root.getContext(), EatenRecipeInformationActivity.class);
@@ -122,6 +123,7 @@ public class HomeFragment extends Fragment {
         updateValues();
     }
 
+
     private void updateValues(){
         if(binding.totalDailyCalories.getText().equals("0 kcal") && homeViewModel.recipeIdList(new GregorianCalendar()).size() > 0) {
             CountDownTimer c = new CountDownTimer(6000, 1500) {
@@ -147,23 +149,23 @@ public class HomeFragment extends Fragment {
 
 
     private void setDailyTotalProtein() {
-       String text = (int)homeViewModel.getDailyProtein(new GregorianCalendar()) + " g";
+       String text = (int)homeViewModel.getDailyProtein() + " g";
        binding.totalDailyProtein.setText(text);
     }
 
     private void setDailyTotalFat(){
-       String text = (int)homeViewModel.getDailyFat(new GregorianCalendar()) + " g";
+       String text = (int)homeViewModel.getDailyFat() + " g";
        binding.totalDailyFat.setText(text);
     }
 
     private void setDailyTotalCarbs(){
-       String text = (int)homeViewModel.getDailyCarbs(new GregorianCalendar()) + " g";
+       String text = (int)homeViewModel.getDailyCarbs() + " g";
        binding.totalDailyCarbs.setText(text);
     }
 
     private void setDailyTotalCalories(){
-       String text = ""+(int)homeViewModel.getDailyCalories(new GregorianCalendar());
-       binding.totalDailyCalories.setText(text + " kcal");
+        String text = ""+(int)homeViewModel.getDailyCalories();
+        binding.totalDailyCalories.setText(text + " kcal");
     }
 
     private void setNumberOfMeals(){
@@ -173,6 +175,14 @@ public class HomeFragment extends Fragment {
            binding.numberOfDailyMeals.setText("(" + number + " meal)");
        else
            binding.numberOfDailyMeals.setText("(" + number + " meals)");
+    }
+
+    private void setRemarkingWhenNoMeals(){
+        if (homeViewModel.recipeIdList(new GregorianCalendar()).size() != 0)
+            binding.noRecipesYetRemarking.setText("");
+
+        if (homeViewModel.recipeIdList(new GregorianCalendar()).size() == 0)
+            binding.noRecipesYetRemarking.setText("No meals have been added yet");
     }
 
 
