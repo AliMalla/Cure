@@ -1,11 +1,12 @@
 package com.example.cure.ui.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.cure.R;
 import com.example.cure.databinding.FragmentHomeBinding;
 import com.example.cure.ui.dashboard.DashboardFragment;
+import com.example.cure.ui.home.eatenRecipeInformation.EatenRecipeInformationActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
@@ -28,6 +30,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
+    private Intent intent;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -90,6 +93,19 @@ public class HomeFragment extends Fragment {
 
                 // Commit the transaction
                 transaction.commit();
+            }
+        });
+
+
+        intent = new Intent(root.getContext(), EatenRecipeInformationActivity.class);
+
+        binding.previousRecipesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                sendSelectedEatenRecipeInfoToActivity(i);
+                startActivity(intent);
+
             }
         });
 
@@ -160,5 +176,20 @@ public class HomeFragment extends Fragment {
     }
 
 
+    private void sendSelectedEatenRecipeInfoToActivity(int i){
+        String calories = "" + homeViewModel.dailyRecipeItems.get(i).getCalories();
+        String name = "" + homeViewModel.dailyRecipeItems.get(i).getName();
+        String image = "" + homeViewModel.dailyRecipeItems.get(i).getImage();
+        String fat = "" + homeViewModel.dailyRecipeItems.get(i).getFat();
+        String carbs = "" + homeViewModel.dailyRecipeItems.get(i).getCarbs();
+
+
+        intent.putExtra("calories",calories);
+        intent.putExtra("name",name);
+        intent.putExtra("image",image);
+        intent.putExtra("fat",fat);
+        intent.putExtra("carbs",carbs);
+
+    }
 
 }
