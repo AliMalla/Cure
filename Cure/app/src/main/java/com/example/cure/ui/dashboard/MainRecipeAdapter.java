@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -57,6 +56,7 @@ public class MainRecipeAdapter extends ArrayAdapter {
         TextView recipeFat = (TextView)v.findViewById(R.id.recipeFatMain);
         TextView recipeProtein = (TextView)v.findViewById(R.id.recipeProteinMain);
         TextView recipeCarbs = (TextView)v.findViewById(R.id.recipeCarbsMain);
+        TextView recipeServings = (TextView)v.findViewById(R.id.recipeTotalServingsMain);
         ImageView recipeImage = (ImageView) v.findViewById(R.id.recipeImageMain);
 
         recipeName.setText(items.get(i).getName());
@@ -65,6 +65,7 @@ public class MainRecipeAdapter extends ArrayAdapter {
         recipeFat.setText(items.get(i).getFat());
         recipeProtein.setText(items.get(i).getProtein());
         recipeCarbs.setText(items.get(i).getCarbs());
+        recipeServings.setText(items.get(i).getYield());
         Picasso.get().load(items.get(i).getImage()).resize(300, 115).into(recipeImage);
 
 

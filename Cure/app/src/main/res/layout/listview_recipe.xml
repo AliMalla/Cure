@@ -33,27 +33,39 @@
         android:id="@+id/recipeCaloriesMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="50dp"
         android:text="TextView"
         android:textColor="#AE342B"
         android:textColorHighlight="#B55436"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/recipeTimeMain"
+        app:layout_constraintEnd_toStartOf="@+id/recipeFatMain"
         app:layout_constraintTop_toBottomOf="@+id/recipeNameMain" />
 
     <TextView
         android:id="@+id/recipeTimeMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="28dp"
         android:text="TextView"
         android:textColor="#8A6C6C"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recipeNameMain" />
+
+    <TextView
+        android:id="@+id/recipeTotalServingsMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="40dp"
+        android:text="TextView"
+        android:textColor="#8A6C6C"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/recipeCarbsMain"
+        app:layout_constraintTop_toBottomOf="@+id/recipeCaloriesMain" />
 
     <TextView
         android:id="@+id/recipeProteinMain"
@@ -107,7 +119,7 @@
         android:id="@+id/imageView"
         android:layout_width="30sp"
         android:layout_height="30sp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toStartOf="@+id/recipeTimeMain"
         app:layout_constraintTop_toBottomOf="@+id/recipeNameMain"
