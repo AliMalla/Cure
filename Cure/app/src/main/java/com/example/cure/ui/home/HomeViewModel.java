@@ -68,9 +68,10 @@ public class HomeViewModel extends ViewModel {
 
     private void fetchDailyRecipes(Calendar date) {
         List<String> recipeIdList = recipeIdList(date);
+        int i = 0;
         for (String id : recipeIdList) {
             if (!itemAlreadyAdded(id, date)) {
-                APIConnection.getRecipeById(id, new OnResponseListener() {
+                APIConnection.getRecipeById(id, i, new OnResponseListener() {
                     @Override
                     public void recipeByIdFetched(SpecificRecipeRoot sr) {
                         if (dailyRecipeItems.size() != recipeIdList.size()) {
@@ -90,7 +91,7 @@ public class HomeViewModel extends ViewModel {
                     public void recipesByQueryFetched(Root r) {
 
                     }
-                });
+                }); i++;
             }
 
         }

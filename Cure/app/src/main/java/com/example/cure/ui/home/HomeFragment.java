@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment {
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
-                homeViewModel.updateDailyRecipes(date);
+                //homeViewModel.updateDailyRecipes(date);
             }
             @Override
             public void onCalendarScroll(HorizontalCalendarView calendarView, int dx, int dy) {
