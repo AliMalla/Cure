@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,6 +30,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
+    private Intent intent;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -97,10 +97,13 @@ public class HomeFragment extends Fragment {
         });
 
 
+        intent = new Intent(root.getContext(), EatenRecipeInformationActivity.class);
+
         binding.previousRecipesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(root.getContext(), EatenRecipeInformationActivity.class);
+
+                sendSelectedEatenRecipeInfoToActivity(i);
                 startActivity(intent);
 
             }
@@ -173,5 +176,16 @@ public class HomeFragment extends Fragment {
     }
 
 
+    private void sendSelectedEatenRecipeInfoToActivity(int i){
+        String calories = "" + homeViewModel.dailyRecipeItems.get(i).getCalories();
+        String name = "" + homeViewModel.dailyRecipeItems.get(i).getName();
+        String image = "" + homeViewModel.dailyRecipeItems.get(i).getImage();
+
+
+        intent.putExtra("calories",calories);
+        intent.putExtra("name",name);
+        intent.putExtra("image",image);
+
+    }
 
 }
