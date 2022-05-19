@@ -11,7 +11,14 @@ public class DailyRecipeItem {
     private final int carbs;
     private final int protein;
 
-    public DailyRecipeItem(String id, String name, String image, int calories, String type, int fat, int carbs, int protein) {
+    public DailyRecipeItem(String id,
+                           String name,
+                           String image,
+                           int calories,
+                           int carbs,
+                           int fat,
+                           int protein,
+                           String type) {
         this.id = id;
         this.name = name;
         this.image = image;

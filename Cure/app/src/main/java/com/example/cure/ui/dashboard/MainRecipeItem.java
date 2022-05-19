@@ -10,6 +10,7 @@ public class MainRecipeItem {
     private String protein;
     private String carbs;
     private String time;
+    private String yield;
 
     public MainRecipeItem(String name, String image, String calories, String fat, String protein, String carbs, String time) {
         this.name = name;
@@ -19,9 +20,10 @@ public class MainRecipeItem {
         this.protein = protein;
         this.carbs = carbs;
         this.time = time;
+
     }
 
-    public MainRecipeItem(String id, String name, String image, String calories, String fat, String protein, String carbs, String time) {
+    public MainRecipeItem(String id, String name, String image, String calories, String fat, String protein, String carbs, String time, String yield) {
         this.id = id;
         this.name = name;
         this.image = image;
@@ -30,6 +32,7 @@ public class MainRecipeItem {
         this.protein = protein;
         this.carbs = carbs;
         this.time = time;
+        this.yield =yield;
     }
 
     public String getId() {
@@ -63,4 +66,8 @@ public class MainRecipeItem {
     public String getTime() {
         return time;
     }
+
+    public String getYield(){return yield;}
+
+
 }

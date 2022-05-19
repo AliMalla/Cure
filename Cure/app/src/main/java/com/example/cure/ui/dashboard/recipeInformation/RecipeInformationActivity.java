@@ -7,14 +7,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.example.cure.MainActivity;
 
-import com.example.cure.MainActivity;
-import com.example.cure.R;
 import com.example.cure.databinding.ActivityRecipeInformationBinding;
-import com.example.cure.ui.home.HomeFragment;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -62,16 +57,12 @@ public class RecipeInformationActivity extends AppCompatActivity {
             }
         });
 
-     //   binding.bannerBtn.setOnClickListener(new View.OnClickListener() {
-      //      @Override
-        //    public void onClick(View view) {
-          //      HomeFragment fragment = new HomeFragment();
-            //    FragmentTransaction fragmentTransaction =
-              //          getSupportFragmentManager().beginTransaction();
-                //fragmentTransaction.replace(R.id.container, fragment);
-                //fragmentTransaction.commit();
-          //  }
-        //});
+        binding.bannerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         onClickAddMeal();
 
