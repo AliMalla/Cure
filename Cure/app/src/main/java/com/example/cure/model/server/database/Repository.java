@@ -103,4 +103,10 @@ public class Repository {
         return ids;
     }
 
+    public final void clearDatabase(String key) {
+
+        if (key.equals("BE CAREFUL BEFORE DOING THAT"))
+            db.clearDatabase();
+    }
+
 }
