@@ -8,9 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cure.MainActivity;
 
-import com.example.cure.MainActivity;
 import com.example.cure.databinding.ActivityRecipeInformationBinding;
 import com.squareup.picasso.Picasso;
 
@@ -62,7 +60,7 @@ public class RecipeInformationActivity extends AppCompatActivity {
         binding.bannerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RecipeInformationActivity.this, MainActivity.class));
+                finish();
             }
         });
 
