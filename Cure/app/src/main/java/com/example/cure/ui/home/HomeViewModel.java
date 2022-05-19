@@ -38,6 +38,17 @@ public class HomeViewModel extends ViewModel {
 
     public void deleteItem(String id, Calendar date) {
         rep.deleteRecipe(id, date);
+
+        for (DailyRecipeItem item : dailyRecipeItems) {
+
+            if (item.getId().equals(id)) {
+
+                dailyRecipeItems.remove(item);
+                adapter.notifyDataSetChanged();
+            }
+        }
+
+        storedIds.remove(id);
     }
 
     public double getDailyCalories() {
@@ -91,7 +102,8 @@ public class HomeViewModel extends ViewModel {
         List<String> recipeIdList = getRecipeIds(currentDate);
         int switcher = 0; //API switcher
         for (String id : recipeIdList) {
-            if (!storedIds.contains(id)){
+
+            if (!storedIds.contains(id)) {
 
                 if (getIndexFromTempList(id) != -1) {
 
