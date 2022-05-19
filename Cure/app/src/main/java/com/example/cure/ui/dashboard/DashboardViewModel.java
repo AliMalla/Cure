@@ -60,7 +60,7 @@ public class DashboardViewModel extends ViewModel {
                     Recipe rec = hit.getRecipe();
                     items.add(new MainRecipeItem(getRecipeId(rec), rec.getLabel(), rec.getImage(), (int) rec.getCalories() + " kcal",
                             "Fat    " + (int) rec.getTotalNutrients().getFat().getQuantity() + " " + rec.getTotalNutrients().getFat().getUnit(), "Protein    " + (int) rec.getTotalNutrients().getProtein().getQuantity() + " " + rec.getTotalNutrients().getProtein().getUnit(),
-                            "Carbs    " + (int) rec.getTotalNutrients().getCarbs().getQuantity() + " " + rec.getTotalNutrients().getCarbs().getUnit(), (int) rec.getTotalTime() + " minutes"));
+                            "Carbs    " + (int) rec.getTotalNutrients().getCarbs().getQuantity() + " " + rec.getTotalNutrients().getCarbs().getUnit(), (int) rec.getTotalTime() + " minutes",(int) rec.getYield() + " Servings"));
                     recipes.add(rec);
                 }
                 mainItems.postValue(items);
@@ -112,7 +112,7 @@ public class DashboardViewModel extends ViewModel {
         for (Recipe rec : srtRecipes) {
             mainRecipeItemList.add(new MainRecipeItem(getRecipeId(rec), rec.getLabel(), rec.getImage(), (int) rec.getCalories() + " kcal",
                     "Fat    " + (int) rec.getTotalNutrients().getFat().getQuantity() + " " + rec.getTotalNutrients().getFat().getUnit(), "Protein    " + (int) rec.getTotalNutrients().getProtein().getQuantity() + " " + rec.getTotalNutrients().getProtein().getUnit(),
-                    "Carbs    " + (int) rec.getTotalNutrients().getCarbs().getQuantity() + " " + rec.getTotalNutrients().getCarbs().getUnit(), (int) rec.getTotalTime() + " minuter"));
+                    "Carbs    " + (int) rec.getTotalNutrients().getCarbs().getQuantity() + " " + rec.getTotalNutrients().getCarbs().getUnit(), (int) rec.getTotalTime() + " minuter",  (int) rec.getYield() + " Servings"));
         }
 
         mainItems.postValue(mainRecipeItemList);

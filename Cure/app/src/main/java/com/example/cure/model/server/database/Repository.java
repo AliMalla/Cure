@@ -9,7 +9,7 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * A class to communicate with and access the database
+ * A class to access and communicate with the database
  * @author Ali Alkhaled
  */
 public class Repository {
@@ -17,18 +17,15 @@ public class Repository {
     private static Repository repository;
     private DBHandler db;
 
-    /*
-    public Repository(Context context) {
-        db = new DBHandler(context, null, null, 1);
-    }
 
-     */
     private Repository(Context context) {
         db = new DBHandler(context, null, null, 1);
     }
 
 
-
+    /**
+     * Singleton pattern
+     */
     public static Repository getInstance(Context context) {
         if(repository == null)
             repository = new Repository(context);
@@ -67,7 +64,6 @@ public class Repository {
         final String dateStr = DataConverter.dateToString(date);
 
         db.addRecipe(id, dateStr);
-
     }
 
 
@@ -106,23 +102,5 @@ public class Repository {
 
         return ids;
     }
-
-
-    /**
-     * A method just for testing purpose
-     * @param date date
-     * @return list of ids
-     */
-    /*
-    public List<String> getRecipeIds(String date) {
-        db.addRecipe("b66666d5c882ca199f43def8f1b8a03f", "20220313");
-        db.addRecipe("e7e22b5f9afdae010472f2084a76fd6c", "20220313");
-        return db.getRecipes(date);
-    }
-
-     */
-
-
-
 
 }

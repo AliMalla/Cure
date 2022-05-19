@@ -1,6 +1,7 @@
 package com.example.cure.ui.home;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
@@ -15,14 +16,14 @@ import com.example.cure.model.server.database.Repository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class HomeViewModel extends ViewModel {
     private Repository rep;
     private Arithmetic arithmetic;
-    private List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
+    public List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
     private List<String> storedIds = new ArrayList<>();
     private List<Recipe> recipes = new ArrayList<>();
     private DailyRecipeAdapter adapter;
@@ -32,6 +33,11 @@ public class HomeViewModel extends ViewModel {
         arithmetic = new Arithmetic();
         rep = Repository.getInstance(context);
         adapter = new DailyRecipeAdapter(dailyRecipeItems, context);
+    }
+
+
+    public void addMeal(Date i) {
+        Log.e("Datum", i.toString());
     }
 
     public void deleteItem(String id, Calendar date) {
@@ -66,16 +72,18 @@ public class HomeViewModel extends ViewModel {
 
     private void fetchDailyRecipes(Calendar date) {
         List<String> recipeIdList = recipeIdList(date);
+        int i = 0;
         for (String id : recipeIdList) {
             if (!itemAlreadyAdded(id, date)) {
-                APIConnection.getRecipeById(id, new OnResponseListener() {
+                APIConnection.getRecipeById(id, i, new OnResponseListener() {
                     @Override
                     public void recipeByIdFetched(SpecificRecipeRoot sr) {
                         if (dailyRecipeItems.size() != recipeIdList.size()) {
                             Recipe recipe = sr.getRecipe();
                             String[] dishTypes = recipe.getDishType();
                             dailyRecipeItems.add(new DailyRecipeItem(id, recipe.getLabel(),
-                                    recipe.getImage(), (int) (recipe.getCalories() / recipe.getYield()), dishTypes[0].toUpperCase(Locale.ROOT)));
+                                    recipe.getImage(), (int) (recipe.getCalories() / recipe.getYield()), dishTypes[0].toUpperCase(Locale.ROOT), (int)(recipe.getTotalNutrients().getFat().getQuantity()/recipe.getYield()),
+                                    (int)(recipe.getTotalNutrients().getCarbs().getQuantity()/recipe.getYield())));
                             recipes.add(recipe);
                             adapter.notifyDataSetChanged();
 
@@ -87,7 +95,7 @@ public class HomeViewModel extends ViewModel {
                     public void recipesByQueryFetched(Root r) {
 
                     }
-                });
+                }); i++;
             }
 
         }

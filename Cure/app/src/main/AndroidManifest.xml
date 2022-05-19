@@ -20,6 +20,10 @@
             android:name=".ui.dashboard.recipeInformation.RecipeInformationActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".ui.home.eatenRecipeInformation.EatenRecipeInformationActivity"
+            android:exported="true" />
+
 
         <activity
             android:name=".IntroActivity"
