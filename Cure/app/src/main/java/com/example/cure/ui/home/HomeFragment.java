@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
     private Intent intent;
+    private Calendar selectedDate = new GregorianCalendar();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,15 +42,6 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        homeViewModel.init(getContext());
-        binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(new GregorianCalendar()));
-
-        setDailyTotalCalories();
-        setDailyTotalCarbs();
-        setDailyTotalFat();
-        setDailyTotalProtein();
-        setNumberOfMeals();
-
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
 
@@ -64,7 +56,9 @@ public class HomeFragment extends Fragment {
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
-                //homeViewModel.updateDailyRecipes(date);
+                selectedDate = date;
+                homeViewModel.updateDailyRecipes(date);
+                updateValues();
             }
             @Override
             public void onCalendarScroll(HorizontalCalendarView calendarView, int dx, int dy) {
@@ -76,6 +70,16 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
+        homeViewModel.init(getContext());
+        binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(selectedDate));
+
+        setDailyTotalCalories();
+        setDailyTotalCarbs();
+        setDailyTotalFat();
+        setDailyTotalProtein();
+        setNumberOfMeals();
+
+
 
         FloatingActionButton fab = binding.floatingActionButton;
         fab.setOnClickListener(new View.OnClickListener() {
@@ -111,10 +115,8 @@ public class HomeFragment extends Fragment {
         });
 
 
-
         return root;
     }
-
 
 
     @Override
@@ -125,26 +127,27 @@ public class HomeFragment extends Fragment {
 
 
     private void updateValues(){
-        if(binding.totalDailyCalories.getText().equals("0 kcal") && homeViewModel.recipeIdList(new GregorianCalendar()).size() > 0) {
-            CountDownTimer c = new CountDownTimer(6000, 1500) {
-                @Override
-                public void onTick(long l) {
-                    setDailyTotalCalories();
-                    setDailyTotalCarbs();
-                    setDailyTotalFat();
-                    setDailyTotalProtein();
-                }
+        setNumberOfMeals();
+        setRemarkingWhenNoMeals();
+        CountDownTimer c = new CountDownTimer(6000, 1500) {
+            @Override
+            public void onTick(long l) {
+                setDailyTotalCalories();
+                setDailyTotalCarbs();
+                setDailyTotalFat();
+                setDailyTotalProtein();
+            }
 
-                @Override
-                public void onFinish() {
-                    setDailyTotalCalories();
-                    setDailyTotalCarbs();
-                    setDailyTotalFat();
-                    setDailyTotalProtein();
-                }
+            @Override
+            public void onFinish() {
+                setDailyTotalCalories();
+                setDailyTotalCarbs();
+                setDailyTotalFat();
+                setDailyTotalProtein();
+            }
 
-            }.start();
-        }
+        }.start();
+
     }
 
 
@@ -169,7 +172,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setNumberOfMeals(){
-       final int number = homeViewModel.recipeIdList(new GregorianCalendar()).size();
+       final int number = homeViewModel.getEatenMealsNumber(selectedDate);
 
        if (number == 1)
            binding.numberOfDailyMeals.setText("(" + number + " meal)");
@@ -178,10 +181,10 @@ public class HomeFragment extends Fragment {
     }
 
     private void setRemarkingWhenNoMeals(){
-        if (homeViewModel.recipeIdList(new GregorianCalendar()).size() != 0)
+        if (homeViewModel.getEatenMealsNumber(selectedDate) != 0)
             binding.noRecipesYetRemarking.setText("");
 
-        if (homeViewModel.recipeIdList(new GregorianCalendar()).size() == 0)
+        else
             binding.noRecipesYetRemarking.setText("No meals have been added yet");
     }
 
@@ -201,5 +204,7 @@ public class HomeFragment extends Fragment {
         intent.putExtra("carbs",carbs);
 
     }
+
+
 
 }
