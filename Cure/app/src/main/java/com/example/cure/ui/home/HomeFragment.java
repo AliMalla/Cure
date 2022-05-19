@@ -185,6 +185,11 @@ public class HomeFragment extends Fragment {
         String fat = "" + homeViewModel.dailyRecipeItems.get(i).getFat();
         String carbs = "" + homeViewModel.dailyRecipeItems.get(i).getCarbs();
         String protein = "" + homeViewModel.dailyRecipeItems.get(i).getProtein();
+        String id = homeViewModel.dailyRecipeItems.get(i).getId();
+        int year = selectedRecipeCalender.get(Calendar.YEAR);
+        int month = selectedRecipeCalender.get(Calendar.MONTH);
+        int day = selectedRecipeCalender.get(Calendar.DATE);
+
 
 
         String date = "" + selectedRecipeCalender.get(Calendar.YEAR) + "-" + (selectedRecipeCalender.get(Calendar.MONTH) + 1) +"-"
@@ -198,6 +203,11 @@ public class HomeFragment extends Fragment {
         intent.putExtra("carbs",carbs);
         intent.putExtra("protein",protein);
         intent.putExtra("date",date);
+        intent.putExtra("id",id);
+        intent.putExtra("year", year);
+        intent.putExtra("month", month);
+        intent.putExtra("day", day);
+
 
     }
 
