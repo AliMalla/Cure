@@ -4,7 +4,7 @@ package com.example.cure.model.data;
  *
  * @author Ali Alkhaled
  */
-public class Recipe {
+public class Recipe implements IRecipe{
 
     private final String label;
     private final String image;
@@ -78,12 +78,27 @@ public class Recipe {
         return totalWeight;
     }
 
-    public float getCalories() {
-        return calories;
+    public int getCalories() {
+        return (int)calories;
     }
 
-    public float getYield() {
-        return yield;
+    @Override
+    public int getFat() {
+        return (int)getTotalNutrients().getFat().getQuantity();
+    }
+
+    @Override
+    public int getProtein() {
+        return (int)getTotalNutrients().getProtein().getQuantity();
+    }
+
+    @Override
+    public int getCarbs() {
+        return (int)getTotalNutrients().getCarbs().getQuantity();
+    }
+
+    public int getYield() {
+        return (int)yield;
     }
 
     public String[] getMealType() {
