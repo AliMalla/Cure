@@ -1,7 +1,6 @@
 package com.example.cure.ui.home;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
@@ -16,7 +15,6 @@ import com.example.cure.model.server.database.Repository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -27,7 +25,7 @@ public class HomeViewModel extends ViewModel {
     private List<String> storedIds = new ArrayList<>();
     private List<Recipe> recipes = new ArrayList<>();
     private DailyRecipeAdapter adapter;
-
+    private Calendar date;
 
     public void init(Context context){
         arithmetic = new Arithmetic();
@@ -54,14 +52,15 @@ public class HomeViewModel extends ViewModel {
 
     void clearList() {
         dailyRecipeItems.clear();
+    }
 
-    protected List<String> recipeIdList(Calendar date) {
+    protected List<String> getRecipeIdList(Calendar date) {
         List<String> ids = rep.getRecipes(date);
         return ids;
     }
 
     private boolean fetchDailyRecipes(Calendar date) {
-        List<String> recipeIdList = recipeIdList(date);
+        List<String> recipeIdList = getRecipeIdList(date);
         int i = 0;
         for (String id : recipeIdList) {
             if (!itemAlreadyAdded(id, date)) {
@@ -80,7 +79,6 @@ public class HomeViewModel extends ViewModel {
                                     (int) (recipe.getTotalNutrients().getProtein().getQuantity() / recipe.getYield()),
                                     dishTypes[0].toUpperCase(Locale.ROOT));
                             dailyRecipeItems.add(dRI);
-                            dailyRecipeItems.add(new DailyRecipeItem(id, recipe.getLabel(),
                             recipes.add(recipe);
                             adapter.notifyDataSetChanged();
 

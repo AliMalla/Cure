@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -66,7 +67,7 @@ public class HomeFragment extends Fragment {
                 date = newDate;
                 homeViewModel.clearList();
                 boolean res = homeViewModel.updateDailyRecipes(date);
-                Toast.makeText(getContext(), homeViewModel.dbDailyRecipeItems.size() + " " + res, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), homeViewModel.dailyRecipeItems.size() + " " + res, Toast.LENGTH_SHORT).show();
 
                 //TODO Fix so that values and list is updated to selectedDate
 
@@ -134,43 +135,43 @@ public class HomeFragment extends Fragment {
 
     private void updateValues(){
         //if(binding.totalDailyCalories.getText().equals("0 kcal") && homeViewModel.recipeIdList(date).size() > 0) {
-            CountDownTimer c = new CountDownTimer(6000, 1500) {
-                @Override
-                public void onTick(long l) {
-                    setDailyTotalCalories();
-                    setDailyTotalCarbs();
-                    setDailyTotalFat();
-                    setDailyTotalProtein();
-                    setNumberOfMeals();
-                }
+        CountDownTimer c = new CountDownTimer(6000, 1500) {
+            @Override
+            public void onTick(long l) {
+                setDailyTotalCalories();
+                setDailyTotalCarbs();
+                setDailyTotalFat();
+                setDailyTotalProtein();
+                setNumberOfMeals();
+            }
 
-                @Override
-                public void onFinish() {
-                    setDailyTotalCalories();
-                    setDailyTotalCarbs();
-                    setDailyTotalFat();
-                    setDailyTotalProtein();
-                    setNumberOfMeals();
-                }
+            @Override
+            public void onFinish() {
+                setDailyTotalCalories();
+                setDailyTotalCarbs();
+                setDailyTotalFat();
+                setDailyTotalProtein();
+                setNumberOfMeals();
+            }
 
-            }.start();
+        }.start();
         //}
     }
 
 
     private void setDailyTotalProtein() {
-       String text = (int)homeViewModel.getDailyProtein() + " g";
-       binding.totalDailyProtein.setText(text);
+        String text = (int)homeViewModel.getDailyProtein() + " g";
+        binding.totalDailyProtein.setText(text);
     }
 
     private void setDailyTotalFat(){
-       String text = (int)homeViewModel.getDailyFat() + " g";
-       binding.totalDailyFat.setText(text);
+        String text = (int)homeViewModel.getDailyFat() + " g";
+        binding.totalDailyFat.setText(text);
     }
 
     private void setDailyTotalCarbs(){
-       String text = (int)homeViewModel.getDailyCarbs() + " g";
-       binding.totalDailyCarbs.setText(text);
+        String text = (int)homeViewModel.getDailyCarbs() + " g";
+        binding.totalDailyCarbs.setText(text);
     }
 
     private void setDailyTotalCalories(){
@@ -179,12 +180,12 @@ public class HomeFragment extends Fragment {
     }
 
     private void setNumberOfMeals(){
-       final int number = homeViewModel.recipeIdList(date).size();
+        final int number = homeViewModel.recipeIdList(date).size();
 
-       if (number == 1)
-           binding.numberOfDailyMeals.setText("(" + number + " meal)");
-       else
-           binding.numberOfDailyMeals.setText("(" + number + " meals)");
+        if (number == 1)
+            binding.numberOfDailyMeals.setText("(" + number + " meal)");
+        else
+            binding.numberOfDailyMeals.setText("(" + number + " meals)");
     }
 
     private void setRemarkingWhenNoMeals(){
