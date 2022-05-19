@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
     private Intent intent;
+    private Calendar selectedRecipeCalender = new GregorianCalendar();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -65,6 +66,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDateSelected(Calendar date, int position) {
                 homeViewModel.updateDailyRecipes(date);
+                selectedRecipeCalender = date;
             }
             @Override
             public void onCalendarScroll(HorizontalCalendarView calendarView, int dx, int dy) {
@@ -185,12 +187,17 @@ public class HomeFragment extends Fragment {
         String protein = "" + homeViewModel.dailyRecipeItems.get(i).getProtein();
 
 
+        String date = "" + selectedRecipeCalender.get(Calendar.YEAR) + "-" + (selectedRecipeCalender.get(Calendar.MONTH) + 1) +"-"
+                +selectedRecipeCalender.get(Calendar.DATE);
+
+
         intent.putExtra("calories",calories);
         intent.putExtra("name",name);
         intent.putExtra("image",image);
         intent.putExtra("fat",fat);
         intent.putExtra("carbs",carbs);
         intent.putExtra("protein",protein);
+        intent.putExtra("date",date);
 
     }
 
