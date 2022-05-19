@@ -1,40 +1,41 @@
 package com.example.cure.model.other;
 
+import com.example.cure.model.data.IRecipe;
 import com.example.cure.model.data.Recipe;
 
 import java.util.List;
 
 public class Arithmetic {
 
-    public double calculateTotalCalories(List<Recipe> recipes){
+    public double calculateTotalCalories(List<? extends IRecipe> recipes){
         double totalCalories = 0;
-        for (Recipe rec : recipes){
-            totalCalories += (rec.getCalories()/rec.getYield());
+        for (IRecipe rec : recipes){
+            totalCalories += rec.getCalories();
         }
         return totalCalories;
     }
 
-    public double calculateTotalFat(List<Recipe> recipes){
+    public double calculateTotalFat(List<? extends IRecipe> recipes){
         double totalFat = 0;
-        for (Recipe rec : recipes){
-            totalFat += (rec.getTotalNutrients().getFat().getQuantity()/rec.getYield());
+        for (IRecipe rec : recipes){
+            totalFat += rec.getFat();
         }
         return totalFat;
     }
 
-    public double calculateTotalCarbs(List<Recipe> recipes){
+    public double calculateTotalCarbs(List<? extends IRecipe> recipes){
         double totalCarbs = 0;
-        for (Recipe rec : recipes){
-            totalCarbs += (rec.getTotalNutrients().getCarbs().getQuantity()/rec.getYield());
+        for (IRecipe rec : recipes){
+            totalCarbs += rec.getCarbs();
         }
         return totalCarbs;
     }
 
 
-    public double calculateTotalProtein(List<Recipe> recipes){
+    public double calculateTotalProtein(List<? extends IRecipe> recipes){
         double totalProtein = 0;
-        for (Recipe rec : recipes){
-            totalProtein += (rec.getTotalNutrients().getProtein().getQuantity()/rec.getYield());
+        for (IRecipe rec : recipes){
+            totalProtein += rec.getProtein();
         }
         return totalProtein;
     }
