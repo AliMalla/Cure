@@ -95,7 +95,7 @@
         android:layout_marginStart="45dp"
         android:layout_marginBottom="5dp"
         android:text="Carbs"
-        android:textColor="#FFC107"
+        android:textColor="#FFCF87"
         android:textIsSelectable="false"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -138,9 +138,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:selectorColor="#3F51B5"
-        app:textColorNormal="#FFC107"
-        app:textColorSelected="#3F51B5" />
+        app:selectorColor="@color/black"
+        app:textColorNormal="#FFCF87"
+        app:textColorSelected="@color/black" />
 
     <TextView
         android:id="@+id/textView"
