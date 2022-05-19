@@ -36,7 +36,7 @@ public class EatenRecipeInformationActivity extends AppCompatActivity {
         binding.eatenRecipeInformationProtein.setText("Protein: "+ intent.getStringExtra("protein")+ " g");
         String image = intent.getStringExtra("image");
         Picasso.get().load(image).resize(175, 120).into(binding.eatenRecipeInformationImageView);
-        binding.eatenRecipeInformationDate.setText(intent.getStringExtra("date"));
+        binding.eatenRecipeInformationDate.setText("Date: "+ intent.getStringExtra("date"));
 
 
     }
