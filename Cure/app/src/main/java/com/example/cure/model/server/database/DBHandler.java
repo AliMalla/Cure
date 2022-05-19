@@ -83,4 +83,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return recipes;
     }
+
+    protected final void clearDatabase() {
+        String clearDBQuery = "DELETE FROM "+TABLE_PREVIOUS_RECIPES;
+        SQLiteDatabase db = getReadableDatabase();
+        db.execSQL(clearDBQuery);
+    }
 }

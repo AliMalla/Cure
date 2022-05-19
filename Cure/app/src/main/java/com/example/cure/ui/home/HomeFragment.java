@@ -3,12 +3,10 @@ package com.example.cure.ui.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -33,7 +31,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
     private Intent intent;
-    private Calendar date = new GregorianCalendar();
+    private Calendar selectedDate = new GregorianCalendar();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,11 +42,6 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        homeViewModel.init(getContext());
-        binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(date));
-
-        updateValues();
-
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
 
@@ -63,15 +56,8 @@ public class HomeFragment extends Fragment {
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar newDate, int position) {
-                date = newDate;
-                homeViewModel.clearList();
-                boolean res = homeViewModel.updateDailyRecipes(date);
-                Toast.makeText(getContext(), homeViewModel.dailyRecipeItems.size() + " " + res, Toast.LENGTH_SHORT).show();
-
-                //TODO Fix so that values and list is updated to selectedDate
-
-                binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(date));
-
+                selectedDate = newDate;
+                homeViewModel.updateDailyRecipes(selectedDate);
                 updateValues();
             }
             @Override
@@ -84,6 +70,17 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
+        homeViewModel.init(getContext());
+        binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(selectedDate));
+
+        setDailyTotalCalories();
+        setDailyTotalCarbs();
+        setDailyTotalFat();
+        setDailyTotalProtein();
+        setNumberOfMeals();
+        setRemarkingWhenNoMeals();
+
+
 
         FloatingActionButton fab = binding.floatingActionButton;
         fab.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +100,6 @@ public class HomeFragment extends Fragment {
                 transaction.commit();
             }
         });
-        setRemarkingWhenNoMeals();
 
 
         intent = new Intent(root.getContext(), EatenRecipeInformationActivity.class);
@@ -119,10 +115,8 @@ public class HomeFragment extends Fragment {
         });
 
 
-
         return root;
     }
-
 
 
     @Override
@@ -133,7 +127,8 @@ public class HomeFragment extends Fragment {
 
 
     private void updateValues(){
-        //if(binding.totalDailyCalories.getText().equals("0 kcal") && homeViewModel.recipeIdList(date).size() > 0) {
+        setNumberOfMeals();
+        setRemarkingWhenNoMeals();
         CountDownTimer c = new CountDownTimer(6000, 1500) {
             @Override
             public void onTick(long l) {
@@ -141,7 +136,6 @@ public class HomeFragment extends Fragment {
                 setDailyTotalCarbs();
                 setDailyTotalFat();
                 setDailyTotalProtein();
-                setNumberOfMeals();
             }
 
             @Override
@@ -150,27 +144,26 @@ public class HomeFragment extends Fragment {
                 setDailyTotalCarbs();
                 setDailyTotalFat();
                 setDailyTotalProtein();
-                setNumberOfMeals();
             }
 
         }.start();
-        //}
+
     }
 
 
     private void setDailyTotalProtein() {
-        String text = (int)homeViewModel.getDailyProtein() + " g";
-        binding.totalDailyProtein.setText(text);
+       String text = (int)homeViewModel.getDailyProtein() + " g";
+       binding.totalDailyProtein.setText(text);
     }
 
     private void setDailyTotalFat(){
-        String text = (int)homeViewModel.getDailyFat() + " g";
-        binding.totalDailyFat.setText(text);
+       String text = (int)homeViewModel.getDailyFat() + " g";
+       binding.totalDailyFat.setText(text);
     }
 
     private void setDailyTotalCarbs(){
-        String text = (int)homeViewModel.getDailyCarbs() + " g";
-        binding.totalDailyCarbs.setText(text);
+       String text = (int)homeViewModel.getDailyCarbs() + " g";
+       binding.totalDailyCarbs.setText(text);
     }
 
     private void setDailyTotalCalories(){
@@ -179,19 +172,19 @@ public class HomeFragment extends Fragment {
     }
 
     private void setNumberOfMeals(){
-        final int number = homeViewModel.recipeIdList(date).size();
+       final int number = homeViewModel.getEatenMealsNumber(selectedDate);
 
-        if (number == 1)
-            binding.numberOfDailyMeals.setText("(" + number + " meal)");
-        else
-            binding.numberOfDailyMeals.setText("(" + number + " meals)");
+       if (number == 1)
+           binding.numberOfDailyMeals.setText("(" + number + " meal)");
+       else
+           binding.numberOfDailyMeals.setText("(" + number + " meals)");
     }
 
     private void setRemarkingWhenNoMeals(){
-        if (homeViewModel.recipeIdList(date).size() != 0)
+        if (homeViewModel.getEatenMealsNumber(selectedDate) != 0)
             binding.noRecipesYetRemarking.setText("");
 
-        if (homeViewModel.recipeIdList(date).size() == 0)
+        else
             binding.noRecipesYetRemarking.setText("No meals have been added yet");
     }
 
@@ -204,14 +197,14 @@ public class HomeFragment extends Fragment {
         String carbs = "" + homeViewModel.dailyRecipeItems.get(i).getCarbs();
         String protein = "" + homeViewModel.dailyRecipeItems.get(i).getProtein();
         String id = homeViewModel.dailyRecipeItems.get(i).getId();
-        int year = date.get(Calendar.YEAR);
-        int month = date.get(Calendar.MONTH);
-        int day = date.get(Calendar.DATE);
+        int year = selectedDate.get(Calendar.YEAR);
+        int month = selectedDate.get(Calendar.MONTH);
+        int day = selectedDate.get(Calendar.DATE);
 
 
 
-        String selectedRecipeDate = "" + date.get(Calendar.YEAR) + "-" + (date.get(Calendar.MONTH) + 1) +"-"
-                +date.get(Calendar.DATE);
+        String selectedRecipeDate = "" + selectedDate.get(Calendar.YEAR) + "-" + (selectedDate.get(Calendar.MONTH) + 1) +"-"
+                + selectedDate.get(Calendar.DATE);
 
 
         intent.putExtra("calories",calories);
