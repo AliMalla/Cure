@@ -31,7 +31,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
     private Intent intent;
-    private Calendar selectedDate = new GregorianCalendar();
+    private Calendar date = new GregorianCalendar();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -55,8 +55,8 @@ public class HomeFragment extends Fragment {
                 .build();
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
-            public void onDateSelected(Calendar date, int position) {
-                selectedDate = date;
+            public void onDateSelected(Calendar newDate, int position) {
+                date = newDate;
                 homeViewModel.updateDailyRecipes(date);
                 updateValues();
             }
@@ -181,7 +181,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setRemarkingWhenNoMeals(){
-        if (homeViewModel.getEatenMealsNumber(selectedDate) != 0)
+        if (homeViewModel.getEatenMealsNumber(date) != 0)
             binding.noRecipesYetRemarking.setText("");
 
         else
@@ -195,6 +195,16 @@ public class HomeFragment extends Fragment {
         String image = "" + homeViewModel.dailyRecipeItems.get(i).getImage();
         String fat = "" + homeViewModel.dailyRecipeItems.get(i).getFat();
         String carbs = "" + homeViewModel.dailyRecipeItems.get(i).getCarbs();
+        String protein = "" + homeViewModel.dailyRecipeItems.get(i).getProtein();
+        String id = homeViewModel.dailyRecipeItems.get(i).getId();
+        int year = date.get(Calendar.YEAR);
+        int month = date.get(Calendar.MONTH);
+        int day = date.get(Calendar.DATE);
+
+
+
+        String selectedRecipeDate = "" + date.get(Calendar.YEAR) + "-" + (date.get(Calendar.MONTH) + 1) +"-"
+                +date.get(Calendar.DATE);
 
 
         intent.putExtra("calories",calories);
@@ -202,9 +212,14 @@ public class HomeFragment extends Fragment {
         intent.putExtra("image",image);
         intent.putExtra("fat",fat);
         intent.putExtra("carbs",carbs);
+        intent.putExtra("protein",protein);
+        intent.putExtra("date",selectedRecipeDate);
+        intent.putExtra("id",id);
+        intent.putExtra("year", year);
+        intent.putExtra("month", month);
+        intent.putExtra("day", day);
+
 
     }
-
-
 
 }
