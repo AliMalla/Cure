@@ -1,32 +1,32 @@
 package com.example.cure.ui.home;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
 import com.example.cure.model.data.Recipe;
 import com.example.cure.model.data.Root;
 import com.example.cure.model.data.SpecificRecipeRoot;
+
 import com.example.cure.model.other.Arithmetic;
-import com.example.cure.model.other.DataConverter;
+
 import com.example.cure.model.server.api.APIConnection;
 import com.example.cure.model.server.api.OnResponseListener;
 import com.example.cure.model.server.database.Repository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 
 public class HomeViewModel extends ViewModel {
     private Repository rep;
     private Arithmetic arithmetic;
     public List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
+    private List<DailyRecipeItem> tempRecipeItems = new ArrayList<>();
     private List<String> storedIds = new ArrayList<>();
-    private List<Recipe> recipes = new ArrayList<>();
     private DailyRecipeAdapter adapter;
+    private static Calendar currentDate = new GregorianCalendar();
 
 
     public void init(Context context){
@@ -36,66 +36,24 @@ public class HomeViewModel extends ViewModel {
     }
 
 
-    public void addMeal(Date i) {
-        Log.e("Datum", i.toString());
-    }
-
     public void deleteItem(String id, Calendar date) {
         rep.deleteRecipe(id, date);
     }
 
     public double getDailyCalories() {
-        return arithmetic.calculateTotalCalories(recipes);
+        return arithmetic.calculateTotalCalories(dailyRecipeItems);
     }
 
     public double getDailyProtein() {
-        return arithmetic.calculateTotalProtein(recipes);
+        return arithmetic.calculateTotalProtein(dailyRecipeItems);
     }
 
     public double getDailyCarbs() {
-        return arithmetic.calculateTotalCarbs(recipes);
+        return arithmetic.calculateTotalCarbs(dailyRecipeItems);
     }
 
     public double getDailyFat() {
-        return arithmetic.calculateTotalFat(recipes);
-    }
-
-
-    protected List<String> recipeIdList(Calendar date) {
-        List<String> ids = rep.getRecipes(date);
-        return ids;
-    }
-
-    private void fetchDailyRecipes(Calendar date) {
-        List<String> recipeIdList = recipeIdList(date);
-        int i = 0;
-        for (String id : recipeIdList) {
-            if (!itemAlreadyAdded(id, date)) {
-                APIConnection.getRecipeById(id, i, new OnResponseListener() {
-                    @Override
-                    public void recipeByIdFetched(SpecificRecipeRoot sr) {
-                        if (dailyRecipeItems.size() != recipeIdList.size()) {
-                            Recipe recipe = sr.getRecipe();
-                            String[] dishTypes = recipe.getDishType();
-                            dailyRecipeItems.add(new DailyRecipeItem(id, recipe.getLabel(),
-                                    recipe.getImage(), (int) (recipe.getCalories() / recipe.getYield()), dishTypes[0].toUpperCase(Locale.ROOT), (int)(recipe.getTotalNutrients().getFat().getQuantity()/recipe.getYield()),
-                                    (int)(recipe.getTotalNutrients().getCarbs().getQuantity()/recipe.getYield())));
-                            recipes.add(recipe);
-                            adapter.notifyDataSetChanged();
-
-                            storeItem(id, date);
-                        }
-                    }
-
-                    @Override
-                    public void recipesByQueryFetched(Root r) {
-
-                    }
-                }); i++;
-            }
-
-        }
-
+        return arithmetic.calculateTotalFat(dailyRecipeItems);
     }
 
 
@@ -108,34 +66,112 @@ public class HomeViewModel extends ViewModel {
         return adapter;
     }
 
-    /**
-     * Checking if an item is already existing in order to avoid repeated items on the same date
-     */
-    private boolean itemAlreadyAdded(String id, Calendar date) {
+    public int getEatenMealsNumber(Calendar date) {
+        return rep.getRecipes(date).size();
+    }
 
-        for (String storedId : storedIds) {
-
-            String dateStr = storedId.substring(0, 8);
-            String idStr = storedId.substring(9);
-
-            if(id.contains(idStr) && DataConverter.dateToString(date).contains(dateStr))
-                return true;
-        }
-
-        return false;
+    private List<String> getRecipeIds(Calendar date) {
+        List<String> ids = rep.getRecipes(date);
+        return ids;
     }
 
     /**
-     * Storing an item's id and date in storedIds
+     * Fetching and bringing data from either the temp list or API
      */
-    private void storeItem(String id, Calendar date) {
-        StringBuilder result = new StringBuilder();
-        String dateStr = DataConverter.dateToString(date);
+    private void fetchDailyRecipes(Calendar date) {
+        if (currentDate.get(Calendar.DATE) != date.get(Calendar.DATE) ||
+                currentDate.get(Calendar.MONTH) != date.get(Calendar.MONTH) ||
+                currentDate.get(Calendar.YEAR) != date.get(Calendar.YEAR)) { //Checking if input parameter is not the same as current date
 
-        result.append(dateStr);
-        result.append("-");
-        result.append(id);
+            currentDate = date; // update current date
+            dailyRecipeItems.clear(); // clear list from items that were eaten on the old date
+            adapter.notifyDataSetChanged(); //update adapter's list content
+            storedIds.clear();
+        }
+        List<String> recipeIdList = getRecipeIds(currentDate);
+        int switcher = 0; //API switcher
+        for (String id : recipeIdList) {
+            if (!storedIds.contains(id)){
 
-        storedIds.add(result.toString());
+                if (getIndexFromTempList(id) != -1) {
+
+                    int index = getIndexFromTempList(id);
+                    dailyRecipeItems.add(tempRecipeItems.get(index)); //Adding the item to the main list that is connected to the adapter
+                    adapter.notifyDataSetChanged(); //updating adapter
+
+                }
+                else {
+                    fetchFromAPI(id, switcher, recipeIdList);
+                    switcher++;
+                }
+
+                storedIds.add(id); //store the newly added item's id into the list in order to avoid re-adding the item
+
+            }
+        }
+    }
+
+
+    /**
+     *  Helper method for fetching data from API if the data does not already exist in the helper list (tempRecipeItems)
+     */
+    private void fetchFromAPI(String id, int switcher, List<String> recipeIdList){
+        APIConnection.getRecipeById(id, switcher, new OnResponseListener() {
+            @Override
+            public void recipeByIdFetched(SpecificRecipeRoot sr) {
+                if (dailyRecipeItems.size() != recipeIdList.size()) {
+                    Recipe recipe = sr.getRecipe();
+                    String[] dishTypes = recipe.getDishType();
+
+                    final String name = recipe.getLabel();
+                    final String image = recipe.getImage();
+                    final String type = dishTypes[0];
+                    final int calories = recipe.getCalories();
+                    final int protein = recipe.getProtein();
+                    final int fat = recipe.getFat();
+                    final int carbs = recipe.getCarbs();
+                    final int yield = recipe.getYield();
+
+                    DailyRecipeItem item = new DailyRecipeItem(id, name, image, type, calories/yield, protein/yield, fat/yield, carbs/yield, yield);
+
+                    dailyRecipeItems.add(item); //Adding the item to the main list that is connected to the adapter
+                    adapter.notifyDataSetChanged(); //updating adapter
+                    storeItemIntoTempList(item);//tempRecipeItems.add(item); //Storing the item to the helper list (so we can reuse it) to avoid unnecessary requests from API
+
+                }
+            }
+
+            @Override
+            public void recipesByQueryFetched(Root r) {
+
+            }
+        });
+    }
+
+    private int getIndexFromTempList(String id) {
+
+        for (int i = 0; i < tempRecipeItems.size(); i++) {
+
+            if (tempRecipeItems.get(i).getId().equals(id))
+                return i;
+        }
+
+        return -1;
+    }
+
+    private void storeItemIntoTempList(DailyRecipeItem item) {
+        if (isNewItem(item))
+            tempRecipeItems.add(item);
+    }
+
+    private boolean isNewItem(DailyRecipeItem item) {
+
+        for (DailyRecipeItem itm : tempRecipeItems) {
+
+            if(itm.getId().equals(item.getId()))
+                return false;
+        }
+
+        return true;
     }
 }
