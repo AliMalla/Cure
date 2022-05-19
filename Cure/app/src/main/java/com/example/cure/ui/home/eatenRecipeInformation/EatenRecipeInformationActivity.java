@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -41,6 +42,7 @@ public class EatenRecipeInformationActivity extends AppCompatActivity {
             }
         });
 
+        binding.eatenRecipeInformationName.setText(intent.getStringExtra("name"));
         binding.eatenRecipeInformationCalories.setText("Calories: "+ intent.getStringExtra("calories")+ " kcal");
         binding.eatenRecipeInformationFat.setText("Fat: "+ intent.getStringExtra("fat")+ " g");
         binding.eatenRecipeInformationCarbs.setText("Carbs: "+ intent.getStringExtra("carbs")+ " g");
@@ -57,6 +59,8 @@ public class EatenRecipeInformationActivity extends AppCompatActivity {
                 int month = intent.getIntExtra("month",0);
                 int day = intent.getIntExtra("day",0);
                 homeViewModel.deleteItem(id,new GregorianCalendar(year,month,day));
+                Toast.makeText(binding.getRoot().getContext(),"THE RECIPE HAS BEEN DELETED",Toast.LENGTH_LONG).show();
+                finish();
             }
         });
 
