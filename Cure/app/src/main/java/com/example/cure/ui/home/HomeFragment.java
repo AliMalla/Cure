@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -43,11 +44,7 @@ public class HomeFragment extends Fragment {
         homeViewModel.init(getContext());
         binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(date));
 
-        setDailyTotalCalories();
-        setDailyTotalCarbs();
-        setDailyTotalFat();
-        setDailyTotalProtein();
-        setNumberOfMeals();
+        updateValues();
 
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
@@ -65,11 +62,14 @@ public class HomeFragment extends Fragment {
             public void onDateSelected(Calendar newDate, int position) {
                 date = newDate;
                 homeViewModel.clearList();
+                boolean res = homeViewModel.updateDailyRecipes(date);
+                Toast.makeText(getContext(), homeViewModel.dbDailyRecipeItems.size() + " " + res, Toast.LENGTH_SHORT).show();
 
                 //TODO Fix so that values and list is updated to selectedDate
 
-                //binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(date));
-                //updateValues();
+                binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(date));
+
+                updateValues();
             }
             @Override
             public void onCalendarScroll(HorizontalCalendarView calendarView, int dx, int dy) {
@@ -122,6 +122,7 @@ public class HomeFragment extends Fragment {
                     setDailyTotalCarbs();
                     setDailyTotalFat();
                     setDailyTotalProtein();
+                    setNumberOfMeals();
                 }
 
                 @Override
@@ -130,6 +131,7 @@ public class HomeFragment extends Fragment {
                     setDailyTotalCarbs();
                     setDailyTotalFat();
                     setDailyTotalProtein();
+                    setNumberOfMeals();
                 }
 
             }.start();

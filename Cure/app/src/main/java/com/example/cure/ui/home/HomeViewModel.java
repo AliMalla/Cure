@@ -1,6 +1,8 @@
 package com.example.cure.ui.home;
 
 import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
@@ -38,22 +40,13 @@ public class HomeViewModel extends ViewModel {
         rep.deleteRecipe(id, date);
     }
 
-    public double getDailyCalories() {
-        return arithmetic.calculateTotalCalories(recipes);
-    }
+    public double getDailyCalories() { return arithmetic.calculateDailyTotalCalories(dailyRecipeItems); }
 
-    public double getDailyProtein() {
-        return arithmetic.calculateTotalProtein(recipes);
-    }
+    public double getDailyProtein() { return arithmetic.calculateDailyTotalProtein(dailyRecipeItems); }
 
-    public double getDailyCarbs() {
-        return arithmetic.calculateTotalCarbs(recipes);
-    }
+    public double getDailyCarbs() { return arithmetic.calculateDailyTotalCarbs(dailyRecipeItems); }
 
-    public double getDailyFat() {
-        return arithmetic.calculateTotalFat(recipes);
-    }
-
+    public double getDailyFat() { return arithmetic.calculateDailyTotalFat(dailyRecipeItems); }
 
     protected List<String> recipeIdList(Calendar date) {
         List<String> ids = rep.getRecipes(date);
@@ -64,7 +57,7 @@ public class HomeViewModel extends ViewModel {
         dailyRecipeItems.clear();
     }
 
-    private void fetchDailyRecipes(Calendar date) {
+    private boolean fetchDailyRecipes(Calendar date) {
         List<String> recipeIdList = recipeIdList(date);
         for (String id : recipeIdList) {
             if (!itemAlreadyAdded(id, date)) {
@@ -74,12 +67,20 @@ public class HomeViewModel extends ViewModel {
                         if (dailyRecipeItems.size() != recipeIdList.size()) {
                             Recipe recipe = sr.getRecipe();
                             String[] dishTypes = recipe.getDishType();
-                            dailyRecipeItems.add(new DailyRecipeItem(id, recipe.getLabel(),
-                                    recipe.getImage(), (int) (recipe.getCalories() / recipe.getYield()), dishTypes[0].toUpperCase(Locale.ROOT)));
+                            DailyRecipeItem dRI = new DailyRecipeItem(id,
+                                    recipe.getLabel(),
+                                    recipe.getImage(),
+                                    (int) (recipe.getCalories() / recipe.getYield()),
+                                    (int) (recipe.getTotalNutrients().getCarbs().getQuantity() / recipe.getYield()),
+                                    (int) (recipe.getTotalNutrients().getFat().getQuantity() / recipe.getYield()),
+                                    (int) (recipe.getTotalNutrients().getProtein().getQuantity() / recipe.getYield()),
+                                    dishTypes[0].toUpperCase(Locale.ROOT));
+                            dailyRecipeItems.add(dRI);
                             recipes.add(recipe);
                             adapter.notifyDataSetChanged();
 
                             storeItem(id, date);
+                            storeDailyRecipe(dRI);
                         }
                     }
 
@@ -89,14 +90,15 @@ public class HomeViewModel extends ViewModel {
                     }
                 });
             }
-
+            else return false;
+            //TODO Add code so that previously seen dailyRecipes are added to a list for accessing later
         }
-
+        return true;
     }
 
 
-    public void updateDailyRecipes(Calendar date) {
-        fetchDailyRecipes(date);
+    public boolean updateDailyRecipes(Calendar date) {
+        return fetchDailyRecipes(date);
     }
 
     public DailyRecipeAdapter getAdapter(Calendar date) {
