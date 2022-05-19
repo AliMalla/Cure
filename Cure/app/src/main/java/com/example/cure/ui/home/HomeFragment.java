@@ -32,13 +32,12 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
-    private Calendar date;
     private Intent intent;
+    private Calendar date = new GregorianCalendar();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        date = new GregorianCalendar();
 
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
@@ -203,6 +202,16 @@ public class HomeFragment extends Fragment {
         String image = "" + homeViewModel.dailyRecipeItems.get(i).getImage();
         String fat = "" + homeViewModel.dailyRecipeItems.get(i).getFat();
         String carbs = "" + homeViewModel.dailyRecipeItems.get(i).getCarbs();
+        String protein = "" + homeViewModel.dailyRecipeItems.get(i).getProtein();
+        String id = homeViewModel.dailyRecipeItems.get(i).getId();
+        int year = date.get(Calendar.YEAR);
+        int month = date.get(Calendar.MONTH);
+        int day = date.get(Calendar.DATE);
+
+
+
+        String selectedRecipeDate = "" + date.get(Calendar.YEAR) + "-" + (date.get(Calendar.MONTH) + 1) +"-"
+                +date.get(Calendar.DATE);
 
 
         intent.putExtra("calories",calories);
@@ -210,6 +219,13 @@ public class HomeFragment extends Fragment {
         intent.putExtra("image",image);
         intent.putExtra("fat",fat);
         intent.putExtra("carbs",carbs);
+        intent.putExtra("protein",protein);
+        intent.putExtra("date",selectedRecipeDate);
+        intent.putExtra("id",id);
+        intent.putExtra("year", year);
+        intent.putExtra("month", month);
+        intent.putExtra("day", day);
+
 
     }
 

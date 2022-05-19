@@ -6,10 +6,10 @@ public class DailyRecipeItem {
     private final String name;
     private final String image;
     private final int calories;
-    private final int carbs;
-    private final int fat;
-    private final int protein;
     private String type;
+    private final int fat;
+    private final int carbs;
+    private final int protein;
 
     public DailyRecipeItem(String id,
                            String name,
@@ -23,10 +23,10 @@ public class DailyRecipeItem {
         this.name = name;
         this.image = image;
         this.calories = calories;
-        this.carbs = carbs;
-        this.fat = fat;
-        this.protein = protein;
         this.type = type;
+        this.fat = fat;
+        this.carbs = carbs;
+        this.protein = protein;
     }
 
 
@@ -50,15 +50,15 @@ public class DailyRecipeItem {
         return type;
     }
 
+    public int getFat() {
+        return fat;
+    }
+
     public int getCarbs() {
         return carbs;
     }
 
     public int getProtein() {
         return protein;
-    }
-
-    public int getFat() {
-        return fat;
     }
 }
