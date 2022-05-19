@@ -2,7 +2,6 @@ package com.example.cure.ui.home;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
@@ -17,14 +16,14 @@ import com.example.cure.model.server.database.Repository;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class HomeViewModel extends ViewModel {
     private Repository rep;
     private Arithmetic arithmetic;
-    private List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
+    public List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();
     private List<String> storedIds = new ArrayList<>();
     private List<Recipe> recipes = new ArrayList<>();
     private DailyRecipeAdapter adapter;
@@ -55,13 +54,18 @@ public class HomeViewModel extends ViewModel {
 
     void clearList() {
         dailyRecipeItems.clear();
+
+    protected List<String> recipeIdList(Calendar date) {
+        List<String> ids = rep.getRecipes(date);
+        return ids;
     }
 
     private boolean fetchDailyRecipes(Calendar date) {
         List<String> recipeIdList = recipeIdList(date);
+        int i = 0;
         for (String id : recipeIdList) {
             if (!itemAlreadyAdded(id, date)) {
-                APIConnection.getRecipeById(id, new OnResponseListener() {
+                APIConnection.getRecipeById(id, i, new OnResponseListener() {
                     @Override
                     public void recipeByIdFetched(SpecificRecipeRoot sr) {
                         if (dailyRecipeItems.size() != recipeIdList.size()) {
@@ -76,11 +80,11 @@ public class HomeViewModel extends ViewModel {
                                     (int) (recipe.getTotalNutrients().getProtein().getQuantity() / recipe.getYield()),
                                     dishTypes[0].toUpperCase(Locale.ROOT));
                             dailyRecipeItems.add(dRI);
+                            dailyRecipeItems.add(new DailyRecipeItem(id, recipe.getLabel(),
                             recipes.add(recipe);
                             adapter.notifyDataSetChanged();
 
                             storeItem(id, date);
-                            storeDailyRecipe(dRI);
                         }
                     }
 
@@ -88,7 +92,7 @@ public class HomeViewModel extends ViewModel {
                     public void recipesByQueryFetched(Root r) {
 
                     }
-                });
+                }); i++;
             }
             else return false;
             //TODO Add code so that previously seen dailyRecipes are added to a list for accessing later
