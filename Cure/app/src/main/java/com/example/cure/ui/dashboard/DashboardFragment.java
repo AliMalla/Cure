@@ -56,7 +56,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 dashboardViewModel.updateItemsBySearch(s);
-                binding.searchView.onActionViewExpanded();
+                binding.searchView.clearFocus();
                return true;
             }
 
