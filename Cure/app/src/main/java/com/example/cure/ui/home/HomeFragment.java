@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.R;
 import com.example.cure.databinding.FragmentHomeBinding;
-import com.example.cure.ui.dashboard.DashboardFragment;
+import com.example.cure.ui.recipesearch.RecipeSearchFragment;
 import com.example.cure.ui.home.eatenRecipeInformation.EatenRecipeInformationActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Create new fragment and transaction
-                DashboardFragment newFragment = new DashboardFragment();
+                RecipeSearchFragment newFragment = new RecipeSearchFragment();
                 newFragment.getModel().setDate(horizontalCalendar.getSelectedDate().getTime());
                 // consider using Java coding conventions (upper first char class names!!!)
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
