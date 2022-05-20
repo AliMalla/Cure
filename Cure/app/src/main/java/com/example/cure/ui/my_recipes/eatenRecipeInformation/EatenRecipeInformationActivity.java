@@ -1,4 +1,4 @@
-package com.example.cure.ui.home.eatenRecipeInformation;
+package com.example.cure.ui.my_recipes.eatenRecipeInformation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.databinding.EatenRecipeInformationBinding;
-import com.example.cure.ui.home.HomeViewModel;
+import com.example.cure.ui.my_recipes.MyRecipesViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
@@ -18,19 +18,19 @@ import java.util.GregorianCalendar;
 public class EatenRecipeInformationActivity extends AppCompatActivity {
 
     private EatenRecipeInformationBinding binding;
-    private HomeViewModel homeViewModel;
+    private MyRecipesViewModel myRecipesViewModel;
     private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        myRecipesViewModel =
+                new ViewModelProvider(this).get(MyRecipesViewModel.class);
 
         binding = EatenRecipeInformationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        homeViewModel.init(binding.getRoot().getContext());
+        myRecipesViewModel.init(binding.getRoot().getContext());
 
         intent = getIntent();
 
@@ -58,7 +58,7 @@ public class EatenRecipeInformationActivity extends AppCompatActivity {
                 int month = intent.getIntExtra("month",0);
                 int day = intent.getIntExtra("day",0);
                 Calendar date = new GregorianCalendar(year, month, day);
-                homeViewModel.deleteItem(id, date);
+                myRecipesViewModel.deleteItem(id, date);
                 Toast.makeText(binding.getRoot().getContext(),"THE RECIPE HAS BEEN DELETED",Toast.LENGTH_LONG).show();
                 finish();
             }
