@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -124,17 +125,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-
-                sendSelectedEatenRecipeInfoToActivity(i);
-                startActivity(intent);
-
-
-
                 homeViewModel.getAdapter(selectedDate).notifyDataSetChanged();
                 String id = homeViewModel.dailyRecipeItems.get(i).getId();
 
                 homeViewModel.deleteItem(id, selectedDate);
                 updateValues();
+                Toast.makeText(getContext(),"The meal has been deleted", Toast.LENGTH_SHORT).show();
             }
         });
 
