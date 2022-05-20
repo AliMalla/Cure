@@ -21,7 +21,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".ui.home.eatenRecipeInformation.EatenRecipeInformationActivity"
+            android:name=".ui.my_recipes.eatenRecipeInformation.EatenRecipeInformationActivity"
             android:exported="true" />
 
 

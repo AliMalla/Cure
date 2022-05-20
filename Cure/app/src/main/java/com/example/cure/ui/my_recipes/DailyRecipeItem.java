@@ -1,4 +1,4 @@
-package com.example.cure.ui.home;
+package com.example.cure.ui.my_recipes;
 
 import com.example.cure.model.data.IRecipe;
 
