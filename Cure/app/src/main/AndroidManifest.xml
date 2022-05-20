@@ -17,11 +17,11 @@
 
 
         <activity
-            android:name=".ui.dashboard.recipeInformation.RecipeInformationActivity"
+            android:name=".ui.recipesearch.recipeInformation.RecipeInformationActivity"
             android:exported="true" />
 
         <activity
-            android:name=".ui.home.eatenRecipeInformation.EatenRecipeInformationActivity"
+            android:name=".ui.my_recipes.eatenRecipeInformation.EatenRecipeInformationActivity"
             android:exported="true" />
 
 

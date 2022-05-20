@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Cure</string>
-    <string name="title_home">My recipes</string>
-    <string name="title_dashboard">Recipe search</string>
+    <string name="title_my_recipes">My recipes</string>
+    <string name="title_recipe_search">Recipe search</string>
     <string name="recipecalc">RecipeCalc</string>
 
     <string-array name="sorting">

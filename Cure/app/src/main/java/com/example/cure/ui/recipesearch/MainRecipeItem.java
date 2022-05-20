@@ -1,4 +1,4 @@
-package com.example.cure.ui.dashboard;
+package com.example.cure.ui.recipesearch;
 
 public class MainRecipeItem {
 

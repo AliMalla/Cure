@@ -1,4 +1,4 @@
-package com.example.cure.ui.home;
+package com.example.cure.ui.my_recipes;
 
 import android.content.Context;
 
@@ -19,7 +19,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class HomeViewModel extends ViewModel {
+public class MyRecipesViewModel extends ViewModel {
     private Repository rep;
     private Arithmetic arithmetic;
     public List<DailyRecipeItem> dailyRecipeItems = new ArrayList<>();

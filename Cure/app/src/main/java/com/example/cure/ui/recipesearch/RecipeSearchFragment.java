@@ -1,4 +1,4 @@
-package com.example.cure.ui.dashboard;
+package com.example.cure.ui.recipesearch;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -17,35 +16,32 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.R;
-import com.example.cure.databinding.FragmentDashboardBinding;
-import com.example.cure.model.data.Ingredient;
-import com.example.cure.model.data.Recipe;
-import com.example.cure.ui.dashboard.recipeInformation.RecipeInformationActivity;
+import com.example.cure.databinding.FragmentRecipeSearchBinding;
+import com.example.cure.ui.recipesearch.recipeInformation.RecipeInformationActivity;
 
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
-public class DashboardFragment extends Fragment {
+public class RecipeSearchFragment extends Fragment {
 
-    private static DashboardViewModel dashboardViewModel;
-    private FragmentDashboardBinding binding;
+    private static RecipeSearchViewModel recipeSearchViewModel;
+    private FragmentRecipeSearchBinding binding;
     private MainRecipeAdapter mra;
     private Intent intent;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        recipeSearchViewModel =
+                new ViewModelProvider(this).get(RecipeSearchViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentRecipeSearchBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         mra = new MainRecipeAdapter(new ArrayList<>(), root.getContext());
-        dashboardViewModel.updateItems();
+        recipeSearchViewModel.updateItems();
         binding.mainRecipeListView.setAdapter(mra);
 
 
@@ -54,8 +50,8 @@ public class DashboardFragment extends Fragment {
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                dashboardViewModel.updateItemsBySearch(s);
-                binding.searchView.onActionViewExpanded();
+                recipeSearchViewModel.updateItemsBySearch(s);
+                binding.searchView.clearFocus();
                return true;
             }
 
@@ -67,17 +63,24 @@ public class DashboardFragment extends Fragment {
         /////////////////////////////
 
 
-        dashboardViewModel.getItems().observe(getViewLifecycleOwner(), new Observer<List<MainRecipeItem>>() {
+        recipeSearchViewModel.getItems().observe(getViewLifecycleOwner(), new Observer<List<MainRecipeItem>>() {
             @Override
             public void onChanged(List<MainRecipeItem> recipeItems) {
                 mra.clear();
                 mra.addAll(recipeItems);
+                if(recipeItems.isEmpty()){
+                    binding.noRecipesFound.setVisibility(View.VISIBLE);
+                }
+                else {
+                    binding.noRecipesFound.setVisibility(View.INVISIBLE);
+
+                }
             }
         });
 
 
         ///////// Sorting stuff
-        ArrayAdapter<CharSequence> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, dashboardViewModel.getSortTypes());
+        ArrayAdapter<CharSequence> arrayAdapter = new ArrayAdapter<>(getContext(), R.layout.support_simple_spinner_dropdown_item, recipeSearchViewModel.getSortTypes());
         arrayAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         binding.spSort.setAdapter(arrayAdapter);
 
@@ -86,7 +89,7 @@ public class DashboardFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 String sortType = adapterView.getItemAtPosition(i).toString();
-                dashboardViewModel.sortRecipesBySpecificType(sortType,getContext());
+                recipeSearchViewModel.sortRecipesBySpecificType(sortType,getContext());
                 adapterView.setSelection(0);
             }
 
@@ -104,14 +107,27 @@ public class DashboardFragment extends Fragment {
         binding.mainRecipeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(intent.putExtras(dashboardViewModel.populateIntentDetails(i)));
+                startActivity(intent.putExtras(recipeSearchViewModel.populateIntentDetails(i)));
             }
         });
+
+
+        recipeSearchViewModel.getEmptySearchRecipeText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                binding.noRecipesFound.setText(s);
+            }
+        });
+
+
 
         return root;
     }
 
-    public DashboardViewModel getModel(){
-        return dashboardViewModel;
+    public RecipeSearchViewModel getModel(){
+        return recipeSearchViewModel;
     }
+
+
+
 }

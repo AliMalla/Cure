@@ -1,4 +1,4 @@
-package com.example.cure.ui.dashboard;
+package com.example.cure.ui.recipesearch;
 
 import android.app.Activity;
 import android.content.Context;

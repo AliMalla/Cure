@@ -1,4 +1,4 @@
-package com.example.cure.ui.home;
+package com.example.cure.ui.my_recipes;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +14,9 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.cure.R;
-import com.example.cure.databinding.FragmentHomeBinding;
-import com.example.cure.ui.dashboard.DashboardFragment;
-import com.example.cure.ui.home.eatenRecipeInformation.EatenRecipeInformationActivity;
+import com.example.cure.databinding.FragmentMyRecipesBinding;
+import com.example.cure.ui.recipesearch.RecipeSearchFragment;
+import com.example.cure.ui.my_recipes.eatenRecipeInformation.EatenRecipeInformationActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
@@ -26,10 +26,10 @@ import devs.mulham.horizontalcalendar.HorizontalCalendar;
 import devs.mulham.horizontalcalendar.HorizontalCalendarView;
 import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
-public class HomeFragment extends Fragment {
+public class MyRecipesFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
-    private FragmentHomeBinding binding;
+    private MyRecipesViewModel myRecipesViewModel;
+    private FragmentMyRecipesBinding binding;
     private Intent intent;
     private Calendar selectedDate = new GregorianCalendar();
 
@@ -37,10 +37,10 @@ public class HomeFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        myRecipesViewModel =
+                new ViewModelProvider(this).get(MyRecipesViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentMyRecipesBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, -1);
@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onDateSelected(Calendar newDate, int position) {
                 selectedDate = newDate;
-                homeViewModel.updateDailyRecipes(selectedDate);
+                myRecipesViewModel.updateDailyRecipes(selectedDate);
                 updateValues();
             }
             @Override
@@ -70,8 +70,8 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
-        homeViewModel.init(getContext());
-        binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(selectedDate));
+        myRecipesViewModel.init(getContext());
+        binding.previousRecipesList.setAdapter(myRecipesViewModel.getAdapter(selectedDate));
 
         setDailyTotalCalories();
         setDailyTotalCarbs();
@@ -87,7 +87,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 // Create new fragment and transaction
-                DashboardFragment newFragment = new DashboardFragment();
+                RecipeSearchFragment newFragment = new RecipeSearchFragment();
                 newFragment.getModel().setDate(horizontalCalendar.getSelectedDate().getTime());
                 // consider using Java coding conventions (upper first char class names!!!)
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -152,27 +152,27 @@ public class HomeFragment extends Fragment {
 
 
     private void setDailyTotalProtein() {
-       String text = (int)homeViewModel.getDailyProtein() + " g";
+       String text = (int) myRecipesViewModel.getDailyProtein() + " g";
        binding.totalDailyProtein.setText(text);
     }
 
     private void setDailyTotalFat(){
-       String text = (int)homeViewModel.getDailyFat() + " g";
+       String text = (int) myRecipesViewModel.getDailyFat() + " g";
        binding.totalDailyFat.setText(text);
     }
 
     private void setDailyTotalCarbs(){
-       String text = (int)homeViewModel.getDailyCarbs() + " g";
+       String text = (int) myRecipesViewModel.getDailyCarbs() + " g";
        binding.totalDailyCarbs.setText(text);
     }
 
     private void setDailyTotalCalories(){
-        String text = ""+(int)homeViewModel.getDailyCalories();
+        String text = ""+(int) myRecipesViewModel.getDailyCalories();
         binding.totalDailyCalories.setText(text + " kcal");
     }
 
     private void setNumberOfMeals(){
-       final int number = homeViewModel.getEatenMealsNumber(selectedDate);
+       final int number = myRecipesViewModel.getEatenMealsNumber(selectedDate);
 
        if (number == 1)
            binding.numberOfDailyMeals.setText("(" + number + " meal)");
@@ -181,7 +181,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setRemarkingWhenNoMeals(){
-        if (homeViewModel.getEatenMealsNumber(selectedDate) != 0)
+        if (myRecipesViewModel.getEatenMealsNumber(selectedDate) != 0)
             binding.noRecipesYetRemarking.setText("");
 
         else
@@ -190,13 +190,13 @@ public class HomeFragment extends Fragment {
 
 
     private void sendSelectedEatenRecipeInfoToActivity(int i){
-        String calories = "" + homeViewModel.dailyRecipeItems.get(i).getCalories();
-        String name = "" + homeViewModel.dailyRecipeItems.get(i).getName();
-        String image = "" + homeViewModel.dailyRecipeItems.get(i).getImage();
-        String fat = "" + homeViewModel.dailyRecipeItems.get(i).getFat();
-        String carbs = "" + homeViewModel.dailyRecipeItems.get(i).getCarbs();
-        String protein = "" + homeViewModel.dailyRecipeItems.get(i).getProtein();
-        String id = homeViewModel.dailyRecipeItems.get(i).getId();
+        String calories = "" + myRecipesViewModel.dailyRecipeItems.get(i).getCalories();
+        String name = "" + myRecipesViewModel.dailyRecipeItems.get(i).getName();
+        String image = "" + myRecipesViewModel.dailyRecipeItems.get(i).getImage();
+        String fat = "" + myRecipesViewModel.dailyRecipeItems.get(i).getFat();
+        String carbs = "" + myRecipesViewModel.dailyRecipeItems.get(i).getCarbs();
+        String protein = "" + myRecipesViewModel.dailyRecipeItems.get(i).getProtein();
+        String id = myRecipesViewModel.dailyRecipeItems.get(i).getId();
         int year = selectedDate.get(Calendar.YEAR);
         int month = selectedDate.get(Calendar.MONTH);
         int day = selectedDate.get(Calendar.DATE);

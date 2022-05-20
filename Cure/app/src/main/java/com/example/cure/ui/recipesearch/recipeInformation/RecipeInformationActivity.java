@@ -1,4 +1,4 @@
-package com.example.cure.ui.dashboard.recipeInformation;
+package com.example.cure.ui.recipesearch.recipeInformation;
 
 import android.content.Intent;
 import android.os.Bundle;
