@@ -51,7 +51,7 @@ public class RecipeSearchFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 recipeSearchViewModel.updateItemsBySearch(s);
-                binding.searchView.onActionViewExpanded();
+                binding.searchView.clearFocus();
                return true;
             }
 
@@ -68,6 +68,13 @@ public class RecipeSearchFragment extends Fragment {
             public void onChanged(List<MainRecipeItem> recipeItems) {
                 mra.clear();
                 mra.addAll(recipeItems);
+                if(recipeItems.isEmpty()){
+                    binding.noRecipesFound.setVisibility(View.VISIBLE);
+                }
+                else {
+                    binding.noRecipesFound.setVisibility(View.INVISIBLE);
+
+                }
             }
         });
 
@@ -104,10 +111,23 @@ public class RecipeSearchFragment extends Fragment {
             }
         });
 
+
+        recipeSearchViewModel.getEmptySearchRecipeText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                binding.noRecipesFound.setText(s);
+            }
+        });
+
+
+
         return root;
     }
 
     public RecipeSearchViewModel getModel(){
         return recipeSearchViewModel;
     }
+
+
+
 }

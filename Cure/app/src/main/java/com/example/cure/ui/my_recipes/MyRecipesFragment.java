@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -32,7 +31,6 @@ public class MyRecipesFragment extends Fragment {
     private MyRecipesViewModel myRecipesViewModel;
     private FragmentMyRecipesBinding binding;
     private Intent intent;
-    private HorizontalCalendar horizontalCalendar;
     private Calendar selectedDate = new GregorianCalendar();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -51,12 +49,10 @@ public class MyRecipesFragment extends Fragment {
         /* ends after 1 month from now */
         Calendar endDate = Calendar.getInstance();
         endDate.add(Calendar.MONTH, 1);
-        horizontalCalendar = new HorizontalCalendar.Builder(root, binding.calendarView.getId())
+        HorizontalCalendar horizontalCalendar = new HorizontalCalendar.Builder(root, binding.calendarView.getId())
                 .range(startDate, endDate)
                 .datesNumberOnScreen(5)
                 .build();
-
-        horizontalCalendar.refresh();
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar newDate, int position) {
@@ -74,8 +70,6 @@ public class MyRecipesFragment extends Fragment {
                 return true;
             }
         });
-
-
         myRecipesViewModel.init(getContext());
         binding.previousRecipesList.setAdapter(myRecipesViewModel.getAdapter(selectedDate));
 
@@ -110,30 +104,15 @@ public class MyRecipesFragment extends Fragment {
 
         intent = new Intent(root.getContext(), EatenRecipeInformationActivity.class);
 
-
-        /*
-        binding.switch1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                binding.switch1.setText("Done");
-            }
-        });
-
-
-         */
         binding.previousRecipesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                myRecipesViewModel.getAdapter(selectedDate).notifyDataSetChanged();
-                String id = myRecipesViewModel.dailyRecipeItems.get(i).getId();
+                sendSelectedEatenRecipeInfoToActivity(i);
+                startActivity(intent);
 
-                myRecipesViewModel.deleteItem(id, selectedDate);
-                updateValues();
-                Toast.makeText(getContext(),"The meal has been deleted", Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
         return root;
