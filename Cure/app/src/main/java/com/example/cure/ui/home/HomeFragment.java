@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private FragmentHomeBinding binding;
     private Intent intent;
+    private HorizontalCalendar horizontalCalendar;
     private Calendar selectedDate = new GregorianCalendar();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -49,10 +50,12 @@ public class HomeFragment extends Fragment {
         /* ends after 1 month from now */
         Calendar endDate = Calendar.getInstance();
         endDate.add(Calendar.MONTH, 1);
-        HorizontalCalendar horizontalCalendar = new HorizontalCalendar.Builder(root, binding.calendarView.getId())
+        horizontalCalendar = new HorizontalCalendar.Builder(root, binding.calendarView.getId())
                 .range(startDate, endDate)
                 .datesNumberOnScreen(5)
                 .build();
+
+        horizontalCalendar.refresh();
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar newDate, int position) {
@@ -70,6 +73,8 @@ public class HomeFragment extends Fragment {
                 return true;
             }
         });
+
+
         homeViewModel.init(getContext());
         binding.previousRecipesList.setAdapter(homeViewModel.getAdapter(selectedDate));
 
@@ -104,15 +109,35 @@ public class HomeFragment extends Fragment {
 
         intent = new Intent(root.getContext(), EatenRecipeInformationActivity.class);
 
+
+        /*
+        binding.switch1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.switch1.setText("Done");
+            }
+        });
+
+
+         */
         binding.previousRecipesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+
                 sendSelectedEatenRecipeInfoToActivity(i);
                 startActivity(intent);
 
+
+
+                homeViewModel.getAdapter(selectedDate).notifyDataSetChanged();
+                String id = homeViewModel.dailyRecipeItems.get(i).getId();
+
+                homeViewModel.deleteItem(id, selectedDate);
+                updateValues();
             }
         });
+
 
 
         return root;

@@ -59,7 +59,7 @@ public class EatenRecipeInformationActivity extends AppCompatActivity {
                 int day = intent.getIntExtra("day",0);
                 Calendar date = new GregorianCalendar(year, month, day);
                 homeViewModel.deleteItem(id, date);
-                Toast.makeText(binding.getRoot().getContext(),"THE RECIPE HAS BEEN DELETED",Toast.LENGTH_LONG).show();
+                Toast.makeText(binding.getRoot().getContext(),"The meal has been deleted!",Toast.LENGTH_LONG).show();
                 finish();
             }
         });
