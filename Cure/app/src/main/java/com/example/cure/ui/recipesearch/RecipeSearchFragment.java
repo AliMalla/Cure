@@ -51,6 +51,7 @@ public class RecipeSearchFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 recipeSearchViewModel.updateItemsBySearch(s);
+                binding.searchView.onActionViewExpanded();
                 binding.searchView.clearFocus();
                return true;
             }
@@ -119,15 +120,10 @@ public class RecipeSearchFragment extends Fragment {
             }
         });
 
-
-
         return root;
     }
 
     public RecipeSearchViewModel getModel(){
         return recipeSearchViewModel;
     }
-
-
-
 }
