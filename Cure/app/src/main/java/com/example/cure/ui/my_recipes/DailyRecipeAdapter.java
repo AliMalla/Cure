@@ -61,4 +61,5 @@ public class DailyRecipeAdapter extends BaseAdapter {
 
         return v;
     }
+
 }
