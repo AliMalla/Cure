@@ -31,14 +31,18 @@ public class RecipeSearchViewModel extends ViewModel {
 
     private MutableLiveData<List<MainRecipeItem>> mainItems = new MutableLiveData<>();
 
+    private MutableLiveData<String> emptySearchRecipeText;
+
     private String recipeName;
     private String defaultRecipeName = "chicken";
 
 
     public RecipeSearchViewModel() {
         recipeName = defaultRecipeName;
-    }
+        emptySearchRecipeText = new MutableLiveData<>();
+        emptySearchRecipeText.setValue("No Recipes Have Been Found");
 
+    }
 
 
 
@@ -260,4 +264,8 @@ public class RecipeSearchViewModel extends ViewModel {
         return bundle;
     }
 
+
+    public LiveData<String> getEmptySearchRecipeText() {
+        return emptySearchRecipeText;
+    }
 }
