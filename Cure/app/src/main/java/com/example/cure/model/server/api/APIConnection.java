@@ -20,8 +20,10 @@ public class APIConnection {
     private final static String BASE_URL = "https://api.edamam.com";
     private final static String APP_ID_1 = "6e5c599d";
     private final static String APP_KEY_1 = "477ece3e0fcc099b139f8064cb2594b9";
-    private final static String APP_ID_2 = "124b0fd4";
-    private final static String APP_KEY_2 = "3b9f97bbd888e5a892f65166028e9842";
+    //private final static String APP_ID_2 = "124b0fd4";
+    //private final static String APP_KEY_2 = "3b9f97bbd888e5a892f65166028e9842";
+    private final static String APP_ID_2 = "dacacfeb";
+    private final static String APP_KEY_2 = "7e5dd972e4b3f51f1d92029b5895e4f4";
     private final static String APP_ID_3 = "89badfe2";
     private final static String APP_KEY_3 = "142b81372c145c2ce03795d647532cfd";
     private final static String TYPE = "public";
@@ -56,13 +58,14 @@ public class APIConnection {
 
         String ID = APP_ID_1;
         String KEY = APP_KEY_1;
-        if (i%2==0) {
+
+        if (i%3==1) {
             ID = APP_ID_2;
             KEY = APP_KEY_2;
         }
 
 
-        else if (i%2==1) {
+        if (i%3==2) {
             ID = APP_ID_3;
             KEY = APP_KEY_3;
         }
