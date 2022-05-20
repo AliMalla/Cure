@@ -1,4 +1,4 @@
-package com.example.cure.ui.home;
+package com.example.cure.ui.my_recipes;
 
 import android.app.Activity;
 import android.content.Context;

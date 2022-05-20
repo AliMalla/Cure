@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_dashboard">
+    app:startDestination="@+id/navigation_recipe_search">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.cure.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_my_recipes"
+        android:name="com.example.cure.ui.my_recipes.MyRecipesFragment"
+        android:label="@string/title_my_recipes"
+        tools:layout="@layout/fragment_my_recipes" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.cure.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_recipe_search"
+        android:name="com.example.cure.ui.recipesearch.RecipeSearchFragment"
+        android:label="@string/title_recipe_search"
+        tools:layout="@layout/fragment_recipe_search" />
 
 
 </navigation>

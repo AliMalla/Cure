@@ -1,4 +1,4 @@
-package com.example.cure.ui.dashboard;
+package com.example.cure.ui.recipesearch;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -23,7 +23,7 @@ import java.util.List;
 
 import com.example.cure.model.other.Sorting;
 
-public class DashboardViewModel extends ViewModel {
+public class RecipeSearchViewModel extends ViewModel {
 
     private Sorting sorting = new Sorting();
 
@@ -35,7 +35,7 @@ public class DashboardViewModel extends ViewModel {
     private String defaultRecipeName = "chicken";
 
 
-    public DashboardViewModel() {
+    public RecipeSearchViewModel() {
         recipeName = defaultRecipeName;
     }
 
