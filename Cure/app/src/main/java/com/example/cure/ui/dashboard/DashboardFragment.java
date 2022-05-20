@@ -1,6 +1,7 @@
 package com.example.cure.ui.dashboard;
 
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,6 +73,13 @@ public class DashboardFragment extends Fragment {
             public void onChanged(List<MainRecipeItem> recipeItems) {
                 mra.clear();
                 mra.addAll(recipeItems);
+                if(recipeItems.isEmpty()){
+                    binding.noRecipesFound.setVisibility(View.VISIBLE);
+                }
+                else {
+                    binding.noRecipesFound.setVisibility(View.INVISIBLE);
+
+                }
             }
         });
 
@@ -108,10 +116,23 @@ public class DashboardFragment extends Fragment {
             }
         });
 
+
+        dashboardViewModel.getEmptySearchRecipeText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                binding.noRecipesFound.setText(s);
+            }
+        });
+
+
+
         return root;
     }
 
     public DashboardViewModel getModel(){
         return dashboardViewModel;
     }
+
+
+
 }
