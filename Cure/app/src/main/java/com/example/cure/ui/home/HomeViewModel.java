@@ -1,6 +1,7 @@
 package com.example.cure.ui.home;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 
 import androidx.lifecycle.ViewModel;
 
@@ -19,6 +20,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+
+
 public class HomeViewModel extends ViewModel {
     private Repository rep;
     private Arithmetic arithmetic;
@@ -27,29 +30,36 @@ public class HomeViewModel extends ViewModel {
     private List<String> storedIds = new ArrayList<>();
     private DailyRecipeAdapter adapter;
     private static Calendar currentDate = new GregorianCalendar();
+    private Context context;
 
 
     public void init(Context context){
+        this.context = context;
         arithmetic = new Arithmetic();
         rep = Repository.getInstance(context);
         adapter = new DailyRecipeAdapter(dailyRecipeItems, context);
     }
 
 
+
     public void deleteItem(String id, Calendar date) {
         rep.deleteRecipe(id, date);
+        storedIds.remove(id);
+        dailyRecipeItems.clear();
 
-        for (DailyRecipeItem item : dailyRecipeItems) {
+        for (String ID : getRecipeIds(date)) {
 
-            if (item.getId().equals(id)) {
+            if (getIndexFromTempList(ID) != -1) {
 
-                dailyRecipeItems.remove(item);
+                int index = getIndexFromTempList(ID);
+                DailyRecipeItem item = tempRecipeItems.get(index);
+                dailyRecipeItems.add(item);
                 adapter.notifyDataSetChanged();
             }
         }
 
-        storedIds.remove(id);
     }
+
 
     public double getDailyCalories() {
         return arithmetic.calculateTotalCalories(dailyRecipeItems);
