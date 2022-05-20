@@ -17,7 +17,7 @@
 
 
         <activity
-            android:name=".ui.dashboard.recipeInformation.RecipeInformationActivity"
+            android:name=".ui.recipesearch.recipeInformation.RecipeInformationActivity"
             android:exported="true" />
 
         <activity
