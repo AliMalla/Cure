@@ -7,10 +7,13 @@
 
     <TextView
         android:id="@+id/recipeItemName"
-        android:layout_width="180sp"
+        android:layout_width="190sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:singleLine="true"
         android:text="TextView"
         android:textColor="#190C0C"
         android:textSize="16sp"
@@ -33,17 +36,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginBottom="12dp"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/recipeImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintStart_toEndOf="@+id/recipeImage" />
 
     <TextView
         android:id="@+id/recipeItemCalories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="178dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="10dp"
         android:text="TextView"
         android:textColor="#AE342B"
         android:textSize="15sp"
@@ -58,6 +61,7 @@
         android:layout_marginTop="18dp"
         android:layout_marginEnd="16dp"
         android:src="@android:drawable/ic_menu_delete"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,5 +73,16 @@
         android:layout_marginTop="65dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/recipeInfoListview"
+        android:layout_width="30sp"
+        android:layout_height="30sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:background="#FFFDFD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_info" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
