@@ -34,7 +34,7 @@ public class RecipeSearchViewModel extends ViewModel {
     private MutableLiveData<String> emptySearchRecipeText;
 
     private String recipeName;
-    private String defaultRecipeName = "chicken";
+    private String defaultRecipeName = "chicken salad";
 
 
     public RecipeSearchViewModel() {
@@ -60,9 +60,13 @@ public class RecipeSearchViewModel extends ViewModel {
 
                 for (Hit hit : r.getHits()) {
                     Recipe rec = hit.getRecipe();
+                    String servingText = " Servings";
+                    if(rec.getYield() == 1) {
+                        servingText = " Serving";
+                    }
                     items.add(new MainRecipeItem(getRecipeId(rec), rec.getLabel(), rec.getImage(), (int) rec.getCalories() + " kcal",
                             "Fat    " + (int) rec.getTotalNutrients().getFat().getQuantity() + " " + rec.getTotalNutrients().getFat().getUnit(), "Protein    " + (int) rec.getTotalNutrients().getProtein().getQuantity() + " " + rec.getTotalNutrients().getProtein().getUnit(),
-                            "Carbs    " + (int) rec.getTotalNutrients().getCarbs().getQuantity() + " " + rec.getTotalNutrients().getCarbs().getUnit(), (int) rec.getTotalTime() + " minutes","/"+(int) rec.getYield() + " Servings"));
+                            "Carbs    " + (int) rec.getTotalNutrients().getCarbs().getQuantity() + " " + rec.getTotalNutrients().getCarbs().getUnit(), (int) rec.getTotalTime() + " minutes","/"+(int) rec.getYield() + servingText));
                     recipes.add(rec);
                 }
                 mainItems.postValue(items);
@@ -112,9 +116,13 @@ public class RecipeSearchViewModel extends ViewModel {
         List<MainRecipeItem> mainRecipeItemList = new ArrayList<>();
         mainItems.getValue().clear();
         for (Recipe rec : srtRecipes) {
+            String servingText = " Servings";
+            if(rec.getYield() == 1) {
+                servingText = " Serving";
+            }
             mainRecipeItemList.add(new MainRecipeItem(getRecipeId(rec), rec.getLabel(), rec.getImage(), (int) rec.getCalories() + " kcal",
                     "Fat    " + (int) rec.getTotalNutrients().getFat().getQuantity() + " " + rec.getTotalNutrients().getFat().getUnit(), "Protein    " + (int) rec.getTotalNutrients().getProtein().getQuantity() + " " + rec.getTotalNutrients().getProtein().getUnit(),
-                    "Carbs    " + (int) rec.getTotalNutrients().getCarbs().getQuantity() + " " + rec.getTotalNutrients().getCarbs().getUnit(), (int) rec.getTotalTime() + " minuter",  "/"+(int) rec.getYield() + " Servings"));
+                    "Carbs    " + (int) rec.getTotalNutrients().getCarbs().getQuantity() + " " + rec.getTotalNutrients().getCarbs().getUnit(), (int) rec.getTotalTime() + " minuter",  "/"+(int) rec.getYield() + servingText));
         }
 
         mainItems.postValue(mainRecipeItemList);
