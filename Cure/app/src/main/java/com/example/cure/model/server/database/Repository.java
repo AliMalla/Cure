@@ -97,11 +97,12 @@ public class Repository {
      */
     public List<String> getRecipes(Calendar date) {
 
-        String dateStr = DataConverter.dateToString(date);
+        final String dateStr = DataConverter.dateToString(date);
         List<String> ids = db.getRecipes(dateStr);
 
         return ids;
     }
+
 
     public final void clearDatabase(String key) {
 

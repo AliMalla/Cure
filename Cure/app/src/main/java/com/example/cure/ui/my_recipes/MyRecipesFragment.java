@@ -7,18 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.cure.R;
 import com.example.cure.databinding.FragmentMyRecipesBinding;
-import com.example.cure.ui.recipesearch.RecipeSearchFragment;
 import com.example.cure.ui.my_recipes.eatenRecipeInformation.EatenRecipeInformationActivity;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -87,50 +84,33 @@ public class MyRecipesFragment extends Fragment {
         setRemarkingWhenNoMeals();
 
 
-
-        FloatingActionButton fab = binding.floatingActionButton;
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Create new fragment and transaction
-                RecipeSearchFragment newFragment = new RecipeSearchFragment();
-                newFragment.getModel().setDate(horizontalCalendar.getSelectedDate().getTime());
-                // consider using Java coding conventions (upper first char class names!!!)
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                // Replace whatever is in the fragment_container view with this fragment,
-                // and add the transaction to the back stack
-                transaction.replace(R.id.nav_host_fragment_activity_main, newFragment);
-
-                // Commit the transaction
-                transaction.commit();
-            }
-        });
-
-
         intent = new Intent(root.getContext(), EatenRecipeInformationActivity.class);
 
 
-        /*
-        binding.switch1.setOnClickListener(new View.OnClickListener() {
+
+        binding.deleteRecipeSwitcher.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
-                binding.switch1.setText("Done");
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                myRecipesViewModel.getAdapter(selectedDate).setDeletionMode(b);
+                myRecipesViewModel.getAdapter(selectedDate).notifyDataSetChanged();
             }
         });
-
-
-         */
         binding.previousRecipesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                myRecipesViewModel.getAdapter(selectedDate).notifyDataSetChanged();
-                String id = myRecipesViewModel.dailyRecipeItems.get(i).getId();
+                if (binding.deleteRecipeSwitcher.isChecked()) {
+                    myRecipesViewModel.getAdapter(selectedDate).notifyDataSetChanged();
+                    String id = myRecipesViewModel.dailyRecipeItems.get(i).getId();
 
-                myRecipesViewModel.deleteItem(id, selectedDate);
-                updateValues();
-                Toast.makeText(getContext(),"The meal has been deleted", Toast.LENGTH_SHORT).show();
+                    myRecipesViewModel.deleteItem(id, selectedDate);
+                    updateValues();
+                    Toast.makeText(getContext(), "The meal has been deleted", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    sendSelectedEatenRecipeInfoToActivity(i);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -205,8 +185,15 @@ public class MyRecipesFragment extends Fragment {
         if (myRecipesViewModel.getEatenMealsNumber(selectedDate) != 0)
             binding.noRecipesYetRemarking.setText("");
 
-        else
-            binding.noRecipesYetRemarking.setText("No meals have been added yet");
+        else {
+            Calendar nowDate = new GregorianCalendar();
+            if((selectedDate.get(Calendar.MONTH) == nowDate.get(Calendar.MONTH) && selectedDate.get(Calendar.DATE) < nowDate.get(Calendar.DATE))
+                    || selectedDate.get(Calendar.MONTH) < nowDate.get(Calendar.MONTH) ) {
+                binding.noRecipesYetRemarking.setText("You did not add any meal on this date");
+            }
+            else
+                binding.noRecipesYetRemarking.setText("No meals have been added yet");
+        }
     }
 
 
@@ -239,7 +226,6 @@ public class MyRecipesFragment extends Fragment {
         intent.putExtra("year", year);
         intent.putExtra("month", month);
         intent.putExtra("day", day);
-
 
     }
 
