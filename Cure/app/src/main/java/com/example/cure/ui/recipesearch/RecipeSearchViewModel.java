@@ -36,7 +36,6 @@ public class RecipeSearchViewModel extends ViewModel {
     private String recipeName;
     private String defaultRecipeName = "chicken salad";
 
-
     public RecipeSearchViewModel() {
         recipeName = defaultRecipeName;
         emptySearchRecipeText = new MutableLiveData<>();
