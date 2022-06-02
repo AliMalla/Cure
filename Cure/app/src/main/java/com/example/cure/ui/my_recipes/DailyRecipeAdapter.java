@@ -18,6 +18,7 @@ public class DailyRecipeAdapter extends BaseAdapter {
 
     private List<DailyRecipeItem> dailyRecipeItems;
     private Context context;
+    boolean isDeletionMode;
 
     public DailyRecipeAdapter(List<DailyRecipeItem> dailyRecipeItems, Context context) {
         this.dailyRecipeItems = dailyRecipeItems;
@@ -53,13 +54,27 @@ public class DailyRecipeAdapter extends BaseAdapter {
         TextView recipeCalories = (TextView)v.findViewById(R.id.recipeItemCalories);
         TextView recipeType = (TextView)v.findViewById(R.id.mealType);
         ImageView image = (ImageView) v.findViewById(R.id.recipeImage);
-
+        ImageView deleteImg = (ImageView) v.findViewById(R.id.deleteRecipe);
+        ImageView infoImg = (ImageView) v.findViewById(R.id.recipeInfoListview);
         recipeName.setText(dailyRecipeItems.get(i).getName());
         recipeCalories.setText(dailyRecipeItems.get(i).getCalories() + " kcal");
         recipeType.setText(dailyRecipeItems.get(i).getType().toString());
         Picasso.get().load(dailyRecipeItems.get(i).getImage()).into(image);
 
+        if(!isDeletionMode) {
+            deleteImg.setVisibility(View.INVISIBLE);
+            infoImg.setVisibility(View.VISIBLE);
+        }
+        else {
+            deleteImg.setVisibility(View.VISIBLE);
+            infoImg.setVisibility(View.INVISIBLE);
+        }
+
         return v;
+    }
+
+    public void setDeletionMode(boolean isDeletionMode) {
+        this.isDeletionMode = isDeletionMode;
     }
 
 }

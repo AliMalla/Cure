@@ -3,7 +3,6 @@ package com.example.cure.ui.my_recipes.eatenRecipeInformation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -12,8 +11,6 @@ import com.example.cure.databinding.EatenRecipeInformationBinding;
 import com.example.cure.ui.my_recipes.MyRecipesViewModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class EatenRecipeInformationActivity extends AppCompatActivity {
 
@@ -50,18 +47,5 @@ public class EatenRecipeInformationActivity extends AppCompatActivity {
         Picasso.get().load(image).resize(175, 120).into(binding.eatenRecipeInformationImageView);
         binding.eatenRecipeInformationDate.setText("Date: "+ intent.getStringExtra("date"));
 
-        binding.deleteRecipeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String id = intent.getStringExtra("id");
-                int year = intent.getIntExtra("year",0);
-                int month = intent.getIntExtra("month",0);
-                int day = intent.getIntExtra("day",0);
-                Calendar date = new GregorianCalendar(year, month, day);
-                myRecipesViewModel.deleteItem(id, date);
-                Toast.makeText(binding.getRoot().getContext(),"The meal has been deleted!",Toast.LENGTH_LONG).show();
-                finish();
-            }
-        });
     }
 }
